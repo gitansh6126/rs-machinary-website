@@ -1,0 +1,99 @@
+@media (max-width: 600px) {
+    .hero {
+        padding: clamp(1rem, 3.5vw, 1.5rem);
+        gap: clamp(1rem, 3vw, 1.5rem);
+    }
+
+    .hero-grid {
+        gap: clamp(1rem, 3vw, 1.5rem);
+    }
+
+    .hero h1 {
+        margin-bottom: clamp(0.6rem, 1.5vw, 0.8rem);
+    }
+
+    .hero-text {
+        margin-bottom: clamp(1rem, 2vw, 1.3rem);
+    }
+
+    .hero-actions {
+        gap: clamp(0.5rem, 1.2vw, 0.8rem);
+        margin-bottom: clamp(1rem, 2vw, 1.3rem);
+    }
+
+    .hero-points {
+        gap: clamp(0.5rem, 1.2vw, 0.7rem);
+    }
+
+    .hero-visual-card {
+        max-width: 100%;
+        aspect-ratio: 4 / 3;
+    }
+
+    .hero-feature-list {
+        grid-template-columns: 1fr;
+        margin-top: clamp(0.8rem, 2vw, 1rem);
+    }
+
+    .hero-feature-card {
+        padding: clamp(0.6rem, 1.2vw, 0.8rem);
+    }
+}
+
+@media (max-width: 375px) {
+    .hero {
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .hero-grid {
+        gap: 1rem;
+    }
+
+    .hero h1 {
+        max-width: 12ch;
+        font-size: clamp(1.8rem, 5vw, 2rem);
+    }
+
+    .hero-tag {
+        font-size: 0.7rem;
+    }
+
+    .hero-text {
+        font-size: 0.9rem;
+        line-height: 1.6;
+        margin-bottom: 1rem;
+    }
+
+    .hero-actions {
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .button {
+        min-height: 2.5rem;
+        padding: 0.6rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    .hero-points {
+        gap: 0.5rem;
+        font-size: 0.85rem;
+    }
+
+    .hero-points li {
+        padding-left: 1rem;
+    }
+
+    .hero-stat {
+        padding: clamp(0.8rem, 1.5vw, 1rem);
+    }
+
+    .stat-value {
+        font-size: 1.5rem;
+    }
+
+    .stat-label {
+        font-size: 0.8rem;
+    }
+}
