@@ -2392,6 +2392,7 @@ main {
     overflow: hidden;
     background: linear-gradient(135deg, rgba(22, 64, 179, 0.06), rgba(22, 64, 179, 0.02));
     border: 1px solid rgba(22, 64, 179, 0.12);
+    max-width: 85%;
 }
 
 .about-image-wrapper img {
@@ -2591,6 +2592,7 @@ main {
     overflow: hidden;
     background: linear-gradient(135deg, rgba(22, 64, 179, 0.06), rgba(22, 64, 179, 0.02));
     border: 1px solid rgba(22, 64, 179, 0.12);
+    max-width: 85%;
 }
 
 .wcu-image-wrapper img {
