@@ -22,18 +22,16 @@
     <div class="header-shell">
         <!-- Top Row: Logo + Navigation (left), Hindi + Call Now (right) -->
         <div class="header-top">
-            <!-- Logo for desktop - shown only on desktop -->
+            <!-- Logo -->
             <a class="brand brand-inline" href="#top" aria-label="RSMachinery home">
                 <img class="brand-logo" src="assets/3.png" alt="RSMachinery logo">
-                <span class="brand-name" data-i18n="brandName">RSMachinery</span>
             </a>
             <nav class="site-nav" aria-label="Primary navigation">
                 <a href="#products" data-i18n="navProducts">Products</a>
-                <a href="#services" data-i18n="navServices">Services</a>
-                <a href="#profiles" data-i18n="navProfiles">About</a>
+                <a href="#profiles" data-i18n="navProfiles">Profile</a>
                 <a href="#contact" data-i18n="navContact">Contact</a>
             </nav>
-            <div class="header-right">
+                <div class="header-right">
                 <button class="lang-toggle" id="langToggle" type="button" aria-pressed="false" data-i18n="langButton">हिंदी</button>
                 <a class="button button-solid header-call" href="tel:+918708795253" data-i18n="headerCall">
                     <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
@@ -49,14 +47,6 @@
                 </button>
             </div>
         </div>
-
-        <!-- Bottom Row: Full Size Logo -->
-        <div class="header-bottom">
-            <a class="brand" href="#top" aria-label="RSMachinery home">
-                <img class="brand-logo" src="assets/3.png" alt="RSMachinery logo">
-                <span class="brand-name" data-i18n="brandName">RSMachinery</span>
-            </a>
-        </div>
     </div>
 
         <!-- Mobile Menu Box -->
@@ -69,17 +59,11 @@
                         </svg>
                         Products
                     </a>
-                    <a href="#services" class="mobile-nav-link" data-i18n="navServices">
-                        <svg class="mobile-nav-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-                            <path fill="currentColor" d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.5z"/>
-                        </svg>
-                        Services
-                    </a>
                     <a href="#profiles" class="mobile-nav-link" data-i18n="navProfiles">
                         <svg class="mobile-nav-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
                             <path fill="currentColor" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
                         </svg>
-                        About
+                        Profile
                     </a>
                     <a href="#contact" class="mobile-nav-link" data-i18n="navContact">
                         <svg class="mobile-nav-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
@@ -108,117 +92,89 @@
         <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
     </header>
 
-    <section class="hero-slider section-shell" aria-label="Top product slider">
-        <div class="hero-slider-track">
-            <div class="hero-slide is-active">
-                <section class="hero section-shell">
-                    <div class="hero-grid">
-                        <div class="hero-copy">
-                            <p class="hero-tag" data-i18n="heroTag">trusted supplier • Heavy Machinery Available in Sirsa</p>
-                            <h1 data-i18n="heroTitle">All Heavy Machinery Available Clear Pricing. Fast Delivery.</h1>
-                            <p class="hero-text" data-i18n="heroText">
-                                <strong>Trusted supplier</strong> for all heavy machinery. Buy directly in Sirsa, Haryana. Heavy-duty, reliable industrial machines for workshops, factories, and production units. Best pricing with fast support.
-                            </p>
-
-                            <div class="hero-actions">
-                                <a class="button button-solid" href="tel:+918708795253" data-i18n="heroCall">
-                                    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
-                                        <path fill="currentColor" d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
-                                    </svg>
-                                    Get Best Price
-                                </a>
-                                <a class="button button-outline" href="https://wa.me/918708795253" data-i18n="heroWhatsapp">
-                                    <img src="assets/pngtree-whatsapp-icon-png-image_3584844.png" alt="WhatsApp" class="button-icon">
-                                    <span>WhatsApp Now</span>
-                                </a>
-                            </div>
-
-                            <ul class="hero-points">
-                                <li data-i18n="heroPoint1">Trusted supplier - Trusted in Sirsa</li>
-                                <li data-i18n="heroPoint2">All Heavy Machinery Available Now</li>
-                                <li data-i18n="heroPoint3">No Waiting - Direct from Sirsa</li>
-                            </ul>
-                        </div>
-
-                        <div class="hero-visual">
-                            <div class="hero-visual-card">
-                                <div class="hero-visual-mask"></div>
-                                <div class="hero-visual-image">
-                                    <img src="assets/industrial-steel-wire-rope-500x500.webp" alt="Industrial machine" loading="lazy">
-                                </div>
-                                <div class="hero-feature-list">
-                                    <article class="hero-feature-card">
-                                        <strong data-i18n="heroFeature1Title">Fast Dispatch</strong>
-                                        <p data-i18n="heroFeature1Text">On Time Delivery</p>
-                                    </article>
-                                    <article class="hero-feature-card">
-                                        <strong data-i18n="heroFeature2Title">Genuine Products</strong>
-                                        <p data-i18n="heroFeature2Text">100% Original</p>
-                                    </article>
-                                    <article class="hero-feature-card">
-                                        <strong data-i18n="heroFeature3Title">Installation Support</strong>
-                                        <p data-i18n="heroFeature3Text">Expert Assistance</p>
-                                    </article>
-                                    <article class="hero-feature-card">
-                                        <strong data-i18n="heroFeature4Title">Best Price Guarantee</strong>
-                                        <p data-i18n="heroFeature4Text">Unbeatable Pricing</p>
-                                    </article>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-            <div class="hero-slide product-slide" style="--slide-bg: url('assets/hero imges/mini crane slide.webp');" aria-hidden="true">
-                <section class="hero section-shell">
-                    <div class="hero-grid product-slide-grid">
-                        <div class="hero-copy product-slide-copy">
-                            <p class="hero-tag product-slide-tag">MONEY LIFT / MINI LIFT</p>
-                            <h1 class="product-slide-title">HEAVY DUTY<br>MONEY LIFT</h1>
-                            <p class="hero-text product-slide-subtitle">Smooth & Safe Material Lifting</p>
-                            <p class="hero-text product-slide-description">Built for construction sites, warehouses, and industrial lifting applications with strong performance and reliable operation.</p>
-                            <ul class="hero-points product-feature-list">
-                                <li>High Load Capacity</li>
-                                <li>Durable Steel Build</li>
-                                <li>Easy Installation</li>
-                                <li>Low Maintenance</li>
-                            </ul>
-                            <div class="hero-actions">
-                                <a class="button button-solid" href="tel:+918708795253">Call Now</a>
-                                <a class="button button-outline" href="https://wa.me/918708795253">
-                                    <img src="assets/pngtree-whatsapp-icon-png-image_3584844.png" alt="WhatsApp" class="button-icon">
-                                    <span>WhatsApp Now</span>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="hero-visual product-slide-visual">
-                            <div class="hero-visual-card product-slide-visual-card">
-                                <img src="assets/product img/construction-monkey-lift-1000x1000.webp" alt="Construction monkey lift" class="product-slide-image">
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-
-        </div>
-
-        <div class="hero-slider-controls" aria-label="Slider controls">
-            <button type="button" class="slider-arrow" data-slide-prev aria-label="Previous slide">‹</button>
-            <div class="slider-dots" aria-label="Select slide">
-                <button type="button" class="slider-dot is-active" data-slide-dot="0" aria-label="Go to slide 1"></button>
-                <button type="button" class="slider-dot" data-slide-dot="1" aria-label="Go to slide 2"></button>
-            </div>
-            <button type="button" class="slider-arrow" data-slide-next aria-label="Next slide">›</button>
-        </div>
-
-        <!-- Hint arrow - visual indicator only -->
-        <div class="slider-hint-arrow" data-slide-next aria-label="Next slide">›</div>
-    </section>
-
     <main id="top">
+        <section class="pslider section-shell" aria-label="Product showcase slider">
+            <div class="pslider-track">
+
+                <!-- SLIDE 1: Monkey Crane -->
+                <div class="pslide is-active" style="--pslide-bg: url('assets/hero-images/product-bg-slide.webp');" aria-hidden="false">
+                    <div class="pslide-grid">
+                        <div class="pslide-copy">
+                            <p class="pslide-category" data-i18n="psCat1">Monkey Crane</p>
+                            <h2 class="pslide-heading" data-i18n-html="psHeading1">Heavy Duty Monkey Crane<br>For Construction Sites</h2>
+                            <p class="pslide-desc" data-i18n="psDesc1">Designed for fast and efficient material lifting at construction projects. Our Monkey Cranes are built with a strong steel structure, reliable motors, and smooth lifting mechanisms to handle cement, bricks, concrete, and building materials safely.</p>
+                            <ul class="pslide-list">
+                                <li><span data-i18n="psPoint1_1">Capacity up to 500 KG</span></li>
+                                <li><span data-i18n="psPoint1_2">Rugged Steel Construction</span></li>
+                                <li><span data-i18n="psPoint1_3">Easy Installation</span></li>
+                                <li><span data-i18n="psPoint1_4">Low Maintenance</span></li>
+                            </ul>
+                            <a class="button button-solid" href="#contact" data-i18n="psBtn">Get Quotation</a>
+                        </div>
+                        <div class="pslide-visual">
+                            <div class="pslide-circle"></div>
+                            <img src="assets/hero-images/mini-crane-slide.webp" alt="Heavy Duty Monkey Crane" class="pslide-img" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SLIDE 2: Electric Hoist -->
+                <div class="pslide" style="--pslide-bg: url('assets/hero-images/product-bg-slide.webp');" aria-hidden="true">
+                    <div class="pslide-grid">
+                        <div class="pslide-copy">
+                            <p class="pslide-category" data-i18n="psCat2">Electric Hoist</p>
+                            <h2 class="pslide-heading" data-i18n-html="psHeading2">Powerful Electric Hoists<br>For Industrial Lifting</h2>
+                            <p class="pslide-desc" data-i18n="psDesc2">High-performance electric hoists engineered for warehouses, factories, workshops, and industrial facilities. Built for smooth operation, enhanced safety, and reliable heavy-duty lifting applications.</p>
+                            <ul class="pslide-list">
+                                <li><span data-i18n="psPoint2_1">Smooth Motor Operation</span></li>
+                                <li><span data-i18n="psPoint2_2">Heavy Load Handling</span></li>
+                                <li><span data-i18n="psPoint2_3">Industrial Grade Components</span></li>
+                                <li><span data-i18n="psPoint2_4">Long Service Life</span></li>
+                            </ul>
+                            <a class="button button-solid" href="#contact" data-i18n="psBtn">Get Quotation</a>
+                        </div>
+                        <div class="pslide-visual">
+                            <div class="pslide-circle"></div>
+                            <img src="assets/hero-images/hoist-slide.webp" alt="Powerful Electric Hoist" class="pslide-img" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SLIDE 3: Chain Pulley Block -->
+                <div class="pslide" style="--pslide-bg: url('assets/hero-images/product-bg-slide.webp');" aria-hidden="true">
+                    <div class="pslide-grid">
+                        <div class="pslide-copy">
+                            <p class="pslide-category" data-i18n="psCat3">Chain Pulley Block</p>
+                            <h2 class="pslide-heading" data-i18n-html="psHeading3">Reliable Chain Pulley Blocks<br>For Safe Material Handling</h2>
+                            <p class="pslide-desc" data-i18n="psDesc3">Durable chain pulley blocks manufactured for workshops, warehouses, and industrial lifting operations. Designed to provide maximum safety, easy handling, and dependable performance under demanding conditions.</p>
+                            <ul class="pslide-list">
+                                <li><span data-i18n="psPoint3_1">Strong Alloy Components</span></li>
+                                <li><span data-i18n="psPoint3_2">Corrosion Resistant Finish</span></li>
+                                <li><span data-i18n="psPoint3_3">Safe Lifting Mechanism</span></li>
+                                <li><span data-i18n="psPoint3_4">Industrial Duty Performance</span></li>
+                            </ul>
+                            <a class="button button-solid" href="#contact" data-i18n="psBtn">Get Quotation</a>
+                        </div>
+                        <div class="pslide-visual">
+                            <div class="pslide-circle"></div>
+                            <img src="assets/hero-images/chain-pulley-slide.webp" alt="Reliable Chain Pulley Block" class="pslide-img" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="pslider-controls">
+                <button type="button" class="pslider-arrow" data-pslide-prev aria-label="Previous slide">‹</button>
+                <div class="pslider-dots" aria-label="Select slide">
+                    <button type="button" class="pslider-dot is-active" data-pslide-dot="0" aria-label="Go to slide 1"></button>
+                    <button type="button" class="pslider-dot" data-pslide-dot="1" aria-label="Go to slide 2"></button>
+                    <button type="button" class="pslider-dot" data-pslide-dot="2" aria-label="Go to slide 3"></button>
+                </div>
+                <button type="button" class="pslider-arrow" data-pslide-next aria-label="Next slide">›</button>
+            </div>
+        </section>
+
         <section class="products section-shell" id="products">
             <div class="section-head">
                 <p class="section-tag" data-i18n="productsTag">Our Products</p>
@@ -234,10 +190,6 @@
                     <div class="product-scroll-card-content">
                         <h3 class="product-scroll-card-title" data-i18n="sliderProduct1Title">Mini Electric Wire Rope Hoist Winch</h3>
                         <p class="product-scroll-card-benefit" data-i18n="sliderProduct1Benefit">Powerful lifting with smooth operation</p>
-                        <div class="product-scroll-card-actions">
-                            <a href="#contact" class="btn btn-primary" data-i18n="getQuote">Get Quote</a>
-                            <a href="https://wa.me/918708795253" class="btn btn-secondary" data-i18n="whatsappNow">WhatsApp Now</a>
-                        </div>
                     </div>
                 </article>
 
@@ -248,24 +200,6 @@
                     <div class="product-scroll-card-content">
                         <h3 class="product-scroll-card-title" data-i18n="sliderProduct2Title">Construction Monkey Lift</h3>
                         <p class="product-scroll-card-benefit" data-i18n="sliderProduct2Benefit">Vertical lifting for construction sites</p>
-                        <div class="product-scroll-card-actions">
-                            <a href="#contact" class="btn btn-primary" data-i18n="getQuote">Get Quote</a>
-                            <a href="https://wa.me/918708795253" class="btn btn-secondary" data-i18n="whatsappNow">WhatsApp Now</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="product-scroll-card">
-                    <div class="product-scroll-card-image">
-                        <img src="assets/product%20img/download.jfif" alt="Hand Winch" loading="lazy">
-                    </div>
-                    <div class="product-scroll-card-content">
-                        <h3 class="product-scroll-card-title" data-i18n="sliderProduct3Title">Hand Winch</h3>
-                        <p class="product-scroll-card-benefit" data-i18n="sliderProduct3Benefit">Manual control with heavy load capacity</p>
-                        <div class="product-scroll-card-actions">
-                            <a href="#contact" class="btn btn-primary" data-i18n="getQuote">Get Quote</a>
-                            <a href="https://wa.me/918708795253" class="btn btn-secondary" data-i18n="whatsappNow">WhatsApp Now</a>
-                        </div>
                     </div>
                 </article>
 
@@ -276,87 +210,91 @@
                     <div class="product-scroll-card-content">
                         <h3 class="product-scroll-card-title" data-i18n="sliderProduct4Title">Stainless Steel Wire Rope</h3>
                         <p class="product-scroll-card-benefit" data-i18n="sliderProduct4Benefit">Corrosion-resistant premium quality</p>
-                        <div class="product-scroll-card-actions">
-                            <a href="#contact" class="btn btn-primary" data-i18n="getQuote">Get Quote</a>
-                            <a href="https://wa.me/918708795253" class="btn btn-secondary" data-i18n="whatsappNow">WhatsApp Now</a>
-                        </div>
                     </div>
                 </article>
 
-                <article class="product-scroll-card">
-                    <div class="product-scroll-card-image">
-                        <img src="assets/product%20img/images.jpeg" alt="Steel Wire Rope Bundle" loading="lazy">
-                    </div>
-                    <div class="product-scroll-card-content">
-                        <h3 class="product-scroll-card-title" data-i18n="sliderProduct5Title">Steel Wire Rope Bundle</h3>
-                        <p class="product-scroll-card-benefit" data-i18n="sliderProduct5Benefit">Bulk packaging for industrial needs</p>
-                        <div class="product-scroll-card-actions">
-                            <a href="#contact" class="btn btn-primary" data-i18n="getQuote">Get Quote</a>
-                            <a href="https://wa.me/918708795253" class="btn btn-secondary" data-i18n="whatsappNow">WhatsApp Now</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="product-scroll-card">
-                    <div class="product-scroll-card-image">
-                        <img src="assets/product%20img/MAT.ELE.61518786_1674644059330.webp" alt="Mini Electric Wire Rope Hoist" loading="lazy">
-                    </div>
-                    <div class="product-scroll-card-content">
-                        <h3 class="product-scroll-card-title" data-i18n="sliderProduct6Title">Mini Electric Wire Rope Hoist</h3>
-                        <p class="product-scroll-card-benefit" data-i18n="sliderProduct6Benefit">Compact design with electric power</p>
-                        <div class="product-scroll-card-actions">
-                            <a href="#contact" class="btn btn-primary" data-i18n="getQuote">Get Quote</a>
-                            <a href="https://wa.me/918708795253" class="btn btn-secondary" data-i18n="whatsappNow">WhatsApp Now</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="product-scroll-card">
-                    <div class="product-scroll-card-image">
-                        <img src="assets/product%20img/material-handling-lifts-1518498321-3642500.jpg" alt="Material Handling Lift" loading="lazy">
-                    </div>
-                    <div class="product-scroll-card-content">
-                        <h3 class="product-scroll-card-title" data-i18n="sliderProduct7Title">Material Handling Lift</h3>
-                        <p class="product-scroll-card-benefit" data-i18n="sliderProduct7Benefit">Efficient material movement solution</p>
-                        <div class="product-scroll-card-actions">
-                            <a href="#contact" class="btn btn-primary" data-i18n="getQuote">Get Quote</a>
-                            <a href="https://wa.me/918708795253" class="btn btn-secondary" data-i18n="whatsappNow">WhatsApp Now</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="product-scroll-card">
-                    <div class="product-scroll-card-image">
-                        <img src="assets/product%20img/portable-monkey-hoist-machine.jpg" alt="Portable Monkey Hoist Machine" loading="lazy">
-                    </div>
-                    <div class="product-scroll-card-content">
-                        <h3 class="product-scroll-card-title" data-i18n="sliderProduct8Title">Portable Monkey Hoist Machine</h3>
-                        <p class="product-scroll-card-benefit" data-i18n="sliderProduct8Benefit">Easy to transport and setup</p>
-                        <div class="product-scroll-card-actions">
-                            <a href="#contact" class="btn btn-primary" data-i18n="getQuote">Get Quote</a>
-                            <a href="https://wa.me/918708795253" class="btn btn-secondary" data-i18n="whatsappNow">WhatsApp Now</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="product-scroll-card">
-                    <div class="product-scroll-card-image">
-                        <img src="assets/product%20img/shopping.webp" alt="Needle Vibrator" loading="lazy">
-                    </div>
-                    <div class="product-scroll-card-content">
-                        <h3 class="product-scroll-card-title" data-i18n="sliderProduct9Title">Needle Vibrator</h3>
-                        <p class="product-scroll-card-benefit" data-i18n="sliderProduct9Benefit">Concrete compaction made easy</p>
-                        <div class="product-scroll-card-actions">
-                            <a href="#contact" class="btn btn-primary" data-i18n="getQuote">Get Quote</a>
-                            <a href="https://wa.me/918708795253" class="btn btn-secondary" data-i18n="whatsappNow">WhatsApp Now</a>
-                        </div>
-                     </div>
-                 </article>
              </div>
          </section>
 
-        <!-- Services Section - Rent Available -->
-        
+         <section class="about" id="about">
+            <div class="about-container">
+                <div class="about-image-wrapper">
+                    <img src="assets/About-Us-Image-.png" alt="About RS Machinery" loading="lazy">
+                </div>
+                <div class="about-content">
+                    <div class="about-label">
+                        <span class="about-label-line"></span>
+                        <span class="about-label-text" data-i18n="aboutTag">ABOUT US</span>
+                    </div>
+                    <h2 class="about-heading" data-i18n="aboutHeading">Professional Lifting Equipment Solutions</h2>
+                    <p class="about-description" data-i18n="aboutDescription">At RS Machinery, we are dedicated to providing top-quality lifting and material handling equipment to industries across India. With years of experience and a commitment to excellence, we have become a trusted name in the heavy machinery sector, serving workshops, factories, construction sites, and industrial facilities with reliable solutions that enhance productivity and safety.</p>
+                    
+                    <div class="about-features">
+                        <div class="about-feature-item">
+                            <span class="about-feature-icon">✓</span>
+                            <span data-i18n="aboutFeature1">Quality-Assured Equipment</span>
+                        </div>
+                        <div class="about-feature-item">
+                            <span class="about-feature-icon">✓</span>
+                            <span data-i18n="aboutFeature2">Reliable After-Sales Support</span>
+                        </div>
+                        <div class="about-feature-item">
+                            <span class="about-feature-icon">✓</span>
+                            <span data-i18n="aboutFeature3">Experienced Technical Team</span>
+                        </div>
+                        <div class="about-feature-item">
+                            <span class="about-feature-icon">✓</span>
+                            <span data-i18n="aboutFeature4">Customized Lifting Solutions</span>
+                        </div>
+                    </div>
+
+                    <div class="about-actions">
+                        <a class="button button-solid" href="#profiles" data-i18n="aboutMore">MORE ABOUT</a>
+                        <a class="button button-outline about-phone-btn" href="tel:+9198988228929">
+                            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
+                                <path fill="currentColor" d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
+                            </svg>
+                            <span class="about-phone-text">
+                                <span class="about-phone-label" data-i18n="aboutCallLabel">Call Us</span>
+                                <span class="about-phone-number">+91 98982 88929</span>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="why-choose-us" id="why-choose-us">
+            <div class="wcu-container">
+                <div class="wcu-content">
+                    <p class="section-tag" data-i18n="wcuTag">WHY CHOOSE US</p>
+                    <h2 class="wcu-heading" data-i18n-html="wcuHeading">Why Industries Trust<br>RS Machinery</h2>
+                    <p class="wcu-description" data-i18n="wcuDescription">RS Machinery provides reliable lifting and material handling equipment for construction, industrial, warehouse, and manufacturing applications. Our focus on quality, durability, technical expertise, and customer support helps businesses improve safety and productivity.</p>
+                    <div class="wcu-stats">
+                        <div class="wcu-stat-item">
+                            <span class="wcu-stat-number">500+</span>
+                            <span class="wcu-stat-label" data-i18n="wcuStat1Label">Projects Supplied</span>
+                        </div>
+                        <div class="wcu-stat-item">
+                            <span class="wcu-stat-number">50+</span>
+                            <span class="wcu-stat-label" data-i18n="wcuStat2Label">Industrial Products</span>
+                        </div>
+                        <div class="wcu-stat-item">
+                            <span class="wcu-stat-number">10+</span>
+                            <span class="wcu-stat-label" data-i18n="wcuStat3Label">Years Experience</span>
+                        </div>
+                        <div class="wcu-stat-item">
+                            <span class="wcu-stat-number">Pan India</span>
+                            <span class="wcu-stat-label" data-i18n="wcuStat4Label">Delivery Support</span>
+                        </div>
+                    </div>
+                    <a class="button button-solid" href="#contact" data-i18n="wcuCta">Get Quotation</a>
+                </div>
+                <div class="wcu-image-wrapper">
+                    <img src="assets/why-choose-us.png" alt="Why Choose RS Machinery" loading="lazy">
+                </div>
+            </div>
+        </section>
 
         <section class="profiles section-shell" id="profiles">
             <div class="profiles-content">
@@ -503,21 +441,6 @@
             </div>
         </section>
 
-        <section class="pricing section-shell" id="pricing">
-            <div class="pricing-box">
-                <p class="section-tag" data-i18n="pricingTag">Pricing Policy</p>
-                <h2 data-i18n="pricingTitle">Best price depends on your machine size and requirement</h2>
-                <p data-i18n="pricingText">
-                    We give custom pricing based on capacity, usage, and delivery location. Call us directly for exact price and stock status.
-                </p>
-                <a class="button button-accent" href="tel:+918708795253" data-i18n="pricingCall">
-                    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
-                        <path fill="currentColor" d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
-                    </svg>
-                    Call +91 870 879 5253
-                </a>
-            </div>
-        </section>
 
         <section class="contact section-shell" id="contact">
             <div class="contact-card">
@@ -610,31 +533,11 @@
                     brandName: "RSMachinery",
                     navProducts: "Products",
                     navServices: "Services",
-                    navProfiles: "About",
+                    navProfiles: "Profile",
                     navPricing: "Pricing",
                     navContact: "Contact",
                     headerCall: "Call Now",
                     langButton: "हिंदी",
-                    heroTag: "Premium Machinery Supply",
-                    heroTitle: "All Heavy Machines. Clear Pricing. Fast Delivery.",
-                    heroText: "We supply reliable industrial machines for workshops and factories that need strong output and less downtime.",
-                    heroCall: "Call to Know Price",
-                    heroWhatsapp: "WhatsApp for Instant Quote",
-                    heroPoint1: "Direct supplier pricing",
-                    heroPoint2: "Quick delivery support",
-                    heroPoint3: "After-sales assistance",
-                    heroFeature1Title: "Fast Dispatch",
-                    heroFeature1Text: "On Time Delivery",
-                    heroFeature2Title: "Genuine Products",
-                    heroFeature2Text: "100% Original",
-                    heroFeature3Title: "Installation Support",
-                    heroFeature3Text: "Expert Assistance",
-                    heroFeature4Title: "Best Price Guarantee",
-                    heroFeature4Text: "Unbeatable Pricing",
-                    stat1: "Happy Buyers Across India",
-                    stat2: "Years Experience",
-                    stat3Value: "Fastest Delivery",
-                    stat3Label: "No More Wait",
                     productsTag: "Our Products",
                     productsTitle: "Swipe to Explore Machinery",
                     productsSubtitle: "Heavy Machines Ready in Sirsa",
@@ -686,17 +589,49 @@
                     profilesSubtitle: "Explore our verified business profiles, product listings, reviews, and updates across leading platforms.",
                     profilesViewAll: "View All Profiles",
                     profilesContact: "Contact RS Machinery",
-                    pricingTag: "Pricing Policy",
-                    pricingTitle: "Best price depends on your machine size and requirement",
-                    pricingText: "We give custom pricing based on capacity, usage, and delivery location. Call us directly for exact price and stock status.",
-                    pricingCall: "Call +91 870 879 5253",
+
                     contactTag: "Contact Us",
                     contactTitle: "Talk to our team and get quote today",
                     contactAddress: "Begu Road, wali gali, near parshuram chock, opposite sarsainath mandir, Sirsa, Haryana 125055",
-                    contactCall: "Call Now",
-                    contactWhatsapp: "WhatsApp Now",
-                    floatingWhatsapp: "WhatsApp",
-                    footerBrandTitle: "RSMachinery",
+                    aboutTag: "ABOUT US",
+                    aboutHeading: "Professional Lifting Equipment Solutions",
+                    aboutDescription: "At RS Machinery, we are dedicated to providing top-quality lifting and material handling equipment to industries across India. With years of experience and a commitment to excellence, we have become a trusted name in the heavy machinery sector, serving workshops, factories, construction sites, and industrial facilities with reliable solutions that enhance productivity and safety.",
+                    aboutFeature1: "Quality-Assured Equipment",
+                    aboutFeature2: "Reliable After-Sales Support",
+                    aboutFeature3: "Experienced Technical Team",
+                    aboutFeature4: "Customized Lifting Solutions",
+                    aboutMore: "MORE ABOUT",
+                    aboutCallLabel: "Call Us",
+                    wcuTag: "WHY CHOOSE US",
+                    wcuHeading: "Why Industries Trust<br>RS Machinery",
+                    wcuDescription: "RS Machinery provides reliable lifting and material handling equipment for construction, industrial, warehouse, and manufacturing applications. Our focus on quality, durability, technical expertise, and customer support helps businesses improve safety and productivity.",
+                    wcuStat1Label: "Projects Supplied",
+                    wcuStat2Label: "Industrial Products",
+                    wcuStat3Label: "Years Experience",
+                    wcuStat4Label: "Delivery Support",
+                    wcuCta: "Get Quotation",
+                    psCat1: "Monkey Crane",
+                    psHeading1: "Heavy Duty Monkey Crane<br>For Construction Sites",
+                    psDesc1: "Designed for fast and efficient material lifting at construction projects. Our Monkey Cranes are built with a strong steel structure, reliable motors, and smooth lifting mechanisms to handle cement, bricks, concrete, and building materials safely.",
+                    psPoint1_1: "Capacity up to 500 KG",
+                    psPoint1_2: "Rugged Steel Construction",
+                    psPoint1_3: "Easy Installation",
+                    psPoint1_4: "Low Maintenance",
+                    psCat2: "Electric Hoist",
+                    psHeading2: "Powerful Electric Hoists<br>For Industrial Lifting",
+                    psDesc2: "High-performance electric hoists engineered for warehouses, factories, workshops, and industrial facilities. Built for smooth operation, enhanced safety, and reliable heavy-duty lifting applications.",
+                    psPoint2_1: "Smooth Motor Operation",
+                    psPoint2_2: "Heavy Load Handling",
+                    psPoint2_3: "Industrial Grade Components",
+                    psPoint2_4: "Long Service Life",
+                    psCat3: "Chain Pulley Block",
+                    psHeading3: "Reliable Chain Pulley Blocks<br>For Safe Material Handling",
+                    psDesc3: "Durable chain pulley blocks manufactured for workshops, warehouses, and industrial lifting operations. Designed to provide maximum safety, easy handling, and dependable performance under demanding conditions.",
+                    psPoint3_1: "Strong Alloy Components",
+                    psPoint3_2: "Corrosion Resistant Finish",
+                    psPoint3_3: "Safe Lifting Mechanism",
+                    psPoint3_4: "Industrial Duty Performance",
+                    psBtn: "Get Quotation",
                     footerBrandText: "Premium industrial machines with strong build quality and direct support.",
                     footerLinksTitle: "Quick Links",
                     footerContactTitle: "Call for Price",
@@ -716,26 +651,6 @@
                     navContact: "संपर्क",
                     headerCall: "अभी कॉल करें",
                     langButton: "English",
-                    heroTag: "प्रीमियम मशीन सप्लाई",
-                    heroTitle: "पावरफुल मशीनें। साफ कीमत। तेज जवाब।",
-                    heroText: "हम वर्कशॉप और फैक्ट्री के लिए भरोसेमंद मशीनें देते हैं, जिससे आउटपुट मजबूत रहे और डाउनटाइम कम हो।",
-                    heroCall: "कीमत जानने के लिए कॉल करें",
-                    heroWhatsapp: "तुरंत कोट के लिए व्हाट्सऐप",
-                    heroPoint1: "डायरेक्ट सप्लायर प्राइस",
-                    heroPoint2: "तेज डिलीवरी सपोर्ट",
-                    heroPoint3: "बिक्री के बाद सहायता",
-                    heroFeature1Title: "तेज डिस्पैच",
-                    heroFeature1Text: "समय पर डिलीवरी",
-                    heroFeature2Title: "असली प्रोडक्ट्स",
-                    heroFeature2Text: "100% ओरिजिनल",
-                    heroFeature3Title: "इंस्टॉलेशन सपोर्ट",
-                    heroFeature3Text: "एक्सपर्ट सहायता",
-                    heroFeature4Title: "बेस्ट प्राइस गारंटी",
-                    heroFeature4Text: "बेजोड़ कीमत",
-                    stat1: "पूरे भारत में खुश खरीदार",
-                    stat2: "वर्षों का अनुभव",
-                    stat3Value: "सबसे तेज डिलीवरी",
-                    stat3Label: "अब इंतजार नहीं",
                     productsTag: "हमारे प्रोडक्ट्स",
                     productsTitle: "मशीनरी देखने के लिए स्वाइप करें",
                     productsSubtitle: "सिरसा में भारी मशीनें तैयार",
@@ -787,10 +702,7 @@
                     profilesSubtitle: "हमारी प्रमाणित बिजनेस प्रोफाइल, प्रोडक्ट लिस्टिंग, रिव्यूज और अपडेट्स को सभी प्रमुख प्लेटफॉर्म पर खोजें।",
                     profilesViewAll: "सभी प्रोफाइल देखें",
                     profilesContact: "RS Machinery से संपर्क करें",
-                    pricingTag: "कीमत नीति",
-                    pricingTitle: "अंतिम कीमत आपकी मशीन की जरूरत पर निर्भर करती है",
-                    pricingText: "हम क्षमता, उपयोग और डिलीवरी लोकेशन के आधार पर कस्टम कीमत देते हैं। सही कीमत और स्टॉक के लिए सीधे कॉल करें।",
-                    pricingCall: "कॉल करें +91 870 879 5253",
+
                     servicesTag: "हमारी सेवाएं",
                     servicesTitle: "किराया उपलब्ध - सिरसा में भारी मशीनरी किराये पर",
                     service1Title: "मशीन किराया सेवा",
@@ -802,10 +714,49 @@
                     contactTag: "संपर्क करें",
                     contactTitle: "आज ही टीम से बात करें और कोट लें",
                     contactAddress: "बेगू रोड, वाली गली, परशुराम चौक के पास, सरसैनाथ मंदिर के सामने, सिरसा, हरियाणा 125055",
+                    aboutTag: "हमारे बारे में",
+                    aboutHeading: "प्रोफेशनल लिफ्टिंग इक्विपमेंट सॉल्यूशंस",
+                    aboutDescription: "RS Machinery में, हम पूरे भारत में उद्योगों को शीर्ष गुणवत्ता वाली लिफ्टिंग और मटेरियल हैंडलिंग उपकरण प्रदान करने के लिए समर्पित हैं। वर्षों के अनुभव और उत्कृष्टता की प्रतिबद्धता के साथ, हम भारी मशीनरी क्षेत्र में एक भरोसेमंद नाम बन गए हैं, जो कार्यशालाओं, कारखानों, निर्माण स्थलों और औद्योगिक सुविधाओं को विश्वसनीय समाधान प्रदान करता है।",
+                    aboutFeature1: "गुणवत्ता-आश्वासित उपकरण",
+                    aboutFeature2: "विश्वसनीय बिक्री के बाद सहायता",
+                    aboutFeature3: "अनुभवी तकनीकी टीम",
+                    aboutFeature4: "अनुकूलित लिफ्टिंग सॉल्यूशंस",
+                    aboutMore: "और जानें",
+                    aboutCallLabel: "कॉल करें",
                     contactCall: "अभी कॉल करें",
                     contactWhatsapp: "अभी व्हाट्सऐप करें",
                     floatingWhatsapp: "व्हाट्सऐप",
                     footerBrandTitle: "RSMachinery",
+                    wcuTag: "हमें क्यों चुनें",
+                    wcuHeading: "उद्योग क्यों भरोसा करते हैं<br>RS Machinery पर",
+                    wcuDescription: "RS Machinery निर्माण, औद्योगिक, वेयरहाउस और विनिर्माण अनुप्रयोगों के लिए विश्वसनीय लिफ्टिंग और मटेरियल हैंडलिंग उपकरण प्रदान करता है। गुणवत्ता, टिकाऊपन, तकनीकी विशेषज्ञता और ग्राहक सहायता पर हमारा ध्यान व्यवसायों को सुरक्षा और उत्पादकता में सुधार करने में मदद करता है।",
+                    wcuStat1Label: "प्रोजेक्ट्स सप्लाई किए",
+                    wcuStat2Label: "औद्योगिक उत्पाद",
+                    wcuStat3Label: "वर्षों का अनुभव",
+                    wcuStat4Label: "डिलीवरी सपोर्ट",
+                    wcuCta: "कोट प्राप्त करें",
+                    psCat1: "मंकी क्रेन",
+                    psHeading1: "हैवी ड्यूटी मंकी क्रेन<br>निर्माण स्थलों के लिए",
+                    psDesc1: "निर्माण परियोजनाओं पर तेज और कुशल सामग्री उठाने के लिए डिज़ाइन किया गया। हमारी मंकी क्रेन मजबूत स्टील संरचना, विश्वसनीय मोटर और स्मूथ लिफ्टिंग तंत्र के साथ बनाई गई है।",
+                    psPoint1_1: "500 KG तक की क्षमता",
+                    psPoint1_2: "मजबूत स्टील निर्माण",
+                    psPoint1_3: "आसान इंस्टॉलेशन",
+                    psPoint1_4: "कम रखरखाव",
+                    psCat2: "इलेक्ट्रिक होइस्ट",
+                    psHeading2: "पावरफुल इलेक्ट्रिक होइस्ट<br>औद्योगिक लिफ्टिंग के लिए",
+                    psDesc2: "गोदामों, कारखानों, कार्यशालाओं और औद्योगिक सुविधाओं के लिए इंजीनियर्ड हाई-परफॉरमेंस इलेक्ट्रिक होइस्ट। स्मूथ ऑपरेशन, बेहतर सुरक्षा और विश्वसनीय हेवी-ड्यूटी लिफ्टिंग के लिए बनाया गया।",
+                    psPoint2_1: "स्मूथ मोटर ऑपरेशन",
+                    psPoint2_2: "भारी लोड हैंडलिंग",
+                    psPoint2_3: "इंडस्ट्रियल ग्रेड कम्पोनेंट्स",
+                    psPoint2_4: "लंबी सेवा जीवन",
+                    psCat3: "चेन पुली ब्लॉक",
+                    psHeading3: "विश्वसनीय चेन पुली ब्लॉक<br>सुरक्षित मटेरियल हैंडलिंग के लिए",
+                    psDesc3: "कार्यशालाओं, गोदामों और औद्योगिक लिफ्टिंग कार्यों के लिए निर्मित टिकाऊ चेन पुली ब्लॉक। अधिकतम सुरक्षा, आसान हैंडलिंग और मांग की स्थितियों में विश्वसनीय प्रदर्शन के लिए डिज़ाइन किया गया।",
+                    psPoint3_1: "मजबूत अलॉय कम्पोनेंट्स",
+                    psPoint3_2: "जंग रोधी फिनिश",
+                    psPoint3_3: "सुरक्षित लिफ्टिंग तंत्र",
+                    psPoint3_4: "इंडस्ट्रियल ड्यूटी परफॉरमेंस",
+                    psBtn: "कोट प्राप्त करें",
                     footerBrandText: "मजबूत गुणवत्ता और डायरेक्ट सपोर्ट के साथ प्रीमियम इंडस्ट्रियल मशीनें।",
                     footerLinksTitle: "क्विक लिंक",
                     footerContactTitle: "कीमत के लिए कॉल करें",
@@ -833,12 +784,15 @@
                     document.querySelectorAll("[data-i18n]").forEach((node) => {
                         const key = node.getAttribute("data-i18n");
                         const attr = node.getAttribute("data-i18n-attr");
+                        const useHtml = node.hasAttribute("data-i18n-html");
                         if (!key || !values[key]) {
                             console.warn('Missing translation key:', key);
                             return;
                         }
 
-                        if (attr) {
+                        if (useHtml) {
+                            node.innerHTML = values[key];
+                        } else if (attr) {
                             node.setAttribute(attr, values[key]);
                         } else {
                             node.textContent = values[key];
@@ -867,72 +821,6 @@
             applyLanguage(activeLanguage);
         });
 
-        // Top slider controls
-        (() => {
-            const slider = document.querySelector('.hero-slider');
-            if (!slider) return;
-
-            const slides = slider.querySelectorAll('.hero-slide');
-            const prevButton = slider.querySelector('[data-slide-prev]');
-            const nextButtons = slider.querySelectorAll('[data-slide-next]');
-            const dots = slider.querySelectorAll('[data-slide-dot]');
-
-            if (!slides.length || !dots.length) return;
-
-            let activeIndex = 0;
-            let autoRotate;
-
-            const setActiveSlide = (index) => {
-                activeIndex = (index + slides.length) % slides.length;
-
-                slides.forEach((slide, slideIndex) => {
-                    const isActive = slideIndex === activeIndex;
-                    slide.classList.toggle('is-active', isActive);
-                    slide.setAttribute('aria-hidden', String(!isActive));
-                });
-
-                dots.forEach((dot, dotIndex) => {
-                    dot.classList.toggle('is-active', dotIndex === activeIndex);
-                });
-            };
-
-            const startAutoRotate = () => {
-                clearInterval(autoRotate);
-                autoRotate = setInterval(() => {
-                    setActiveSlide(activeIndex + 1);
-                }, 5000);
-            };
-
-            prevButton?.addEventListener('click', () => {
-                setActiveSlide(activeIndex - 1);
-                startAutoRotate();
-            });
-
-            nextButtons.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    setActiveSlide(activeIndex + 1);
-                    startAutoRotate();
-                });
-            });
-
-            dots.forEach((dot) => {
-                dot.addEventListener('click', () => {
-                    const nextIndex = Number(dot.getAttribute('data-slide-dot'));
-                    setActiveSlide(nextIndex);
-                    startAutoRotate();
-                });
-            });
-
-            slider.addEventListener('mouseenter', () => clearInterval(autoRotate));
-            slider.addEventListener('mouseleave', startAutoRotate);
-
-            setActiveSlide(activeIndex);
-            startAutoRotate();
-        })();
-        
-        // Lightbox
-        (() => {
-
         // Lightbox
         (() => {
             const overlay = document.createElement("div");
@@ -943,7 +831,7 @@
             const lightboxImg = overlay.querySelector(".lightbox-image");
             const closeBtn = overlay.querySelector(".lightbox-close");
 
-            document.querySelectorAll(".product-img").forEach((img) => {
+            document.querySelectorAll(".product-img, .product-scroll-card-image img").forEach((img) => {
                 img.addEventListener("click", (e) => {
                     e.stopPropagation();
                     lightboxImg.src = img.src;
@@ -976,7 +864,7 @@
 
         // Scroll animation
         (() => {
-            const cards = document.querySelectorAll(".product-card");
+            const cards = document.querySelectorAll(".product-scroll-card");
             if (!("IntersectionObserver" in window)) {
                 cards.forEach((c) => c.classList.add("visible"));
                 return;
@@ -1043,48 +931,86 @@
             }
         })();
 
-        // Infinite Scroll for Products
+        // Product slider controls
         (() => {
-            const scrollContainer = document.querySelector('.scroll-container');
-            if (!scrollContainer) return;
+            const slider = document.querySelector('.pslider');
+            if (!slider) return;
 
-            const cards = scrollContainer.querySelectorAll('.product-scroll-card');
-            cards.forEach(card => {
-                const clone = card.cloneNode(true);
-                scrollContainer.appendChild(clone);
-            });
+            const slides = slider.querySelectorAll('.pslide');
+            const prevButton = slider.querySelector('[data-pslide-prev]');
+            const nextButtons = slider.querySelectorAll('[data-pslide-next]');
+            const dots = slider.querySelectorAll('[data-pslide-dot]');
 
-            scrollContainer.addEventListener('scroll', () => {
-                const scrollLeft = scrollContainer.scrollLeft;
-                const scrollWidth = scrollContainer.scrollWidth;
-                const clientWidth = scrollContainer.clientWidth;
+            if (!slides.length || !dots.length) return;
 
-                if (scrollLeft + clientWidth >= scrollWidth - 100) {
-                    scrollContainer.scrollTo({
-                        left: 1,
-                        behavior: 'smooth'
-                    });
-                }
+            let activeIndex = 0;
+            let autoRotate;
 
-                if (scrollLeft <= 0) {
-                    scrollContainer.scrollTo({
-                        left: scrollWidth / 2 - clientWidth,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-
-            // Adjust padding to show 2 full products + slight peek of 3rd
-            const adjustPadding = () => {
-                const card = scrollContainer.querySelector('.product-scroll-card');
-                if (!card) return;
-                const cardWidth = card.offsetWidth;
-                const peekWidth = cardWidth * 0.3;
-                scrollContainer.style.paddingRight = `${peekWidth + 60}px`;
+            const setActiveSlide = (index) => {
+                activeIndex = (index + slides.length) % slides.length;
+                slides.forEach((slide, i) => {
+                    const isActive = i === activeIndex;
+                    slide.classList.toggle('is-active', isActive);
+                    slide.setAttribute('aria-hidden', String(!isActive));
+                });
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('is-active', i === activeIndex);
+                });
             };
 
-            adjustPadding();
-            window.addEventListener('resize', adjustPadding);
+            const startAutoRotate = () => {
+                clearInterval(autoRotate);
+                autoRotate = setInterval(() => {
+                    setActiveSlide(activeIndex + 1);
+                }, 5000);
+            };
+
+            prevButton?.addEventListener('click', () => {
+                setActiveSlide(activeIndex - 1);
+                startAutoRotate();
+            });
+
+            nextButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    setActiveSlide(activeIndex + 1);
+                    startAutoRotate();
+                });
+            });
+
+            dots.forEach((dot) => {
+                dot.addEventListener('click', () => {
+                    const nextIndex = Number(dot.getAttribute('data-pslide-dot'));
+                    setActiveSlide(nextIndex);
+                    startAutoRotate();
+                });
+            });
+
+            slider.addEventListener('mouseenter', () => clearInterval(autoRotate));
+            slider.addEventListener('mouseleave', startAutoRotate);
+
+            let touchStartX = 0;
+            let touchEndX = 0;
+            const SWIPE_THRESHOLD = 50;
+
+            slider.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            slider.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                const diff = touchStartX - touchEndX;
+                if (Math.abs(diff) > SWIPE_THRESHOLD) {
+                    if (diff > 0) {
+                        setActiveSlide(activeIndex + 1);
+                    } else {
+                        setActiveSlide(activeIndex - 1);
+                    }
+                    startAutoRotate();
+                }
+            }, { passive: true });
+
+            setActiveSlide(activeIndex);
+            startAutoRotate();
         })();
     </script>
 </body>
