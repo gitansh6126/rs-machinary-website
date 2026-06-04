@@ -11,7 +11,7 @@
 
 // ─── SHEET NAMES ────────────────────────────────────────────────────────────
 
-var SPREADSHEET_ID = 'YOUR_SPREADSHEET_ID_HERE';
+var SPREADSHEET_ID = '1RODskXRKzkeahCUktQuF9xfBpSGYBNOIP8wTEIJhKtI';
 var CACHE_TTL = 300; // seconds
 
 var SHEET_PRODUCTS   = 'Products';
