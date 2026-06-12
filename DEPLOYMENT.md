@@ -1,9 +1,9 @@
 # RS Machinery — Complete Deployment & Testing Guide
 
-> **Document Version**: 1.0  
+> **Document Version**: 2.0  
 > **Stack**: Google Apps Script + Google Sheets (backend), Vanilla HTML/CSS/JS (frontend)  
 > **Hosting**: Hostinger  
-> **Repository**: Single GitHub repo (`website/`, `admin/`, `apps-script/`)
+> **Repository**: Single GitHub repo (root = main site, `admin/`, `apps-script/`)
 
 ---
 
@@ -221,23 +221,26 @@ If you modify `Code.gs` later:
 
 ### 3.2 Upload Public Website Files
 
-1. On your local machine, select ALL files and folders inside the `website/` directory:
+1. On your local machine, select ALL files from the repository root:
    - `index.html`
    - `products.html`
    - `product.html`
    - `styles.css`
+   - `upload.php`
+   - `.htaccess`
    - `js/` (entire folder)
    - `assets/` (entire folder)
-2. **Do NOT** include the `website/` folder itself — upload its **contents**.
-3. Upload these into `public_html/` on Hostinger.
-4. Verify the structure after upload:
+2. Upload these into `public_html/` on Hostinger.
+3. Verify the structure after upload:
 
 ```
 public_html/
+  .htaccess
   index.html
   products.html
   product.html
   styles.css
+  upload.php
   js/
     api.js
     app.js
@@ -261,7 +264,7 @@ public_html/
 
 1. In Hostinger hPanel, go to **Hosting → Domains → Subdomain**.
 2. Create a subdomain: **`admin`** → (e.g., `admin.rsmachinery.com`).
-3. Set the document root to: `public_html/admin`
+3. Set the document root to: `admin` (separate from `public_html/`)
 4. The subdomain will take effect within a few minutes.
 
 ### 3.5 Upload Admin Files
@@ -277,11 +280,11 @@ public_html/
    - `css/admin.css`
    - `js/api.js`
    - `js/admin.js`
-2. Upload these into the subdomain's document root (`public_html/admin`), **not** into `public_html/`.
+2. Upload these into the subdomain's document root (`admin`), **not** into `public_html/`.
 3. Verify the admin subdomain structure:
 
 ```
-admin.rsmachinery.com (→ public_html/admin/)
+admin.rsmachinery.com (→ admin/)
   index.html
   dashboard.html
   products.html
@@ -322,7 +325,7 @@ Run these checks to confirm everything resolves:
 | `https://admin.rsmachinery.com/dashboard.html` | Redirects to login (if not authenticated) |
 | SSL Status (both domains) | Padlock icon, valid certificate |
 
-> **Common mistake**: Uploading admin files inside `public_html/rsmachinery/admin/` instead of the subdomain root. The subdomain document root MUST be set to the directory containing the admin files.
+> **Common mistake**: Uploading admin files inside `public_html/admin/` instead of the separate `admin/` document root. The subdomain document root MUST be set to the directory containing the admin files.
 
 ---
 
@@ -333,11 +336,11 @@ Run these checks to confirm everything resolves:
 | Configuration Item | Where to Set It | Value Type | Example |
 |---|---|---|---|
 | Spreadsheet ID | `apps-script/Code.gs` line 14 | String | `1A2B3C...` |
-| API Web App URL | `website/js/api.js` line 11 | URL | `https://script.google.com/macros/s/abc123/exec` |
+| API Web App URL | `js/api.js` line 11 | URL | `https://script.google.com/macros/s/abc123/exec` |
 | API Web App URL | `admin/js/api.js` line 11 | URL | `https://script.google.com/macros/s/abc123/exec` |
 | API Web App URL | Admin Settings page (runtime) | URL | Same URL |
-| WhatsApp Number | `website/index.html` (multiple hrefs) | Phone | `918708795253` |
-| Phone Number | `website/index.html` (tel links) | Phone | `+918708795253` |
+| WhatsApp Number | `index.html` (multiple hrefs) | Phone | `918708795253` |
+| Phone Number | `index.html` (tel links) | Phone | `+918708795253` |
 | Admin Password | First login on admin site | Any string | Set by first admin user |
 
 ### 4.2 Step-by-Step: Update Spreadsheet ID
@@ -356,7 +359,7 @@ var SPREADSHEET_ID = '1A2B3C4D5E6F7G8H9I0J1K2L3M4N5O6P7Q8R9S0T';
 
 ### 4.3 Step-by-Step: Update API URL in Both api.js Files
 
-**File 1**: `D:\rs website\website\js\api.js` **line 11**  
+**File 1**: `D:\rs website\js\api.js` **line 11**  
 **File 2**: `D:\rs website\admin\js\api.js` **line 11**
 
 ```javascript
@@ -602,9 +605,9 @@ This is a **runtime fallback**. It overrides the hardcoded URL in `admin/js/api.
 |---|---|---|---|
 | Google Sheet (all data) | Google Drive | **File → Make a copy** (manual) or **Google Takeout** (automated) | Weekly |
 | Apps Script Code.gs | Google Drive (Apps Script project) | **File → Download → .gs file** OR copy-paste to local repo | After every code change |
-| Website HTML/CSS/JS | GitHub repo (`website/`) | `git push` | After every change |
+| Website HTML/CSS/JS | GitHub repo (root) | `git push` | After every change |
 | Admin HTML/CSS/JS | GitHub repo (`admin/`) | `git push` | After every change |
-| Images & Assets | GitHub repo (`website/assets/`) | `git push` | After every asset change |
+| Images & Assets | GitHub repo (`assets/`) | `git push` | After every asset change |
 
 ### 7.2 Google Sheet Backup (Manual)
 
@@ -659,7 +662,7 @@ git push origin main
 
 **What to commit**:
 - `apps-script/Code.gs` — always (with SPREADSHEET_ID replaced)
-- `website/` — always
+- Root files (`index.html`, `styles.css`, `js/`, `assets/`, `upload.php`, `.htaccess`) — always
 - `admin/` — always
 - `DEPLOYMENT.md` — always
 - `.gitignore` — always
@@ -686,7 +689,7 @@ git push origin main
 #### Scenario C: Hostinger files lost
 
 1. Pull the latest from GitHub: `git pull origin main`.
-2. Re-upload `website/` contents to `public_html/` (Phase 3.2).
+2. Re-upload root contents to `public_html/` (Phase 3.2).
 3. Re-upload `admin/` contents to `admin.rsmachinery.com` (Phase 3.5).
 
 #### Scenario D: Admin password lost
@@ -703,7 +706,7 @@ git push origin main
 
 ## APPENDIX: File Manifest
 
-### Public Website (`website/`)
+### Public Website (root)
 
 | File | Description | Must Deploy? |
 |---|---|---|
@@ -711,6 +714,8 @@ git push origin main
 | `products.html` | Full product listing with filters, search, pagination | Yes |
 | `product.html` | Product detail page with specs, variations, WhatsApp | Yes |
 | `styles.css` | All styles: 2960 lines | Yes |
+| `upload.php` | Image upload handler | Yes |
+| `.htaccess` | Apache rewrite rules & security | Yes |
 | `js/api.js` | API client — must update BASE_URL | Yes |
 | `js/app.js` | Frontend app: language toggle, product grid, slider, etc. | Yes |
 | `assets/placeholder.svg` | Fallback image for products without images | Yes |
@@ -729,6 +734,9 @@ git push origin main
 | `css/admin.css` | Admin panel styles | Yes |
 | `js/api.js` | API client (self-contained copy) | Yes |
 | `js/admin.js` | Admin app logic: auth, sidebar, page controllers | Yes |
+| `uploads/` | Uploaded images directory | Yes (create if missing) |
+| `api/` | API scripts directory | Yes (create if missing) |
+| `.htaccess` | Apache rewrite rules & security | Yes |
 
 ### Backend (`apps-script/`)
 

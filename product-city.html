@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <title>RS Machinery Sirsa | Lifting Equipment Supplier</title>
+    <meta name="description" content="RS Machinery supplies lifting equipment across North India.">
+    <link rel="canonical" href="https://rsmachinary.in/">
+    <meta property="og:title" content="RS Machinery Sirsa">
+    <meta property="og:description" content="RS Machinery supplies lifting equipment across North India.">
+    <meta property="og:url" content="https://rsmachinary.in/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://rsmachinary.in/assets/logo/icon/main_non_bg_logo.png">
+
+    <script type="application/ld+json" id="schemaLocalBusiness"></script>
+    <script type="application/ld+json" id="schemaBreadcrumb"></script>
+    <script type="application/ld+json" id="schemaProduct"></script>
+    <script type="application/ld+json" id="schemaFAQ"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        .city-prod-hero { text-align: center; padding: 60px 20px; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: #fff; }
+        .city-prod-hero h1 { font-size: 2.4rem; margin-bottom: 15px; color: #fff; }
+        .city-prod-hero p { font-size: 1.1rem; max-width: 750px; margin: 0 auto 25px; color: #ccc; }
+        .city-prod-hero .price-badge { display: inline-block; background: #2563eb; color: #fff; padding: 10px 25px; border-radius: 50px; font-weight: 700; font-size: 1.2rem; margin-bottom: 20px; }
+        .city-prod-stats { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin: 30px 0; }
+        .city-prod-stat { text-align: center; }
+        .city-prod-stat span { display: block; font-size: 0.85rem; color: #999; }
+        .city-prod-stat strong { display: block; font-size: 1.1rem; color: #fff; }
+        .city-prod-content { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+        .city-prod-content h2 { color: #1a1a2e; font-size: 1.6rem; margin-bottom: 20px; }
+        .city-prod-content p { color: #555; line-height: 1.7; margin-bottom: 15px; }
+        .city-prod-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 30px 0; }
+        .city-prod-grid.single { grid-template-columns: 1fr; }
+        .city-prod-card { background: #f8f9fa; border-radius: 12px; padding: 25px; }
+        .city-prod-card h3 { color: #1a1a2e; margin-bottom: 10px; font-size: 1.1rem; }
+        .city-prod-card ul { list-style: none; padding: 0; }
+        .city-prod-card li { padding: 6px 0; color: #555; font-size: 0.95rem; }
+        .city-prod-card li::before { content: "\2713 "; color: #2563eb; font-weight: 700; }
+        .price-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        .price-table th { background: #1a1a2e; color: #fff; padding: 12px 15px; text-align: left; }
+        .price-table td { padding: 12px 15px; border-bottom: 1px solid #e2e8f0; }
+        .price-table tr:nth-child(even) { background: #f8f9fa; }
+        .city-prod-cta { text-align: center; padding: 50px 20px; background: linear-gradient(135deg, #1a1a2e, #2563eb); color: #fff; border-radius: 12px; margin: 40px 0; }
+        .city-prod-cta h2 { color: #fff !important; }
+        .city-prod-cta p { color: #ccc !important; }
+        .city-faq { max-width: 800px; margin: 40px auto; padding: 0 20px; }
+        .city-faq h2 { text-align: center; margin-bottom: 30px; }
+        .city-faq-item { border-bottom: 1px solid #e2e8f0; padding: 18px 0; }
+        .city-faq-item h3 { font-size: 1.05rem; color: #1a1a2e; margin-bottom: 8px; }
+        .city-faq-item p { color: #666; line-height: 1.6; margin: 0; }
+        .cta-buttons { margin-top: 25px; }
+        .cta-buttons .button { margin: 5px 8px; }
+        .city-prod-header-info { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin: 20px 0; }
+        .city-prod-header-info .info-item { text-align: center; }
+        .city-prod-header-info .info-item .label { font-size: 0.8rem; color: #999; text-transform: uppercase; letter-spacing: 1px; }
+        .city-prod-header-info .info-item .value { font-size: 1rem; color: #fff; font-weight: 600; }
+        #pageContent { display: none; }
+        #loadingState { text-align: center; padding: 100px 20px; }
+        #loadingState .spinner { width: 48px; height: 48px; border: 4px solid #e2e8f0; border-top-color: #2563eb; border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 20px; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        #errorState { text-align: center; padding: 100px 20px; display: none; }
+        #errorState h2 { color: #dc2626; }
+        @media (max-width: 768px) {
+            .city-prod-grid { grid-template-columns: 1fr; }
+            .city-prod-hero h1 { font-size: 1.6rem; }
+            .city-prod-stats { gap: 15px; }
+            .city-prod-header-info { gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header" id="siteHeader">
+        <div class="header-shell">
+            <div class="header-top">
+                <a class="brand brand-inline" href="/" aria-label="RS Machinery - Heavy Machinery Supplier Sirsa">
+                    <img class="brand-logo" src="/assets/logo/icon/main_non_bg_logo.png" alt="RS Machinery">
+                </a>
+                <nav class="site-nav" aria-label="Primary navigation">
+                    <a href="/">Home</a>
+                    <a href="/products/">Products</a>
+                    <a href="/about/">About</a>
+                    <a href="/contact/">Contact</a>
+                </nav>
+                <div class="header-right">
+                    <a class="button button-solid header-call" href="tel:+918708795253">Call Now</a>
+                    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu" aria-expanded="false">
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+            <button class="mobile-menu-close" aria-label="Close menu">&times;</button>
+            <nav class="mobile-nav">
+                <a href="/" class="mobile-nav-link">Home</a>
+                <a href="/products/" class="mobile-nav-link">Products</a>
+                <a href="/about/" class="mobile-nav-link">About</a>
+                <a href="/contact/" class="mobile-nav-link">Contact</a>
+            </nav>
+            <div class="mobile-contact">
+                <a href="tel:+918708795253" class="mobile-phone">+91 870 879 5253</a>
+            </div>
+        </div>
+        <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+    </header>
+
+    <div id="loadingState">
+        <div class="spinner"></div>
+        <p>Loading...</p>
+    </div>
+
+    <div id="errorState">
+        <h2>Page Not Found</h2>
+        <p>The product or city you're looking for doesn't exist.</p>
+        <a class="button button-solid" href="/">Go Home</a>
+    </div>
+
+    <main id="pageContent">
+        <section class="city-prod-hero">
+            <div class="price-badge" id="priceRange"></div>
+            <h1 id="pageH1"></h1>
+            <p id="introParagraph"></p>
+            <div class="city-prod-header-info">
+                <div class="info-item">
+                    <div class="label">Distance from Sirsa</div>
+                    <div class="value" id="distanceFromSirsa"></div>
+                </div>
+                <div class="info-item">
+                    <div class="label">Capacity</div>
+                    <div class="value" id="capacity"></div>
+                </div>
+                <div class="info-item">
+                    <div class="label">Delivery</div>
+                    <div class="value" id="deliveryTime"></div>
+                </div>
+                <div class="info-item">
+                    <div class="label">Key Industries</div>
+                    <div class="value" id="industriesShort"></div>
+                </div>
+            </div>
+            <div class="cta-buttons">
+                <a class="button button-solid" href="tel:+918708795253" style="background:#2563eb;">Call Now: +91-8708795253</a>
+                <a class="button button-outline" href="https://wa.me/918708795253" style="border-color:#fff;color:#fff;margin-left:10px;">WhatsApp</a>
+            </div>
+        </section>
+
+        <section class="city-prod-content">
+            <h2 id="contentH2"></h2>
+            <p id="contentBlock1"></p>
+            <p id="contentBlock2"></p>
+
+            <div class="city-prod-grid">
+                <div class="city-prod-card">
+                    <h3 id="industriesHeading"></h3>
+                    <ul id="industriesList"></ul>
+                </div>
+                <div class="city-prod-card">
+                    <h3>Key Features</h3>
+                    <ul id="featuresList"></ul>
+                </div>
+            </div>
+
+            <h2 id="priceHeading"></h2>
+            <table class="price-table">
+                <thead>
+                    <tr><th>Variant</th><th>Price Range</th></tr>
+                </thead>
+                <tbody id="priceTableRows"></tbody>
+            </table>
+            <p id="priceDisclaimer" style="font-size:0.9rem;color:#888;"></p>
+
+            <div class="city-prod-cta">
+                <h2 id="ctaHeading"></h2>
+                <p id="ctaText"></p>
+                <div class="cta-buttons">
+                    <a class="button button-solid" href="tel:+918708795253">Call +91-8708795253</a>
+                    <a class="button button-outline" href="https://wa.me/918708795253" style="border-color:#fff;color:#fff;margin-left:10px;">WhatsApp</a>
+                    <a class="button button-outline" href="/contact/" style="border-color:#fff;color:#fff;margin-left:10px;">Send Inquiry</a>
+                </div>
+            </div>
+
+            <h2 id="whyHeading"></h2>
+            <div class="city-prod-grid">
+                <div class="city-prod-card">
+                    <h3>Our Commitment</h3>
+                    <ul>
+                        <li>Direct supplier pricing – no middleman markup</li>
+                        <li>Physical showroom in Sirsa – inspect before you buy</li>
+                        <li>33+ years of industry experience</li>
+                        <li>GST billing for business purchases</li>
+                        <li id="deliveryCommitment">Delivery available to surrounding areas</li>
+                    </ul>
+                </div>
+                <div class="city-prod-card">
+                    <h3>Service Promise</h3>
+                    <ul>
+                        <li>Same-day pickup from Sirsa showroom</li>
+                        <li>After-sales support and guidance</li>
+                        <li>Quality-assured products</li>
+                        <li>Competitive pricing for bulk orders</li>
+                        <li>Pan India delivery support</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h2 id="servicesHeading"></h2>
+            <p id="contentBlock3"></p>
+        </section>
+
+        <section class="city-faq">
+            <h2 id="faqHeading"></h2>
+            <div id="faqContainer"></div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-shell">
+            <section class="footer-block">
+                <a class="footer-brand" href="/" aria-label="RS Machinery - Heavy Machinery Supplier Sirsa">
+                    <img class="footer-logo" src="/assets/logo/icon/main_non_bg_logo.png" alt="RS Machinery - Heavy Machinery & Lifting Equipment Sirsa">
+                </a>
+                <p><strong>Trusted Industrial Machinery Partner in Haryana</strong>. Providing quality agricultural, industrial, and construction machinery with direct support, transparent pricing, and reliable after-sales service. <a href="tel:+918708795253">Call +91-8708795253</a>.</p>
+            </section>
+            <section class="footer-block">
+                <h3>Quick Links</h3>
+                <nav class="footer-links">
+                    <a href="/">Home</a>
+                    <a href="/products/">Products</a>
+                    <a href="/about/">About</a>
+                    <a href="/contact/">Contact</a>
+                </nav>
+            </section>
+            <section class="footer-block">
+                <h3>Call for Price</h3>
+                <a href="tel:+918708795253">+91 870 879 5253</a>
+                <a href="https://wa.me/918708795253">WhatsApp Quote</a>
+            </section>
+            <p class="footer-bottom">&copy; 2026 RS Machinery – Heavy Machinery & Lifting Equipment Dealer in Sirsa, Haryana. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <a class="visit-float" href="https://maps.google.com/?q=R+S+MACHINERY+STORE+Sirsa+Haryana" target="_blank" rel="noopener noreferrer" aria-label="Visit Now">
+        <svg class="visit-float-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+            <circle cx="12" cy="9" r="2.5"/>
+        </svg>
+        <span class="visit-float-text">Visit Now</span>
+    </a>
+
+    <script src="/js/api.js"></script>
+    <script src="/js/app.js"></script>
+    <script>
+    (function () {
+        'use strict';
+
+        var PRODUCTS_DATA_URL = '/city-product-system/data/products.json';
+        var CITIES_DATA_URL = '/city-product-system/data/cities.json';
+
+        var loadingEl = document.getElementById('loadingState');
+        var errorEl = document.getElementById('errorState');
+        var contentEl = document.getElementById('pageContent');
+
+        function getParams() {
+            var params = new URLSearchParams(window.location.search);
+            var productSlug = params.get('product');
+            var citySlug = params.get('city');
+
+            if (!productSlug || !citySlug) {
+                var path = window.location.pathname.replace(/\/+$/, '').split('/');
+                if (path.length >= 3) {
+                    productSlug = path[path.length - 2];
+                    citySlug = path[path.length - 1];
+                }
+            }
+
+            return { productSlug: productSlug, citySlug: citySlug };
+        }
+
+        function fetchJSON(url) {
+            return fetch(url).then(function (res) {
+                if (!res.ok) throw new Error('Failed to load: ' + url);
+                return res.json();
+            });
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            var div = document.createElement('div');
+            div.appendChild(document.createTextNode(str));
+            return div.innerHTML;
+        }
+
+        function listItems(arr) {
+            return arr.map(function (item) {
+                return '<li>' + escapeHtml(item) + '</li>';
+            }).join('\n');
+        }
+
+        function priceRows(variants) {
+            return variants.map(function (v) {
+                return '<tr><td>' + escapeHtml(v.name) + '</td><td>' + escapeHtml(v.price) + '</td></tr>';
+            }).join('\n');
+        }
+
+        function generateFAQ(product, city) {
+            var p = product.name;
+            var c = city.name;
+            var d = city.distance_from_sirsa_km;
+            var state = city.state;
+            var phone = '+918708795253';
+            var deliveryDays = d === 0 ? 'Same day' : (d > 70 ? '2-3 business days' : '1-2 business days');
+
+            var faqs = [
+                { q: 'What is the price of ' + p + ' in ' + c + '?', a: 'The price of ' + p.toLowerCase() + ' in ' + c + ' ranges from ' + product.price_range.text + '. The exact price depends on capacity, specifications, and quantity. For the latest pricing available in ' + c + ', call RS Machinery at ' + phone + '. We offer direct supplier rates with no middleman markup.' },
+                { q: 'Where can I buy ' + p + ' in ' + c + '?', a: 'RS Machinery is your trusted supplier of ' + p.toLowerCase() + ' serving ' + c + ', ' + state + '. While our physical showroom is in Sirsa (' + d + ' km from ' + c + '), we deliver ' + p.toLowerCase() + ' directly to ' + c + '. Call ' + phone + ' to place your order or visit our Sirsa showroom to inspect products before purchase.' },
+                { q: 'Do you deliver ' + p + ' to ' + c + '?', a: 'Yes, RS Machinery delivers ' + p.toLowerCase() + ' to ' + c + ' and across ' + state + '. Delivery time is typically ' + deliveryDays + ' for ' + c + '. Contact us at ' + phone + ' for delivery charges and timelines specific to your location in ' + c + '.' },
+                { q: 'What capacity ' + p + ' is suitable for my business in ' + c + '?', a: 'The right capacity depends on your specific lifting needs. For businesses in ' + c + ', a ' + product.capacity + ' ' + p.toLowerCase() + ' is typically recommended. Our team can advise you based on your application. Call ' + phone + ' for a free consultation.' },
+                { q: 'Is RS Machinery a verified supplier of ' + p + ' in ' + c + '?', a: 'Yes, RS Machinery is a verified and registered business with 33+ years of experience. We are listed on Google Business Profile (4.2\u2605, 83+ reviews), IndiaMART, and Justdial. We provide GST billing and have a physical showroom in Sirsa, Haryana. Customers from ' + c + ' regularly purchase from us.' },
+                { q: 'Can I get a quote for ' + p + ' delivered to ' + c + '?', a: 'Absolutely. Call +918708795253 or message us on WhatsApp for a customized quote for ' + p.toLowerCase() + ' delivery to ' + c + '. We provide pricing for all variants including ' + product.price_variants.map(function (v) { return v.name; }).join(', ') + '. Bulk order discounts are available.' },
+                { q: 'What industries use ' + p + ' in ' + c + '?', a: 'In ' + c + ', ' + p.toLowerCase() + ' is used by ' + city.industries.slice(0, 3).join(', ') + ', and other industrial sectors for material handling and lifting operations. RS Machinery supplies ' + p.toLowerCase() + ' to factories, construction sites, workshops, and warehouses across ' + c + ' and ' + state + '.' }
+            ];
+
+            var faqHtml = faqs.map(function (f) {
+                return '<div class="city-faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">' +
+                    '<h3 itemprop="name">' + escapeHtml(f.q) + '</h3>' +
+                    '<div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">' +
+                    '<p itemprop="text">' + escapeHtml(f.a) + '</p>' +
+                    '</div></div>';
+            }).join('\n');
+
+            var faqSchema = {
+                '@context': 'https://schema.org',
+                '@type': 'FAQPage',
+                'mainEntity': faqs.map(function (f) {
+                    return {
+                        '@type': 'Question',
+                        'name': f.q,
+                        'acceptedAnswer': { '@type': 'Answer', 'text': f.a }
+                    };
+                })
+            };
+
+            return { faqHtml: faqHtml, faqSchema: faqSchema };
+        }
+
+        function generateSchemas(product, city) {
+            var pSlug = product.slug;
+            var cSlug = city.name_lower;
+            var cName = city.name;
+            var state = city.state;
+            var pageUrl = 'https://rsmachinary.in/' + pSlug + '/' + cSlug + '/';
+
+            var localBusiness = {
+                '@context': 'https://schema.org',
+                '@type': 'LocalBusiness',
+                'name': 'RS Machinery',
+                'url': pageUrl,
+                'telephone': '+918708795253',
+                'whatsApp': '+918708795253',
+                'description': product.name + ' supplier in ' + cName + ', ' + state + '. Direct pricing from RS Machinery Sirsa. Call +91-8708795253.',
+                'image': 'https://rsmachinary.in/assets/logo/icon/main_non_bg_logo.png',
+                'address': {
+                    '@type': 'PostalAddress',
+                    'streetAddress': 'Begu Road, Wali Gali, Near Parshuram Chowk, Opposite Sarsainath Mandir',
+                    'addressLocality': 'Sirsa',
+                    'addressRegion': 'Haryana',
+                    'postalCode': '125055',
+                    'addressCountry': 'IN'
+                },
+                'areaServed': [
+                    { '@type': 'City', 'name': cName },
+                    { '@type': 'City', 'name': 'Sirsa' }
+                ],
+                'priceRange': product.price_range.text,
+                'aggregateRating': { '@type': 'AggregateRating', 'ratingValue': '4.2', 'reviewCount': '83' },
+                'openingHours': 'Mo-Sa 09:00-19:00',
+                'hasOfferCatalog': {
+                    '@type': 'OfferCatalog',
+                    'name': product.name + ' in ' + cName,
+                    'itemListElement': product.price_variants.map(function (v) {
+                        return {
+                            '@type': 'Offer',
+                            'itemOffered': {
+                                '@type': 'Product',
+                                'name': product.name + ' \u2013 ' + v.name,
+                                'price': v.price,
+                                'priceCurrency': 'INR'
+                            }
+                        };
+                    })
+                }
+            };
+
+            var breadcrumb = {
+                '@context': 'https://schema.org',
+                '@type': 'BreadcrumbList',
+                'itemListElement': [
+                    { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://rsmachinary.in/' },
+                    { '@type': 'ListItem', 'position': 2, 'name': product.name, 'item': 'https://rsmachinary.in/' + pSlug + '/' },
+                    { '@type': 'ListItem', 'position': 3, 'name': product.name + ' in ' + cName, 'item': pageUrl }
+                ]
+            };
+
+            var prodSchema = {
+                '@context': 'https://schema.org',
+                '@type': 'Product',
+                'name': product.name + ' \u2013 Supplier in ' + cName,
+                'description': product.description.substring(0, 200),
+                'brand': { '@type': 'Brand', 'name': 'RS Machinery' },
+                'offers': {
+                    '@type': 'AggregateOffer',
+                    'priceCurrency': 'INR',
+                    'lowPrice': product.price_range.min,
+                    'highPrice': product.price_range.max,
+                    'availability': 'https://schema.org/InStock',
+                    'seller': { '@type': 'Organization', 'name': 'RS Machinery' }
+                }
+            };
+
+            return { localBusiness: localBusiness, breadcrumb: breadcrumb, product: prodSchema };
+        }
+
+        function generateContent(product, city) {
+            var p = product.name;
+            var pLower = product.name.toLowerCase();
+            var c = city.name;
+            var s = city.state;
+            var d = city.distance_from_sirsa_km;
+            var isHome = city.is_home;
+            var locationPhrase = isHome ? 'in ' + c : 'in ' + c + ', ' + s + ' (' + d + ' km from Sirsa)';
+
+            var block1 = 'RS Machinery is a trusted supplier of ' + pLower + ' ' + locationPhrase + '. ' +
+                'We serve ' + city.industries.join(', ') + ', and other industrial sectors with quality ' + pLower + ' solutions. ' +
+                'Our ' + pLower + ' range includes ' + product.price_variants.map(function (v) { return v.name; }).join(', ') + ', ' +
+                'all built for reliable performance in demanding applications. ' +
+                (isHome ? 'Visit our showroom in Sirsa to see our products in person.' : 'We deliver to ' + c + ' directly from our Sirsa warehouse.');
+
+            var block2 = c + ' has a growing industrial base with strengths in ' + city.industries.join(', ') + '. ' +
+                'Businesses in ' + c + ' rely on RS Machinery for quality ' + pLower + ' that keeps their operations running. ' +
+                'Our ' + pLower + ' is built ' + product.features[0].toLowerCase() + ' for long service life ' +
+                'and minimal downtime. Whether you need a ' + pLower + ' for ' + product.applications[0] + ' ' +
+                'or ' + product.applications[1] + ', we have the right solution at the right price.';
+
+            var block3 = 'RS Machinery provides complete support for ' + pLower + ' buyers ' + locationPhrase + '. ' +
+                'From product selection guidance to after-sales service, our team ensures you get the right equipment ' +
+                'for your needs. We offer competitive pricing for bulk orders, GST billing for business purchases, ' +
+                'and prompt delivery to ' + c + '. With 33+ years of industry experience and a physical showroom in Sirsa, ' +
+                'RS Machinery is the preferred choice for ' + pLower + ' buyers across North India.' +
+                (isHome ? '' : ' Contact us today for ' + pLower + ' price in ' + c + '.');
+
+            return { block1: block1, block2: block2, block3: block3 };
+        }
+
+        function renderPage(product, city) {
+            var cName = city.name;
+            var state = city.state;
+            var pName = product.name;
+            var pLower = product.name.toLowerCase();
+            var pSlug = product.slug;
+            var cSlug = city.name_lower;
+            var distance = city.distance_from_sirsa_km;
+            var isHome = city.is_home;
+
+            var deliveryTime = distance === 0 ? 'Same day' : (distance > 70 ? '2-3 business days' : '1-2 business days');
+            var seoTitle = pName + ' ' + city.local_seo_terms[0] + ' \u2013 Price, Supplier & Dealer | RS Machinery';
+            var metaDesc = 'RS Machinery supplies ' + pLower + ' ' + city.local_seo_terms[0] + ', ' + state + '. ' +
+                product.capacity + ' capacity. Price: ' + product.price_range.text + '. Direct supplier, GST billing, ' +
+                'delivery to ' + cName + '. Call +91-8708795253.';
+            var ogTitle = pName + ' Supplier ' + city.local_seo_terms[0] + ' | ' + cName + ', ' + state;
+            var pageUrl = 'https://rsmachinary.in/' + pSlug + '/' + cSlug + '/';
+
+            document.title = seoTitle;
+            document.querySelector('meta[name="description"]').setAttribute('content', metaDesc);
+            document.querySelector('link[rel="canonical"]').setAttribute('href', pageUrl);
+            document.querySelector('meta[property="og:title"]').setAttribute('content', ogTitle);
+            document.querySelector('meta[property="og:description"]').setAttribute('content', metaDesc);
+            document.querySelector('meta[property="og:url"]').setAttribute('content', pageUrl);
+
+            var content = generateContent(product, city);
+            var faq = generateFAQ(product, city);
+            var schemas = generateSchemas(product, city);
+
+            document.getElementById('schemaLocalBusiness').textContent = JSON.stringify(schemas.localBusiness);
+            document.getElementById('schemaBreadcrumb').textContent = JSON.stringify(schemas.breadcrumb);
+            document.getElementById('schemaProduct').textContent = JSON.stringify(schemas.product);
+            document.getElementById('schemaFAQ').textContent = JSON.stringify(faq.faqSchema);
+
+            var intro = 'Looking for a reliable ' + pLower + ' supplier ' + city.local_seo_terms[0] + ', ' + state + '? ' +
+                'RS Machinery supplies quality ' + pLower + ' at direct prices. ' +
+                'Our range includes ' + product.price_variants.map(function (v) { return v.name; }).join(', ') + ' ' +
+                'with prices from ' + product.price_range.text + '. ' +
+                'We serve ' + city.industries.slice(0, 3).join(', ') + ' in ' + cName + ' and deliver across ' + state + '.';
+
+            document.getElementById('priceRange').textContent = product.price_range.text;
+            document.getElementById('pageH1').textContent = pName + ' Supplier ' + city.local_seo_terms[0] + ' \u2013 ' + cName + ', ' + state;
+            document.getElementById('introParagraph').textContent = intro;
+            document.getElementById('distanceFromSirsa').textContent = isHome ? 'Home city' : distance + ' km';
+            document.getElementById('capacity').textContent = product.capacity;
+            document.getElementById('deliveryTime').textContent = deliveryTime;
+            document.getElementById('industriesShort').textContent = city.industries.slice(0, 3).join(', ');
+
+            document.getElementById('contentH2').textContent = pName + ' Supplier in ' + cName;
+            document.getElementById('contentBlock1').textContent = content.block1;
+            document.getElementById('contentBlock2').textContent = content.block2;
+
+            document.getElementById('industriesHeading').textContent = 'Industries We Serve in ' + cName;
+            document.getElementById('industriesList').innerHTML = listItems(city.industries);
+            document.getElementById('featuresList').innerHTML = listItems(product.features);
+
+            document.getElementById('priceHeading').textContent = pName + ' Price List in ' + cName;
+            document.getElementById('priceTableRows').innerHTML = priceRows(product.price_variants);
+            document.getElementById('priceDisclaimer').textContent = '* Prices are indicative. Call +91-8708795253 for current pricing and availability in ' + cName + '.';
+
+            document.getElementById('ctaHeading').textContent = 'Need ' + pName + ' in ' + cName + '?';
+            document.getElementById('ctaText').textContent = 'Available now at RS Machinery, Sirsa. Direct supplier pricing with quick delivery to ' + cName + ', ' + state + '. Call us for a quote.';
+
+            document.getElementById('whyHeading').textContent = 'Why Buy ' + pName + ' from RS Machinery?';
+            document.getElementById('deliveryCommitment').textContent = 'Delivery available to ' + cName + ' and surrounding areas';
+
+            document.getElementById('servicesHeading').textContent = pName + ' Services & Support ' + city.local_seo_terms[0];
+            document.getElementById('contentBlock3').textContent = content.block3;
+
+            document.getElementById('faqHeading').textContent = 'Frequently Asked Questions \u2013 ' + pName + ' in ' + cName;
+            document.getElementById('faqContainer').innerHTML = faq.faqHtml;
+
+            document.getElementById('footerBrand').textContent = 'RS Machinery \u2013 ' + pName + ' Supplier Sirsa';
+            document.getElementById('footerDesc').innerHTML = '<strong>Trusted lifting equipment supplier</strong> in Sirsa, Haryana. We supply ' + pLower + ', electric hoists, chain pulley blocks, and steel wire ropes to ' + cName + ' and across North India. <a href="tel:+918708795253">Call +91-8708795253</a>.';
+
+            loadingEl.style.display = 'none';
+            contentEl.style.display = 'block';
+        }
+
+        function showError() {
+            loadingEl.style.display = 'none';
+            errorEl.style.display = 'block';
+        }
+
+        function init() {
+            var params = getParams();
+            if (!params.productSlug || !params.citySlug) {
+                showError();
+                return;
+            }
+
+            Promise.all([
+                fetchJSON(PRODUCTS_DATA_URL),
+                fetchJSON(CITIES_DATA_URL)
+            ]).then(function (results) {
+                var products = results[0].products || [];
+                var cities = results[1].cities || [];
+
+                var product = products.find(function (p) { return p.slug === params.productSlug; });
+                var city = cities.find(function (c) { return c.name_lower === params.citySlug; });
+
+                if (!product || !city) {
+                    showError();
+                    return;
+                }
+
+                renderPage(product, city);
+            }).catch(function () {
+                showError();
+            });
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+    })();
+    </script>
+</body>
+</html>

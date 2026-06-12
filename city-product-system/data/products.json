@@ -1,0 +1,119 @@
+{
+  "products": [
+    {
+      "slug": "monkey-crane",
+      "name": "Monkey Crane",
+      "name_short": "Monkey Crane",
+      "tagline": "Heavy-Duty Material Lifting for Construction",
+      "description": "A monkey crane (also known as a mini crane or builder hoist) is a compact, portable lifting machine designed for construction sites. It handles cement, bricks, concrete, steel bars, and building materials up to 500 KG with a rugged steel frame and reliable motor.",
+      "keywords": ["mini crane", "builder hoist", "material hoist", "construction crane", "portable crane"],
+      "price_range": {
+        "min": 25000,
+        "max": 85000,
+        "text": "₹25,000 – ₹85,000"
+      },
+      "price_variants": [
+        { "name": "250 KG Capacity", "price": "₹25,000 – ₹35,000" },
+        { "name": "350 KG Capacity", "price": "₹35,000 – ₹50,000" },
+        { "name": "500 KG Capacity", "price": "₹50,000 – ₹85,000" }
+      ],
+      "capacity": "Up to 500 KG",
+      "applications": ["construction sites", "building material lifting", "residential projects", "commercial construction"],
+      "industries": ["Construction", "Real Estate", "Infrastructure", "Building Materials"],
+      "features": [
+        "Rugged steel construction",
+        "Easy installation on site",
+        "Low maintenance design",
+        "Smooth lifting mechanism",
+        "Portable and compact"
+      ]
+    },
+    {
+      "slug": "electric-hoist",
+      "name": "Electric Hoist",
+      "name_short": "Electric Hoist",
+      "tagline": "Industrial-Grade Lifting for Factories & Warehouses",
+      "description": "An electric hoist is a motorized lifting device used in factories, warehouses, workshops, and industrial facilities. It uses an electric motor to wind wire rope or chain, providing smooth, controlled lifting for heavy loads up to several tons.",
+      "keywords": ["wire rope hoist", "electric chain hoist", "industrial hoist", "motorized hoist", "overhead hoist"],
+      "price_range": {
+        "min": 15000,
+        "max": 150000,
+        "text": "₹15,000 – ₹1,50,000"
+      },
+      "price_variants": [
+        { "name": "500 KG Capacity", "price": "₹15,000 – ₹25,000" },
+        { "name": "1 Ton Capacity", "price": "₹30,000 – ₹55,000" },
+        { "name": "2 Ton Capacity", "price": "₹55,000 – ₹1,00,000" },
+        { "name": "5 Ton Capacity", "price": "₹1,00,000 – ₹1,50,000" }
+      ],
+      "capacity": "500 KG to 5 Ton",
+      "applications": ["factory production lines", "warehouse loading", "workshop lifting", "industrial maintenance"],
+      "industries": ["Manufacturing", "Warehousing", "Automotive", "Steel Fabrication", "Logistics"],
+      "features": [
+        "Smooth motor operation",
+        "Heavy load handling",
+        "Industrial-grade components",
+        "Long service life",
+        "Emergency brake system"
+      ]
+    },
+    {
+      "slug": "chain-pulley-block",
+      "name": "Chain Pulley Block",
+      "name_short": "Chain Pulley Block",
+      "tagline": "Manual Lifting for Workshops & Warehouses",
+      "description": "A chain pulley block (also called a hand chain hoist or chain block) is a manually operated lifting device using a hand chain to operate a mechanical pulley system. It is ideal for workshops, warehouses, and industrial maintenance where precise load positioning is needed.",
+      "keywords": ["hand chain hoist", "chain block", "manual hoist", "pulley block", "lever hoist"],
+      "price_range": {
+        "min": 3000,
+        "max": 25000,
+        "text": "₹3,000 – ₹25,000"
+      },
+      "price_variants": [
+        { "name": "1 Ton Capacity", "price": "₹3,000 – ₹6,000" },
+        { "name": "2 Ton Capacity", "price": "₹6,000 – ₹12,000" },
+        { "name": "5 Ton Capacity", "price": "₹12,000 – ₹20,000" },
+        { "name": "10 Ton Capacity", "price": "₹20,000 – ₹25,000" }
+      ],
+      "capacity": "1 Ton to 10 Ton",
+      "applications": ["workshop lifting", "warehouse maintenance", "machine installation", "loading docks"],
+      "industries": ["Manufacturing", "Workshops", "Warehousing", "Automotive Repair", "Industrial Maintenance"],
+      "features": [
+        "Strong alloy components",
+        "Corrosion-resistant finish",
+        "Safe lifting mechanism",
+        "Industrial-duty performance",
+        "Portable and lightweight"
+      ]
+    },
+    {
+      "slug": "steel-wire-rope",
+      "name": "Steel Wire Rope",
+      "name_short": "Wire Rope",
+      "tagline": "Premium Lifting & Rigging Cables for Industry",
+      "description": "Steel wire rope is a high-strength flexible cable made from multiple strands of steel wire twisted together. It is essential for cranes, hoists, elevators, mining, construction rigging, and any application requiring reliable tension members under heavy loads.",
+      "keywords": ["wire rope", "lifting cable", "steel cable", "rigging rope", "crane rope"],
+      "price_range": {
+        "min": 15,
+        "max": 150,
+        "text": "₹15/meter – ₹150/meter"
+      },
+      "price_variants": [
+        { "name": "6mm Diameter", "price": "₹15 – ₹25/meter" },
+        { "name": "10mm Diameter", "price": "₹30 – ₹50/meter" },
+        { "name": "16mm Diameter", "price": "₹60 – ₹90/meter" },
+        { "name": "24mm Diameter", "price": "₹100 – ₹150/meter" }
+      ],
+      "capacity": "6mm to 24mm+ diameter",
+      "applications": ["crane rigging", "hoist cables", "construction tie-downs", "elevator cables", "mining operations"],
+      "industries": ["Construction", "Mining", "Manufacturing", "Shipping", "Oil & Gas", "Infrastructure"],
+      "features": [
+        "High tensile strength",
+        "Flexible and fatigue-resistant",
+        "Galvanised finish available",
+        "Wide size range",
+        "ISI certified options"
+      ]
+    }
+  ]
+}

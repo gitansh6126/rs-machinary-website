@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="icon" type="image/png" sizes="192x192" href="../android-chrome-192x192.png">
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png">
     <title>Product Form - RSMachinery Admin</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -74,14 +79,43 @@
                         <textarea id="description" name="description" rows="6"></textarea>
                     </div>
 
+                    <!-- ═══ LOCAL IMAGE UPLOAD ═══ -->
+                    <div class="form-section">
+                        <h3>Upload Product Images</h3>
+                        <p class="help-text">Upload images to server. Max 5MB. Allowed: JPG, PNG, WebP. Images are converted to optimized WEBP (1200px max). Only the filename is stored.</p>
+
+                        <div class="upload-area" id="dropArea">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                            <p>Drag & drop files here, or <span class="upload-link">browse</span></p>
+                            <input type="file" id="fileInput" multiple accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp" style="display:none">
+                        </div>
+
+                        <div class="upload-preview-container" id="uploadPreview"></div>
+
+                        <div class="upload-progress-bar" id="uploadProgress" style="display:none">
+                            <div class="progress-fill" id="progressFill"></div>
+                            <span class="progress-text" id="progressText">0%</span>
+                        </div>
+
+                        <div class="form-row">
+                            <button type="button" class="btn-primary" id="uploadBtn" disabled>Upload to Server</button>
+                        </div>
+
+                        <div class="upload-result" id="uploadResult"></div>
+
+                        <hr style="margin: 20px 0; border: none; border-top: 1px solid var(--border-color, #e0e0e0);">
+                    </div>
+
+                    <!-- ═══ IMAGE URL INPUTS ═══ -->
                     <div class="form-group">
-                        <label for="image">Main Image URL</label>
-                        <input type="url" id="image" name="image" placeholder="https://example.com/image.webp">
+                        <label for="image">Main Image Filename <span class="help-text">(filename only, auto-filled after upload)</span></label>
+                        <input type="text" id="image" name="image" placeholder="1234567890_abc12345.webp">
+                        <div class="image-preview" id="mainImagePreview"></div>
                     </div>
 
                     <div class="form-group">
-                        <label for="gallery_images">Gallery Images (JSON array)</label>
-                        <textarea id="gallery_images" name="gallery_images" rows="4" placeholder='["https://example.com/img1.webp", "https://example.com/img2.webp"]'></textarea>
+                        <label for="gallery_images">Gallery Images (JSON array of filenames)</label>
+                        <textarea id="gallery_images" name="gallery_images" rows="4" placeholder='["1234567890_def67890.webp", "1234567890_ghi90123.webp"]'></textarea>
                     </div>
 
                     <div class="form-group">

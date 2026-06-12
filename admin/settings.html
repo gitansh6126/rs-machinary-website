@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="icon" type="image/png" sizes="192x192" href="../android-chrome-192x192.png">
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png">
     <title>Settings - RSMachinery Admin</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -45,6 +50,18 @@
                 </div>
                 <div class="form-actions" style="border:none;padding-top:0;margin-top:0.5rem;">
                     <button id="saveApiUrl" class="btn-primary">Save URL</button>
+                </div>
+            </div>
+
+            <div class="card" style="margin-bottom:1.5rem;">
+                <h2>Upload Authentication</h2>
+                <div class="form-group">
+                    <label for="uploadKey">Upload Secret Key</label>
+                    <input type="text" id="uploadKey" placeholder="Enter a secret key for image uploads">
+                    <div class="help-text">This key must match the <code>UPLOAD_KEY</code> constant in <code>website/upload.php</code>. Admin sends this key in <code>X-Upload-Key</code> header when uploading images.</div>
+                </div>
+                <div class="form-actions" style="border:none;padding-top:0;margin-top:0.5rem;">
+                    <button id="saveUploadKey" class="btn-primary">Save Upload Key</button>
                 </div>
             </div>
 

@@ -51,9 +51,8 @@ Do NOT use:
 REPOSITORY STRUCTURE
 ====================
 
-rs-machinary-website/
+rsm-website/
 
-website/
 admin/
 apps-script/
 
@@ -77,18 +76,18 @@ Only add required functionality.
 
 Create:
 
-website/index.html
-website/products.html
-website/product.html
+index.html
+products.html
+product.html
 
 Create:
+js/api.js
 
-website/js/api.js
-website/js/app.js
+js/app.js
 
 Modify:
 
-website/styles.css
+styles.css
 
 Features:
 
@@ -284,15 +283,57 @@ data: ...
 IMAGE MANAGEMENT
 ================
 
-Version 1:
+Images are stored locally on the server.
 
-No image uploader.
+Path:
 
-Admin manually pastes image URLs.
+assets/product-images/
 
-Example:
+See image-management.md for full specification.
 
-https://rsmachinery.com/uploads/product.webp
+────────────────────────────────────────────────
+CORE COMPONENTS
+────────────────────────────────────────────────
+
+1. Storage Location:
+    assets/product-images/
+
+2. Naming Convention:
+   Format: {slug}_{VARIANT}.{ext}
+   Example: heavy-duty-monkey-crane_MAIN.jpg
+   Variants: MAIN, GAL01-GAL99, SPEC01-SPEC10, THUMB, BANNER
+   Slug: lowercase, spaces→hyphens, no special chars
+
+3. Upload Flow:
+    Admin panel → POST to upload.php
+   → Validate X-Upload-Key header
+   → Validate file (5MB, jpg/png/webp, finfo, getimagesize)
+   → Optimize (1600px max, 80% quality)
+   → Generate thumbnail (400px, WEBP)
+   → Save to assets/product-images/
+   → Return JSON with relative URL
+   → Auto-fill into product form
+   → Relative URL stored in Google Sheet
+   → Website loads via <img src="...">
+
+4. Thumbnails:
+   Auto-generated on upload.
+   Format: {name}_thumb.webp (WEBP, 400px max width)
+   Product cards use thumbnails.
+   Detail page uses full image.
+
+5. Auth:
+   Upload endpoint protected by X-Upload-Key header.
+   Key stored in Settings sheet (upload_key) and upload.php.
+
+6. URL Format:
+   Relative paths only.
+   Example: assets/product-images/heavy-duty-monkey-crane_MAIN.jpg
+   No full URLs, no external services.
+
+7. Fallback:
+   assets/placeholder.svg
+   Used when image is missing or invalid.
 
 ==================================================
 PRODUCT REQUIREMENTS

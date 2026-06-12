@@ -3,11 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RSMachinery | High-Quality Machinery for Reliable Performance</title>
-    <meta
-        name="description"
-        content="RSMachinery - Trusted supplier for all heavy machinery. Available now in Sirsa, Haryana. Direct supplier pricing for mixing, cutting, packaging machines."
-    >
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <title>RS Machinery Sirsa | Heavy Machinery &amp; Lifting Equipment Supplier in Haryana</title>
+    <meta name="description" content="RS Machinery in Sirsa, Haryana - trusted supplier of monkey cranes, electric hoists, chain pulley blocks &amp; steel wire ropes. Direct pricing. Call +91-8708795253.">
+    <link rel="canonical" href="https://rsmachinary.in/">
+    <meta property="og:title" content="RS Machinery Sirsa | Heavy Machinery &amp; Lifting Equipment Supplier in Haryana">
+    <meta property="og:description" content="RS Machinery in Sirsa, Haryana - trusted supplier of monkey cranes, electric hoists, chain pulley blocks &amp; steel wire ropes. Call +91-8708795253.">
+    <meta property="og:url" content="https://rsmachinary.in/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://rsmachinary.in/assets/logo/icon/main_non_bg_logo.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="alternate" hreflang="en" href="https://rsmachinary.in/">
+    <link rel="alternate" hreflang="hi" href="https://rsmachinary.in/?lang=hi">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "RS Machinery",
+      "image": "https://rsmachinary.in/assets/logo/icon/main_non_bg_logo.png",
+      "logo": "https://rsmachinary.in/assets/logo/icon/main_non_bg_logo.png",
+      "url": "https://rsmachinary.in/",
+      "telephone": "+918708795253",
+      "whatsApp": "+918708795253",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Begu Road, Wali Gali, Near Parshuram Chowk, Opposite Sarsainath Mandir",
+        "addressLocality": "Sirsa",
+        "addressRegion": "Haryana",
+        "postalCode": "125055",
+        "addressCountry": "IN"
+      },
+      "geo": { "@type": "GeoCoordinates", "latitude": 29.5313, "longitude": 74.9964 },
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.2", "reviewCount": "83" },
+      "priceRange": "\u20B9\u20B9",
+      "openingHours": "Mo-Sa 09:00-19:00"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "RS Machinery",
+      "url": "https://rsmachinary.in/"
+    }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -21,12 +64,13 @@
     <header class="site-header" id="siteHeader">
     <div class="header-shell">
         <div class="header-top">
-            <a class="brand brand-inline" href="#top" aria-label="RSMachinery home">
-                <img class="brand-logo" src="assets/3.png" alt="RSMachinery logo">
+            <a class="brand brand-inline" href="/" aria-label="RS Machinery - Heavy Machinery Supplier Sirsa">
+                <img class="brand-logo" src="assets/logo/icon/main_non_bg_logo.png" alt="RS Machinery - Heavy Machinery & Lifting Equipment Sirsa">
             </a>
             <nav class="site-nav" aria-label="Primary navigation">
-                <a href="#products" data-i18n="navProducts">Products</a>
-                <a href="#about" data-i18n="navAbout">About</a>
+                <a href="products.html" data-i18n="navProducts">Products</a>
+                <a href="/#about" data-i18n="navAbout">About</a>
+                <a href="/#contact" data-i18n="navContact">Contact</a>
             </nav>
                 <div class="header-right">
                 <button class="lang-toggle" id="langToggle" type="button" aria-pressed="false" data-i18n="langButton">&#x0939;&#x093F;&#x0928;&#x094D;&#x0926;&#x0940;</button>
@@ -48,7 +92,7 @@
         <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
             <button class="mobile-menu-close" aria-label="Close menu">&times;</button>
                 <nav class="mobile-nav">
-                    <a href="#products" class="mobile-nav-link" data-i18n="navProducts">
+                    <a href="products.html" class="mobile-nav-link" data-i18n="navProducts">
                         <svg class="mobile-nav-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
                             <path fill="currentColor" d="M20 6h-4V4c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v12c0 1.1 .9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM10 4h4v2h-4V4zm10 16H4V8h16v12z"/>
                         </svg>
@@ -86,111 +130,156 @@
         <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
     </header>
 
-    <main id="top">
+    <main id="top" class="home">
 
-        <!-- Product Slider -->
-        <section class="pslider section-shell" aria-label="Product showcase slider">
-            <div class="pslider-track">
+        <!-- Product Showcase Carousel -->
+        <section class="pslider" aria-label="Product showcase carousel">
+            <div class="pslider-viewport">
+                <div class="pslider-track">
 
-                <!-- SLIDE 1: Monkey Crane -->
-                <div class="pslide is-active" style="--pslide-bg: url('assets/hero-images/product-bg-slide.webp');" aria-hidden="false">
-                    <div class="pslide-grid">
-                        <div class="pslide-copy">
-                            <p class="pslide-category" data-i18n="psCat1">Monkey Crane</p>
-                            <h2 class="pslide-heading" data-i18n-html="psHeading1">Heavy Duty Monkey Crane<br>For Construction Sites</h2>
-                            <p class="pslide-desc" data-i18n="psDesc1">Designed for fast and efficient material lifting at construction projects. Our Monkey Cranes are built with a strong steel structure, reliable motors, and smooth lifting mechanisms to handle cement, bricks, concrete, and building materials safely.</p>
-                            <ul class="pslide-list">
-                                <li><span data-i18n="psPoint1_1">Capacity up to 500 KG</span></li>
-                                <li><span data-i18n="psPoint1_2">Rugged Steel Construction</span></li>
-                                <li><span data-i18n="psPoint1_3">Easy Installation</span></li>
-                                <li><span data-i18n="psPoint1_4">Low Maintenance</span></li>
-                            </ul>
-                            <a class="button button-solid" href="#contact" data-i18n="psBtn">Get Quotation</a>
+                    <!-- SLIDE 1: Monkey Crane -->
+                    <div class="pslide" data-slide-index="0">
+                        <div class="pslide-grid">
+                            <div class="pslide-copy">
+                                <span class="pslide-category" data-i18n="psCat1">MONKEY CRANE</span>
+                                <h1 class="pslide-heading" data-i18n-html="psHeading1">Heavy Duty Monkey Crane<br>For Construction Sites</h1>
+                                <p class="pslide-desc" data-i18n="psDesc1">Industrial-grade lifting equipment trusted by factories, warehouses, and construction sites across North India.</p>
+                                <div class="pslide-actions">
+                                    <a class="pslide-btn pslide-btn-primary" href="#contact" data-i18n="psBtn">Get Quotation</a>
+                                    <a class="pslide-btn pslide-btn-secondary" href="products.html">View Specifications</a>
+                                </div>
+                                <div class="pslide-trust">
+                                    <span>Industrial Grade</span>
+                                    <span>Heavy Duty</span>
+                                    <span>Pan India Delivery</span>
+                                </div>
+                            </div>
+                            <div class="pslide-visual">
+                                <div class="pslide-spotlight"></div>
+                                <div class="pslide-shadow"></div>
+                                <img src="assets/hero-images/mini-crane-slide.webp" alt="Heavy Duty Monkey Crane" class="pslide-img" loading="lazy">
+                            </div>
                         </div>
-                        <div class="pslide-visual">
-                            <div class="pslide-circle"></div>
-                            <img src="assets/hero-images/mini-crane-slide.webp" alt="Heavy Duty Monkey Crane" class="pslide-img" loading="lazy">
+                    </div>
+
+                    <!-- SLIDE 2: Electric Hoist -->
+                    <div class="pslide" data-slide-index="1">
+                        <div class="pslide-grid">
+                            <div class="pslide-copy">
+                                <span class="pslide-category" data-i18n="psCat2">ELECTRIC HOIST</span>
+                                <h2 class="pslide-heading" data-i18n-html="psHeading2">Powerful Electric Hoists<br>For Industrial Lifting</h2>
+                                <p class="pslide-desc" data-i18n="psDesc2">High-performance hoists engineered for factories, warehouses, workshops, and heavy-duty manufacturing facilities.</p>
+                                <div class="pslide-actions">
+                                    <a class="pslide-btn pslide-btn-primary" href="#contact" data-i18n="psBtn">Get Quotation</a>
+                                    <a class="pslide-btn pslide-btn-secondary" href="products.html">View Specifications</a>
+                                </div>
+                                <div class="pslide-trust">
+                                    <span>Industrial Grade</span>
+                                    <span>Heavy Duty</span>
+                                    <span>Pan India Delivery</span>
+                                </div>
+                            </div>
+                            <div class="pslide-visual">
+                                <div class="pslide-spotlight"></div>
+                                <div class="pslide-shadow"></div>
+                                <img src="assets/hero-images/hoist-slide.webp" alt="Powerful Electric Hoist" class="pslide-img" loading="lazy">
+                            </div>
                         </div>
+                    </div>
+
+                    <!-- SLIDE 3: Chain Pulley Block -->
+                    <div class="pslide" data-slide-index="2">
+                        <div class="pslide-grid">
+                            <div class="pslide-copy">
+                                <span class="pslide-category" data-i18n="psCat3">CHAIN PULLEY BLOCK</span>
+                                <h2 class="pslide-heading" data-i18n-html="psHeading3">Reliable Chain Pulley Blocks<br>For Safe Material Handling</h2>
+                                <p class="pslide-desc" data-i18n="psDesc3">Durable chain pulley blocks built for workshops, warehouses, and industrial lifting operations across demanding environments.</p>
+                                <div class="pslide-actions">
+                                    <a class="pslide-btn pslide-btn-primary" href="#contact" data-i18n="psBtn">Get Quotation</a>
+                                    <a class="pslide-btn pslide-btn-secondary" href="products.html">View Specifications</a>
+                                </div>
+                                <div class="pslide-trust">
+                                    <span>Industrial Grade</span>
+                                    <span>Heavy Duty</span>
+                                    <span>Pan India Delivery</span>
+                                </div>
+                            </div>
+                            <div class="pslide-visual">
+                                <div class="pslide-spotlight"></div>
+                                <div class="pslide-shadow"></div>
+                                <img src="assets/hero-images/chain-pulley-slide.webp" alt="Reliable Chain Pulley Block" class="pslide-img" loading="lazy">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SLIDE 4: Steel Wire Rope -->
+                    <div class="pslide" data-slide-index="3">
+                        <div class="pslide-grid">
+                            <div class="pslide-copy">
+                                <span class="pslide-category" data-i18n="psCat4">STEEL WIRE ROPE</span>
+                                <h2 class="pslide-heading" data-i18n-html="psHeading4">Industrial Steel Wire Ropes<br>For Heavy Lifting &amp; Rigging</h2>
+                                <p class="pslide-desc" data-i18n="psDesc4">Premium steel wire ropes manufactured for cranes, hoists, and heavy rigging applications across demanding industrial sites.</p>
+                                <div class="pslide-actions">
+                                    <a class="pslide-btn pslide-btn-primary" href="#contact" data-i18n="psBtn">Get Quotation</a>
+                                    <a class="pslide-btn pslide-btn-secondary" href="products.html">View Specifications</a>
+                                </div>
+                                <div class="pslide-trust">
+                                    <span>Industrial Grade</span>
+                                    <span>Heavy Duty</span>
+                                    <span>Pan India Delivery</span>
+                                </div>
+                            </div>
+                            <div class="pslide-visual">
+                                <div class="pslide-spotlight"></div>
+                                <div class="pslide-shadow"></div>
+                                <img src="assets/hero-images/industrial-steel-wire-rope-500x500.webp" alt="Industrial Steel Wire Rope" class="pslide-img" loading="lazy">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Edge interaction zones -->
+                <div class="pslider-edge pslider-edge-left" data-edge="prev">
+                    <div class="pslider-edge-hint">
+                        <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M15 18l-6-6 6-6"/></svg>
+                    </div>
+                </div>
+                <div class="pslider-edge pslider-edge-right" data-edge="next">
+                    <div class="pslider-edge-hint">
+                        <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M9 18l6-6-6-6"/></svg>
                     </div>
                 </div>
 
-                <!-- SLIDE 2: Electric Hoist -->
-                <div class="pslide" style="--pslide-bg: url('assets/hero-images/product-bg-slide.webp');" aria-hidden="true">
-                    <div class="pslide-grid">
-                        <div class="pslide-copy">
-                            <p class="pslide-category" data-i18n="psCat2">Electric Hoist</p>
-                            <h2 class="pslide-heading" data-i18n-html="psHeading2">Powerful Electric Hoists<br>For Industrial Lifting</h2>
-                            <p class="pslide-desc" data-i18n="psDesc2">High-performance electric hoists engineered for warehouses, factories, workshops, and industrial facilities. Built for smooth operation, enhanced safety, and reliable heavy-duty lifting applications.</p>
-                            <ul class="pslide-list">
-                                <li><span data-i18n="psPoint2_1">Smooth Motor Operation</span></li>
-                                <li><span data-i18n="psPoint2_2">Heavy Load Handling</span></li>
-                                <li><span data-i18n="psPoint2_3">Industrial Grade Components</span></li>
-                                <li><span data-i18n="psPoint2_4">Long Service Life</span></li>
-                            </ul>
-                            <a class="button button-solid" href="#contact" data-i18n="psBtn">Get Quotation</a>
-                        </div>
-                        <div class="pslide-visual">
-                            <div class="pslide-circle"></div>
-                            <img src="assets/hero-images/hoist-slide.webp" alt="Powerful Electric Hoist" class="pslide-img" loading="lazy">
-                        </div>
+                <!-- Top-right controls -->
+                <div class="pslider-controls-top">
+                    <div class="pslider-counter" aria-live="polite">
+                        <span class="pslider-counter-current">01</span>
+                        <span class="pslider-counter-sep">/</span>
+                        <span class="pslider-counter-total">04</span>
+                    </div>
+                    <div class="pslider-nav-buttons">
+                        <button type="button" class="pslider-nav-btn" data-pslide-prev aria-label="Previous product">
+                            <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M15 18l-6-6 6-6"/></svg>
+                        </button>
+                        <button type="button" class="pslider-nav-btn" data-pslide-next aria-label="Next product">
+                            <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M9 18l6-6-6-6"/></svg>
+                        </button>
                     </div>
                 </div>
 
-                <!-- SLIDE 3: Chain Pulley Block -->
-                <div class="pslide" style="--pslide-bg: url('assets/hero-images/product-bg-slide.webp');" aria-hidden="true">
-                    <div class="pslide-grid">
-                        <div class="pslide-copy">
-                            <p class="pslide-category" data-i18n="psCat3">Chain Pulley Block</p>
-                            <h2 class="pslide-heading" data-i18n-html="psHeading3">Reliable Chain Pulley Blocks<br>For Safe Material Handling</h2>
-                            <p class="pslide-desc" data-i18n="psDesc3">Durable chain pulley blocks manufactured for workshops, warehouses, and industrial lifting operations. Designed to provide maximum safety, easy handling, and dependable performance under demanding conditions.</p>
-                            <ul class="pslide-list">
-                                <li><span data-i18n="psPoint3_1">Strong Alloy Components</span></li>
-                                <li><span data-i18n="psPoint3_2">Corrosion Resistant Finish</span></li>
-                                <li><span data-i18n="psPoint3_3">Safe Lifting Mechanism</span></li>
-                                <li><span data-i18n="psPoint3_4">Industrial Duty Performance</span></li>
-                            </ul>
-                            <a class="button button-solid" href="#contact" data-i18n="psBtn">Get Quotation</a>
-                        </div>
-                        <div class="pslide-visual">
-                            <div class="pslide-circle"></div>
-                            <img src="assets/hero-images/chain-pulley-slide.webp" alt="Reliable Chain Pulley Block" class="pslide-img" loading="lazy">
-                        </div>
-                    </div>
+                <!-- Progress bar -->
+                <div class="pslider-progress" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="4">
+                    <div class="pslider-progress-bar"></div>
                 </div>
 
-                <!-- SLIDE 4: Steel Wire Rope -->
-                <div class="pslide" style="--pslide-bg: url('assets/hero-images/product-bg-slide.webp');" aria-hidden="true">
-                    <div class="pslide-grid">
-                        <div class="pslide-copy">
-                            <p class="pslide-category" data-i18n="psCat4">Steel Wire Rope</p>
-                            <h2 class="pslide-heading" data-i18n-html="psHeading4">Industrial Steel Wire Ropes<br>For Heavy Lifting &amp; Rigging</h2>
-                            <p class="pslide-desc" data-i18n="psDesc4">Premium quality steel wire ropes designed for cranes, hoists, construction, and industrial rigging applications. Manufactured with high-tensile steel for maximum strength, flexibility, and long-lasting performance under extreme loads.</p>
-                            <ul class="pslide-list">
-                                <li><span data-i18n="psPoint4_1">High Tensile Strength</span></li>
-                                <li><span data-i18n="psPoint4_2">Flexible &amp; Fatigue Resistant</span></li>
-                                <li><span data-i18n="psPoint4_3">Galvanised &amp; Durable</span></li>
-                                <li><span data-i18n="psPoint4_4">Wide Size Range Available</span></li>
-                            </ul>
-                            <a class="button button-solid" href="#contact" data-i18n="psBtn">Get Quotation</a>
-                        </div>
-                        <div class="pslide-visual">
-                            <div class="pslide-circle"></div>
-                            <img src="assets/hero-images/industrial-steel-wire-rope-500x500.webp" alt="Industrial Steel Wire Rope" class="pslide-img" loading="lazy">
-                        </div>
-                    </div>
+                <!-- Desktop swipe hint -->
+                <div class="pslider-swipe-hint" aria-hidden="true">
+                    <svg class="pslider-swipe-icon" viewBox="0 0 24 24" width="18" height="18">
+                        <path fill="currentColor" d="M3 12l4-4v3h10v-3l4 4-4 4v-3H7v3l-4-4z"/>
+                    </svg>
+                    <span class="pslider-swipe-text">Drag to browse</span>
                 </div>
-
-            </div>
-
-            <div class="pslider-controls">
-                <button type="button" class="pslider-arrow" data-pslide-prev aria-label="Previous slide">&#x2039;</button>
-                <div class="pslider-dots" aria-label="Select slide">
-                    <button type="button" class="pslider-dot is-active" data-pslide-dot="0" aria-label="Go to slide 1"></button>
-                    <button type="button" class="pslider-dot" data-pslide-dot="1" aria-label="Go to slide 2"></button>
-                    <button type="button" class="pslider-dot" data-pslide-dot="2" aria-label="Go to slide 3"></button>
-                    <button type="button" class="pslider-dot" data-pslide-dot="3" aria-label="Go to slide 4"></button>
-                </div>
-                <button type="button" class="pslider-arrow" data-pslide-next aria-label="Next slide">&#x203A;</button>
             </div>
         </section>
 
@@ -225,7 +314,7 @@
          <section class="about" id="about">
             <div class="about-container">
                 <div class="about-image-wrapper">
-                    <img src="assets/About-Us-Image-.png" alt="About RS Machinery" loading="lazy">
+                    <img src="assets/About-Us-Image-.png" alt="RS Machinery - Trusted lifting equipment supplier in Sirsa, Haryana" loading="lazy">
                 </div>
                 <div class="about-content">
                     <div class="about-label">
@@ -233,7 +322,7 @@
                         <span class="about-label-text" data-i18n="aboutTag">ABOUT US</span>
                     </div>
                     <h2 class="about-heading" data-i18n="aboutHeading">Professional Lifting Equipment Solutions</h2>
-                    <p class="about-description" data-i18n="aboutDescription">At RS Machinery, we are dedicated to providing top-quality lifting and material handling equipment to industries across India. With years of experience and a commitment to excellence, we have become a trusted name in the heavy machinery sector, serving workshops, factories, construction sites, and industrial facilities with reliable solutions that enhance productivity and safety.</p>
+                    <p class="about-description" data-i18n="aboutDescription">At RS Machinery in Sirsa, Haryana, we specialize in supplying heavy-duty lifting and material handling equipment across North India. Our product range includes monkey cranes for construction sites, electric hoists for industrial facilities, chain pulley blocks for warehouses, and steel wire ropes for rigging applications. With years of experience serving customers in Sirsa, Hisar, Fatehabad, Bathinda, and Hanumangarh, we have become a trusted name in the heavy machinery sector, offering reliable lifting solutions that enhance productivity, safety, and operational efficiency.</p>
 
                     <div class="about-features">
                         <div class="about-feature-item">
@@ -298,7 +387,7 @@
                     <a class="button button-solid" href="#contact" data-i18n="wcuCta">Get Quotation</a>
                 </div>
                 <div class="wcu-image-wrapper">
-                    <img src="assets/why-choose-us.png" alt="Why Choose RS Machinery" loading="lazy">
+                    <img src="assets/why-choose-us.png" alt="Why choose RS Machinery for monkey cranes, hoists & chain pulley blocks in Sirsa Haryana" loading="lazy">
                 </div>
             </div>
         </section>
@@ -484,17 +573,15 @@
                             <input type="tel" name="phone" placeholder="Phone Number *" required aria-label="Phone Number">
                         </div>
                         <div class="form-row">
-                            <input type="text" name="product" placeholder="Product Interested In (optional)" aria-label="Product">
+                            <input type="text" name="product" placeholder="Product Interested In (Monkey Crane, Electric Hoist, Chain Pulley Block, Wire Rope)" aria-label="Product">
                         </div>
-                        <div class="form-row">
-                            <textarea name="message" placeholder="Your Message *" rows="4" required aria-label="Your Message"></textarea>
-                        </div>
+
                         <button type="submit" class="button button-solid">Send Inquiry</button>
                     </form>
                 </div>
 
                 <div class="contact-map-wrapper">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1777400.3137880845!2d72.59271855624998!3d29.5313674!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39114dbfeb56797d%3A0x352bddddd6d5e5c6!2sR%20S%20MACHINERY%20STORE%2C%20Sirsa%2C%20Haryana!5e0!3m2!1sen!2sin!4v1777370558901!5m2!1sen!2sin" class="contact-map" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1777400.3137880845!2d72.59271855624998!3d29.5313674!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39114dbfeb56797d%3A0x352bddddd6d5e5c6!2sR%20S%20MACHINERY%20STORE%2C%20Sirsa%2C%20Haryana!5e0!3m2!1sen!2sin!4v1777370558901!5m2!1sen!2sin" class="contact-map" title="RS Machinery location on map - Sirsa, Haryana" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </section>
@@ -503,16 +590,18 @@
     <footer class="site-footer">
         <div class="footer-shell">
             <section class="footer-block">
-                <h3 data-i18n="footerBrandTitle">RSMachinery - Trusted supplier</h3>
-                <p data-i18n="footerBrandText"><strong>Trusted supplier</strong> for all heavy machinery. Available now in Sirsa, Haryana. Premium industrial machines with strong build quality and direct support.</p>
+                <a class="footer-brand" href="/" aria-label="RS Machinery - Heavy Machinery Supplier Sirsa">
+                    <img class="footer-logo" src="assets/logo/icon/main_non_bg_logo.png" alt="RS Machinery - Heavy Machinery & Lifting Equipment Sirsa">
+                </a>
+                <p><strong>Trusted Industrial Machinery Partner in Haryana</strong>. Providing quality agricultural, industrial, and construction machinery with direct support, transparent pricing, and reliable after-sales service. <a href="tel:+918708795253">Call +91-8708795253</a>.</p>
             </section>
 
             <section class="footer-block">
                 <h3 data-i18n="footerLinksTitle">Quick Links</h3>
                 <nav class="footer-links" aria-label="Footer navigation" data-i18n="footerNavAria" data-i18n-attr="aria-label">
-                    <a href="#products" data-i18n="navProducts">Products</a>
-                    <a href="#profiles" data-i18n="navProfiles">Profiles</a>
-                    <a href="#contact" data-i18n="navContact">Contact</a>
+                    <a href="products.html" data-i18n="navProducts">Products</a>
+                    <a href="/#profiles" data-i18n="navProfiles">Profiles</a>
+                    <a href="/#contact" data-i18n="navContact">Contact</a>
                 </nav>
             </section>
 
@@ -522,16 +611,16 @@
                 <a href="https://wa.me/918708795253" data-i18n="footerWhatsapp">WhatsApp Quote</a>
             </section>
 
-            <p class="footer-bottom" data-i18n="footerBottom">&copy; 2026 RSMachinery. All rights reserved.</p>
+            <p class="footer-bottom" data-i18n="footerBottom">&copy; 2026 RS Machinery - Heavy Machinery &amp; Lifting Equipment Dealer in Sirsa, Haryana. All rights reserved.</p>
         </div>
     </footer>
 
-    <a class="whatsapp-float" href="https://wa.me/918708795253" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
-        <svg class="whatsapp-float-icon" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
-            <path fill="currentColor" d="M19.11 17.4c-.28-.14-1.64-.81-1.89-.9-.25-.09-.43-.14-.62.14-.18.28-.71.9-.87 1.08-.16.19-.31.21-.58.07-.28-.14-1.15-.43-2.2-1.38-.81-.72-1.36-1.61-1.52-1.88-.16-.28-.02-.43.12-.57.12-.12.28-.31.42-.46.14-.16.18-.28.28-.46.09-.18.05-.35-.02-.5-.07-.14-.62-1.5-.85-2.05-.22-.53-.45-.46-.62-.47-.16-.01-.35-.01-.53-.01-.18 0-.47.07-.72.35-.25.28-.95.92-.95 2.24 0 1.32.97 2.6 1.11 2.78.14.18 1.9 2.9 4.6 4.07.64.28 1.15.45 1.54.58.65.21 1.24.18 1.7.11.52-.08 1.64-.67 1.87-1.31.23-.64.23-1.19.16-1.31-.07-.12-.25-.19-.53-.33z"/>
-            <path fill="currentColor" d="M16.02 3.08c-7.12 0-12.9 5.79-12.9 12.91 0 2.27.6 4.49 1.73 6.43L3 29l6.75-1.77a12.9 12.9 0 0 0 6.27 1.6h.01c7.12 0 12.9-5.79 12.9-12.91 0-3.45-1.34-6.7-3.78-9.14a12.81 12.81 0 0 0-9.13-3.7zm0 23.57h-.01c-1.92 0-3.8-.52-5.45-1.5l-.39-.23-4.01 1.05 1.07-3.91-.25-.4a10.71 10.71 0 0 1-1.64-5.75c0-5.93 4.83-10.76 10.77-10.76 2.87 0 5.58 1.12 7.61 3.15a10.69 10.69 0 0 1 3.15 7.61c0 5.93-4.83 10.76-10.76 10.76z"/>
+    <a class="visit-float" href="https://maps.google.com/?q=R+S+MACHINERY+STORE+Sirsa+Haryana" target="_blank" rel="noopener noreferrer" aria-label="Visit Now">
+        <svg class="visit-float-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+            <circle cx="12" cy="9" r="2.5"/>
         </svg>
-        <span data-i18n="floatingWhatsapp">WhatsApp</span>
+        <span class="visit-float-text">Visit Now</span>
     </a>
 
     <script src="js/api.js"></script>

@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="icon" type="image/png" sizes="192x192" href="../android-chrome-192x192.png">
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png">
     <title>Products - RSMachinery Admin</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,6 +40,26 @@
                 </button>
                 <h1>Products</h1>
                 <a href="product-form.html" class="btn-primary">Add Product</a>
+            </div>
+
+            <div id="pauseBanner" class="pause-banner" style="display:none;">
+                <span class="pause-banner-icon">&#9208;</span>
+                <span class="pause-banner-text">Product system is paused. Products are hidden from the website.</span>
+                <button id="resumeBtn" class="btn-primary btn-sm">Resume</button>
+            </div>
+
+            <div class="card" style="margin-bottom:1rem;">
+                <div class="pause-toggle">
+                    <span class="pause-toggle-label">Product System Status:</span>
+                    <button id="pauseBtn" class="btn-danger" style="display:inline-flex;align-items:center;gap:6px;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+                        Pause Products
+                    </button>
+                    <button id="resumeTopBtn" class="btn-primary" style="display:none;align-items:center;gap:6px;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                        Resume Products
+                    </button>
+                </div>
             </div>
 
             <div id="productsList" class="card">

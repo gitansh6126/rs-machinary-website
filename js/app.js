@@ -37,6 +37,7 @@
     if (document.getElementById('inquiryForm')) {
       initInquiryForm();
     }
+    initFaqToggles();
   }
 
   // ─── LANGUAGE TOGGLE ────────────────────────────────────────────────────
@@ -166,78 +167,313 @@
     if (closeBtn) closeBtn.addEventListener('click', function () { toggleMenu(false); });
   }
 
-  // ─── PRODUCT SLIDER ─────────────────────────────────────────────────────
+  // ─── PRODUCT CAROUSEL ─────────────────────────────────────────────────
+  // Manual-browse carousel with side previews, edge interaction, touch swipe
 
   function initProductSlider() {
     var slider = document.querySelector('.pslider');
     if (!slider) return;
 
-    var slides = slider.querySelectorAll('.pslide');
-    var prevButton = slider.querySelector('[data-pslide-prev]');
-    var nextButtons = slider.querySelectorAll('[data-pslide-next]');
-    var dots = slider.querySelectorAll('[data-pslide-dot]');
-    if (!slides.length || !dots.length) return;
+    var viewport = slider.querySelector('.pslider-viewport');
+    var track = slider.querySelector('.pslider-track');
+    if (!track) return;
 
-    var activeIndex = 0;
-    var autoRotate;
+    var originalSlides = Array.from(track.querySelectorAll('.pslide'));
+    if (originalSlides.length < 2) return;
 
-    function setActiveSlide(index) {
-      activeIndex = ((index % slides.length) + slides.length) % slides.length;
-      slides.forEach(function (slide, i) {
-        var isActive = i === activeIndex;
-        slide.classList.toggle('is-active', isActive);
-        slide.setAttribute('aria-hidden', String(!isActive));
-      });
-      dots.forEach(function (dot, i) {
-        dot.classList.toggle('is-active', i === activeIndex);
+    var total = originalSlides.length;
+    var prevBtns = slider.querySelectorAll('[data-pslide-prev]');
+    var nextBtns = slider.querySelectorAll('[data-pslide-next]');
+    var edgeLeft = slider.querySelector('.pslider-edge-left');
+    var edgeRight = slider.querySelector('.pslider-edge-right');
+    var counter = slider.querySelector('.pslider-counter-current');
+    var progressBar = slider.querySelector('.pslider-progress-bar');
+    var swipeHint = slider.querySelector('.pslider-swipe-hint');
+
+    // Clone first and last for infinite scroll
+    var firstClone = originalSlides[0].cloneNode(true);
+    var lastClone = originalSlides[total - 1].cloneNode(true);
+
+    // Augmented: [lastClone, 0, 1, ..., last, firstClone]
+    var slides = [lastClone].concat(Array.from(originalSlides)).concat([firstClone]);
+
+    track.innerHTML = '';
+    slides.forEach(function (s) { track.appendChild(s); });
+
+    // displayIndex: position in augmented array
+    // realIndex: which original slide (0-based) is active
+    var displayIndex = 1;
+    var realIndex = 0;
+    var isAnimating = false;
+
+    // -- Carousel sizing --
+    // Read --slide-width CSS variable dynamically
+    function getSlideUnit() {
+      var pct = 86; // default fallback
+      if (viewport) {
+        var val = getComputedStyle(viewport).getPropertyValue('--slide-width').trim();
+        if (val) {
+          pct = parseFloat(val);
+        }
+      }
+      return pct;
+    }
+
+    // translateX = -((firstRealPos) + (displayIndex-1) * slideUnit - previewLeft)
+    // firstRealPos = slideUnit (lastClone takes 1 full slide width before first real slide)
+    // previewLeft = how much of prev slide visible from viewport left (4%)
+    function getPct(di) {
+      var sw = getSlideUnit();
+      var firstRealPos = sw;
+      return -(firstRealPos + (di - 1) * sw - 4);
+    }
+
+    function setTrack(di, animate) {
+      if (animate === false) {
+        track.classList.add('no-transition');
+      } else {
+        track.classList.remove('no-transition');
+      }
+      track.style.transform = 'translate3d(' + getPct(di) + '%, 0, 0)';
+      if (animate === false) {
+        void track.offsetHeight;
+      }
+    }
+
+    function updateCounter(ri) {
+      if (!counter) return;
+      var num = (ri + 1).toString().padStart(2, '0');
+      counter.textContent = num;
+    }
+
+    function updateProgress(ri) {
+      if (!progressBar) return;
+      var pct = ((ri + 1) / total) * 100;
+      progressBar.style.width = pct + '%';
+    }
+
+    function updateUI(ri) {
+      updateCounter(ri);
+      updateProgress(ri);
+    }
+
+    function slideTo(targetDisplay, targetReal) {
+      if (isAnimating) return;
+      isAnimating = true;
+      displayIndex = targetDisplay;
+      realIndex = targetReal;
+      setTrack(targetDisplay, true);
+      updateUI(targetReal);
+    }
+
+    function onTransitionEnd() {
+      isAnimating = false;
+      // Infinite loop: bounce back from clones
+      if (displayIndex === 0) {
+        displayIndex = total;
+        setTrack(displayIndex, false);
+        updateUI(total - 1);
+      } else if (displayIndex === total + 1) {
+        displayIndex = 1;
+        setTrack(displayIndex, false);
+        updateUI(0);
+      }
+    }
+
+    function getReal(di) {
+      if (di === 0) return total - 1;
+      if (di === total + 1) return 0;
+      return di - 1;
+    }
+
+    function next() {
+      if (isAnimating) return;
+      var td = displayIndex + 1;
+      slideTo(td, getReal(td));
+    }
+
+    function prev() {
+      if (isAnimating) return;
+      var td = displayIndex - 1;
+      slideTo(td, getReal(td));
+    }
+
+    // ── Edge preview hover ──
+
+    function onEdgeMove(edge, isEnter) {
+      if (!edge) return;
+      if (isEnter) {
+        edge.classList.add('active-preview');
+      } else {
+        edge.classList.remove('active-preview');
+      }
+    }
+
+    var edgeTimeout = null;
+
+    function handleViewportMove(e) {
+      var rect = viewport.getBoundingClientRect();
+      var x = e.clientX - rect.left;
+      var w = rect.width;
+      var edgeZone = Math.min(80, w * 0.1);
+
+      if (x < edgeZone) {
+        onEdgeMove(edgeLeft, true);
+        onEdgeMove(edgeRight, false);
+        viewport.style.cursor = 'w-resize';
+      } else if (x > w - edgeZone) {
+        onEdgeMove(edgeRight, true);
+        onEdgeMove(edgeLeft, false);
+        viewport.style.cursor = 'e-resize';
+      } else {
+        onEdgeMove(edgeLeft, false);
+        onEdgeMove(edgeRight, false);
+        viewport.style.cursor = 'grab';
+      }
+    }
+
+    function handleViewportLeave() {
+      onEdgeMove(edgeLeft, false);
+      onEdgeMove(edgeRight, false);
+      viewport.style.cursor = 'grab';
+    }
+
+    // ── Edge click ──
+
+    if (edgeLeft) {
+      edgeLeft.addEventListener('click', function (e) {
+        e.stopPropagation();
+        prev();
       });
     }
 
-    function startAutoRotate() {
-      clearInterval(autoRotate);
-      autoRotate = setInterval(function () { setActiveSlide(activeIndex + 1); }, 5000);
-    }
-
-    if (prevButton) {
-      prevButton.addEventListener('click', function () {
-        setActiveSlide(activeIndex - 1);
-        startAutoRotate();
+    if (edgeRight) {
+      edgeRight.addEventListener('click', function (e) {
+        e.stopPropagation();
+        next();
       });
     }
 
-    nextButtons.forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        setActiveSlide(activeIndex + 1);
-        startAutoRotate();
+    // ── Attach events ──
+
+    track.addEventListener('transitionend', onTransitionEnd);
+
+    prevBtns.forEach(function (b) {
+      b.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        prev();
       });
     });
 
-    dots.forEach(function (dot) {
-      dot.addEventListener('click', function () {
-        setActiveSlide(Number(dot.getAttribute('data-pslide-dot')));
-        startAutoRotate();
+    nextBtns.forEach(function (b) {
+      b.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        next();
       });
     });
 
-    slider.addEventListener('mouseenter', function () { clearInterval(autoRotate); });
-    slider.addEventListener('mouseleave', startAutoRotate);
+    // Edge mouse hover
+    viewport.addEventListener('mousemove', handleViewportMove);
+    viewport.addEventListener('mouseleave', handleViewportLeave);
 
-    // Touch swipe support
-    var touchStartX = 0;
-    slider.addEventListener('touchstart', function (e) {
-      touchStartX = e.changedTouches[0].screenX;
+    // Keyboard
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        prev();
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        next();
+      }
+    });
+
+    // ── Touch swipe with momentum ──
+
+    var touchState = {
+      startX: 0,
+      startY: 0,
+      currentX: 0,
+      isDragging: false,
+      moved: false,
+      velocityX: 0,
+      lastTime: 0,
+      lastX: 0
+    };
+
+    var SWIPE_THRESHOLD = 50;
+    var SWIPE_VELOCITY_THRESHOLD = 0.3;
+
+    viewport.addEventListener('touchstart', function (e) {
+      var t = e.changedTouches[0];
+      touchState.startX = t.screenX;
+      touchState.startY = t.screenY;
+      touchState.currentX = t.screenX;
+      touchState.isDragging = true;
+      touchState.moved = false;
+      touchState.velocityX = 0;
+      touchState.lastTime = Date.now();
+      touchState.lastX = t.screenX;
     }, { passive: true });
 
-    slider.addEventListener('touchend', function (e) {
-      var diff = touchStartX - e.changedTouches[0].screenX;
-      if (Math.abs(diff) > 50) {
-        setActiveSlide(diff > 0 ? activeIndex + 1 : activeIndex - 1);
-        startAutoRotate();
+    viewport.addEventListener('touchmove', function (e) {
+      if (!touchState.isDragging) return;
+      var t = e.changedTouches[0];
+      touchState.currentX = t.screenX;
+      touchState.moved = true;
+
+      // Calculate velocity
+      var now = Date.now();
+      var dt = now - touchState.lastTime;
+      if (dt > 0) {
+        touchState.velocityX = (t.screenX - touchState.lastX) / dt;
+      }
+      touchState.lastTime = now;
+      touchState.lastX = t.screenX;
+
+      // Prevent vertical scroll interference
+      var diffY = Math.abs(t.screenY - touchState.startY);
+      var diffX = Math.abs(t.screenX - touchState.startX);
+      if (diffX > diffY && diffX > 10) {
+        e.preventDefault();
+      }
+    }, { passive: false });
+
+    viewport.addEventListener('touchend', function (e) {
+      if (!touchState.isDragging) return;
+      touchState.isDragging = false;
+
+      if (!touchState.moved) return;
+
+      var diff = touchState.startX - touchState.currentX;
+      var absDiff = Math.abs(diff);
+
+      // Momentum check — fast flick even if short
+      var hasMomentum = Math.abs(touchState.velocityX) > SWIPE_VELOCITY_THRESHOLD;
+
+      if (absDiff > SWIPE_THRESHOLD || hasMomentum) {
+        if (diff > 0 || (hasMomentum && touchState.velocityX < -0.3)) {
+          next();
+        } else {
+          prev();
+        }
       }
     }, { passive: true });
 
-    setActiveSlide(0);
-    startAutoRotate();
+    // ── Show swipe hint briefly ──
+
+    if (swipeHint) {
+      swipeHint.classList.add('is-visible');
+      setTimeout(function () {
+        swipeHint.classList.remove('is-visible');
+      }, 4000);
+    }
+
+    // ── Init ──
+
+    setTrack(displayIndex, false);
+    updateUI(0);
   }
 
   // ─── SCROLL ANIMATION ───────────────────────────────────────────────────
@@ -345,13 +581,21 @@
     loadProducts();
   }
 
+  // ─── PRODUCT IMAGE URL HELPER ──────────────────────────────────────────
+
+  function getProductImageUrl(filename) {
+    if (!filename) return 'assets/placeholder.svg';
+    if (filename.indexOf('http') === 0 || filename.charAt(0) === '/') return filename;
+    return '/uploads/products/' + filename;
+  }
+
   // ─── PRODUCT CARD FACTORY ───────────────────────────────────────────────
 
   function createProductCard(product, categoryName) {
     var article = document.createElement('article');
     article.className = 'product-scroll-card';
 
-    var imgSrc = product.image || 'assets/placeholder.svg';
+    var imgSrc = getProductImageUrl(product.image);
     var detailUrl = 'product.html?' + (product.slug ? 'slug=' + encodeURIComponent(product.slug) : 'id=' + product.id);
     var whatsappUrl = 'https://wa.me/918708795253?text=' + encodeURIComponent('Hi, I am interested in ' + (product.name || '') + '. Please share price and details.');
 
@@ -412,7 +656,10 @@
     }
     if (!Array.isArray(gallery)) gallery = [];
 
-    var mainImage = product.image || (gallery.length > 0 ? gallery[0] : '');
+    var mainImage = getProductImageUrl(product.image);
+    if (mainImage === 'assets/placeholder.svg' && gallery.length > 0) {
+      mainImage = getProductImageUrl(gallery[0]);
+    }
 
     var specs = product.specifications;
     if (typeof specs === 'string') {
@@ -426,7 +673,11 @@
     }
     if (!Array.isArray(variations)) variations = [];
 
-    var whatsappUrl = 'https://wa.me/918708795253?text=' + encodeURIComponent('Hi, I am interested in ' + (product.name || '') + '. Please share price and details.');
+    var productName = product.name || '';
+    var productDesc = (product.short_description || product.description || '').replace(/<[^>]*>/g, '').substring(0, 200);
+    var canonicalSlug = product.slug || product.id || '';
+
+    var whatsappUrl = 'https://wa.me/918708795253?text=' + encodeURIComponent('Hi, I am interested in ' + productName + '. Please share price and details.');
 
     var html = '';
 
@@ -445,8 +696,8 @@
     // Gallery thumbnails
     if (gallery.length > 1) {
       html += '<div class="product-detail-gallery">';
-      gallery.forEach(function (imgUrl) {
-        html += '<img class="gallery-thumb" src="' + imgUrl + '" alt="" loading="lazy" onclick="document.querySelector(\'.product-detail-image\').src=this.src">';
+      gallery.forEach(function (filename) {
+        html += '<img class="gallery-thumb" src="' + getProductImageUrl(filename) + '" alt="" loading="lazy" onclick="document.querySelector(\'.product-detail-image\').src=this.src">';
       });
       html += '</div>';
     }
@@ -494,6 +745,19 @@
       html += '</table>';
     }
 
+    // FAQ section for SEO
+    var faqs = [
+      { q: 'What is the price of ' + productName + ' in Sirsa?', a: 'Contact RS Machinery at +91-8708795253 for the latest pricing of ' + productName + '. Price depends on specifications, capacity, and quantity ordered.' },
+      { q: 'Is ' + productName + ' available in Hisar, Fatehabad or Bathinda?', a: 'Yes, RS Machinery delivers ' + productName + ' across Sirsa, Hisar, Fatehabad, Bathinda, Hanumangarh and all nearby cities in Haryana, Punjab and Rajasthan. Call for delivery details.' },
+      { q: 'What is the warranty on ' + productName + ' from RS Machinery?', a: productName + ' from RS Machinery in Sirsa comes with manufacturer warranty. Contact us at +91-8708795253 for specific warranty terms and conditions.' },
+      { q: 'How to order ' + productName + ' from RS Machinery Sirsa?', a: 'Call +91-8708795253 or WhatsApp to order ' + productName + '. We offer direct supplier pricing and pan-India delivery from Sirsa, Haryana.' }
+    ];
+    html += '<div class="product-detail-faq"><h3>Frequently Asked Questions - ' + escapeHtml(productName) + '</h3><div class="faq-list">';
+    faqs.forEach(function (faq, i) {
+      html += '<div class="faq-item"><button class="faq-question" aria-expanded="false" data-faq="' + i + '">' + escapeHtml(faq.q) + '</button><div class="faq-answer" hidden>' + escapeHtml(faq.a) + '</div></div>';
+    });
+    html += '</div></div>';
+
     // WhatsApp button
     html += '<div class="product-detail-actions">';
     html += '<a class="button button-solid" href="' + whatsappUrl + '" target="_blank" rel="noopener noreferrer">Enquire on WhatsApp</a>';
@@ -504,6 +768,44 @@
     html += '</div>'; // grid
 
     container.innerHTML = html;
+
+    // ─── Dynamic SEO updates ──────────────────────────────────────────────
+    // Title
+    document.title = escapeHtml(productName) + ' - RS Machinery Sirsa | Lifting Equipment Supplier Haryana';
+
+    // Meta description
+    var metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      var cleanDesc = escapeHtml(productName) + ' - ' + productDesc.substring(0, 120);
+      if (cleanDesc.length < 50) cleanDesc += ' Available from RS Machinery in Sirsa, Haryana. Call +91-8708795253.';
+      metaDesc.setAttribute('content', cleanDesc);
+    }
+
+    // Canonical URL with slug
+    var canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical && canonicalSlug) {
+      canonical.href = 'https://rsmachinary.in/product.html?slug=' + encodeURIComponent(canonicalSlug);
+    }
+
+    // Product schema
+    var schemaScript = document.getElementById('productSchema');
+    if (schemaScript) {
+      var schema = {
+        '@context': 'https://schema.org',
+        '@type': 'Product',
+        'name': productName,
+        'description': productDesc.substring(0, 500),
+        'image': mainImage || '',
+        'brand': { '@type': 'Brand', 'name': 'RS Machinery' },
+        'offers': {
+          '@type': 'AggregateOffer',
+          'priceCurrency': 'INR',
+          'availability': 'https://schema.org/InStock',
+          'seller': { '@type': 'Organization', 'name': 'RS Machinery', 'url': 'https://rsmachinary.in/' }
+        }
+      };
+      schemaScript.textContent = JSON.stringify(schema);
+    }
 
     // Load category name
     if (product.category_id) {
@@ -651,8 +953,7 @@
       var data = {
         name: form.querySelector('[name="name"]') ? form.querySelector('[name="name"]').value : '',
         phone: form.querySelector('[name="phone"]') ? form.querySelector('[name="phone"]').value : '',
-        product: form.querySelector('[name="product"]') ? form.querySelector('[name="product"]').value : '',
-        message: form.querySelector('[name="message"]') ? form.querySelector('[name="message"]').value : ''
+        product: form.querySelector('[name="product"]') ? form.querySelector('[name="product"]').value : ''
       };
 
       RSM_API.addInquiry(data).then(function (res) {
@@ -688,16 +989,29 @@
     };
   }
 
+  // ─── FAQ TOGGLE ──────────────────────────────────────────────────────────
+
+  function initFaqToggles() {
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest('.faq-question');
+      if (!btn) return;
+      var expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', !expanded);
+      var answer = btn.nextElementSibling;
+      if (answer) answer.hidden = expanded;
+    });
+  }
+
   // ─── DICTIONARY ─────────────────────────────────────────────────────────
 
   function getDictionary() {
     return {
       en: {
-        title: "RSMachinery | Premium Industrial Machines",
-        description: "RSMachinery offers premium industrial machines for mixing, cutting, and packaging. Call now to get best price and availability.",
+        title: "RS Machinery Sirsa | Heavy Machinery & Lifting Equipment Supplier Haryana",
+        description: "RS Machinery in Sirsa, Haryana - trusted supplier of monkey cranes, electric hoists, chain pulley blocks & steel wire ropes. Call +91-8708795253.",
         navAria: "Primary navigation",
         footerNavAria: "Footer navigation",
-        brandName: "RSMachinery",
+        brandName: "RS Machinery",
         navProducts: "Products",
         navServices: "Services",
         navAbout: "About",
@@ -751,7 +1065,7 @@
         floatingWhatsapp: "WhatsApp",
         aboutTag: "ABOUT US",
         aboutHeading: "Professional Lifting Equipment Solutions",
-        aboutDescription: "At RS Machinery, we are dedicated to providing top-quality lifting and material handling equipment to industries across India. With years of experience and a commitment to excellence, we have become a trusted name in the heavy machinery sector, serving workshops, factories, construction sites, and industrial facilities with reliable solutions that enhance productivity and safety.",
+        aboutDescription: "At RS Machinery in Sirsa, Haryana, we specialize in supplying heavy-duty lifting and material handling equipment across North India. Our product range includes monkey cranes for construction sites, electric hoists for industrial facilities, chain pulley blocks for warehouses, and steel wire ropes for rigging applications. With years of experience serving customers in Sirsa, Hisar, Fatehabad, Bathinda, and Hanumangarh, we have become a trusted name in the heavy machinery sector, offering reliable lifting solutions that enhance productivity, safety, and operational efficiency.",
         aboutFeature1: "Quality-Assured Equipment",
         aboutFeature2: "Reliable After-Sales Support",
         aboutFeature3: "Experienced Technical Team",
@@ -768,42 +1082,42 @@
         wcuCta: "Get Quotation",
         psCat1: "Monkey Crane",
         psHeading1: "Heavy Duty Monkey Crane<br>For Construction Sites",
-        psDesc1: "Designed for fast and efficient material lifting at construction projects.",
+        psDesc1: "Up to 500 KG lifting capacity for construction sites.",
         psPoint1_1: "Capacity up to 500 KG",
         psPoint1_2: "Rugged Steel Construction",
         psPoint1_3: "Easy Installation",
         psPoint1_4: "Low Maintenance",
         psCat2: "Electric Hoist",
         psHeading2: "Powerful Electric Hoists<br>For Industrial Lifting",
-        psDesc2: "High-performance electric hoists engineered for industrial facilities.",
+        psDesc2: "Industrial-grade motorized lifting for factories.",
         psPoint2_1: "Smooth Motor Operation",
         psPoint2_2: "Heavy Load Handling",
         psPoint2_3: "Industrial Grade Components",
         psPoint2_4: "Long Service Life",
         psCat3: "Chain Pulley Block",
         psHeading3: "Reliable Chain Pulley Blocks<br>For Safe Material Handling",
-        psDesc3: "Durable chain pulley blocks for industrial lifting operations.",
+        psDesc3: "Durable manual lifting for warehouses & workshops.",
         psPoint3_1: "Strong Alloy Components",
         psPoint3_2: "Corrosion Resistant Finish",
         psPoint3_3: "Safe Lifting Mechanism",
         psPoint3_4: "Industrial Duty Performance",
         psCat4: "Steel Wire Rope",
         psHeading4: "Industrial Steel Wire Ropes<br>For Heavy Lifting & Rigging",
-        psDesc4: "Premium quality steel wire ropes for cranes and hoists.",
+        psDesc4: "High-tensile steel ropes for cranes & rigging.",
         psPoint4_1: "High Tensile Strength",
         psPoint4_2: "Flexible & Fatigue Resistant",
         psPoint4_3: "Galvanized & Durable",
         psPoint4_4: "Wide Size Range Available",
         psBtn: "Get Quotation",
-        footerBrandText: "Premium industrial machines with strong build quality and direct support.",
+        footerBrandText: "Trusted lifting equipment supplier in Sirsa, Haryana. Authorized dealer of monkey cranes, electric hoists, chain pulley blocks, and steel wire ropes for construction and industry. Call +91-8708795253 for pricing.",
         footerLinksTitle: "Quick Links",
         footerContactTitle: "Call for Price",
         footerWhatsapp: "WhatsApp Quote",
-        footerBottom: "\u00A9 2026 RSMachinery. All rights reserved."
+        footerBottom: "\u00A9 2026 RS Machinery - Heavy Machinery & Lifting Equipment Dealer in Sirsa, Haryana. All rights reserved."
       },
       hi: {
-        title: "RSMachinery | \u092A\u094D\u0930\u0940\u092E\u093F\u092F\u092E \u0907\u0902\u0921\u0938\u094D\u091F\u094D\u0930\u093F\u092F\u0932 \u092E\u0936\u0940\u0928\u0947\u0902",
-        description: "RSMachinery \u092E\u093F\u0915\u094D\u0938\u093F\u0902\u0917, \u0915\u091F\u093F\u0902\u0917 \u0914\u0930 \u092A\u0948\u0915\u0947\u091C\u093F\u0902\u0917 \u0915\u0947 \u0932\u093F\u090F \u092A\u094D\u0930\u0940\u092E\u093F\u092F\u092E \u0907\u0902\u0921\u0938\u094D\u091F\u094D\u0930\u093F\u092F\u0932 \u092E\u0936\u0940\u0928\u0947\u0902 \u0926\u0947\u0924\u093E \u0939\u0948\u0964",
+        title: "RS Machinery \u0938\u093F\u0930\u0938\u093E | \u0939\u0947\u0935\u0940 \u092E\u0936\u0940\u0928\u0930\u0940 \u0914\u0930 \u0932\u093F\u092B\u094D\u091F\u093F\u0902\u0917 \u0909\u092A\u0915\u0930\u0923 \u0906\u092A\u0942\u0930\u094D\u0924\u093F\u0915\u0930\u094D\u0924\u093E \u0939\u0930\u093F\u092F\u093E\u0923\u093E",
+        description: "RS Machinery \u0938\u093F\u0930\u0938\u093E, \u0939\u0930\u093F\u092F\u093E\u0923\u093E \u092E\u0947\u0902 \u092E\u0902\u0915\u0940 \u0915\u094D\u0930\u0947\u0928, \u0907\u0932\u0947\u0915\u094D\u091F\u094D\u0930\u093F\u0915 \u0939\u094B\u0907\u0938\u094D\u091F, \u091A\u0947\u0928 \u092A\u0932\u0940 \u092C\u094D\u0932\u0949\u0915 \u0914\u0930 \u0938\u094D\u091F\u0940\u0932 \u0935\u093E\u092F\u0930 \u0930\u094B\u092A \u0915\u093E \u0935\u093F\u0936\u094D\u0935\u0938\u0928\u0940\u092F \u0906\u092A\u0942\u0930\u094D\u0924\u093F\u0915\u0930\u094D\u0924\u093E\u0964 \u0915\u0949\u0932 \u0915\u0930\u0947\u0902 +91-8708795253\u0964",
         navProducts: "\u092A\u094D\u0930\u094B\u0921\u0915\u094D\u091F\u094D\u0938",
         navServices: "\u0915\u093F\u0930\u093E\u092F\u093E \u0909\u092A\u0932\u092C\u094D\u0927",
         navAbout: "\u0939\u092E\u093E\u0930\u0947 \u092C\u093E\u0930\u0947 \u092E\u0947\u0902",
@@ -825,7 +1139,7 @@
         aboutTag: "\u0939\u092E\u093E\u0930\u0947 \u092C\u093E\u0930\u0947 \u092E\u0947\u0902",
         aboutHeading: "\u092A\u094D\u0930\u094B\u092B\u0947\u0936\u0928\u0932 \u0932\u093F\u092B\u094D\u091F\u093F\u0902\u0917 \u0907\u0915\u094D\u0935\u093F\u092A\u092E\u0947\u0902\u091F \u0938\u0949\u0932\u094D\u092F\u0942\u0936\u0928\u094D\u0938",
         psBtn: "\u0915\u094B\u091F \u092A\u094D\u0930\u093E\u092A\u094D\u0924 \u0915\u0930\u0947\u0902",
-        footerBottom: "\u00A9 2026 RSMachinery. \u0938\u0930\u094D\u0935\u093E\u0927\u093F\u0915\u093E\u0930 \u0938\u0941\u0930\u0915\u094D\u0937\u093F\u0924\u0964"
+        footerBottom: "\u00A9 2026 RS Machinery - \u0938\u093F\u0930\u0938\u093E, \u0939\u0930\u093F\u092F\u093E\u0923\u093E \u092E\u0947\u0902 \u0939\u0947\u0935\u0940 \u092E\u0936\u0940\u0928\u0930\u0940 \u0914\u0930 \u0932\u093F\u092B\u094D\u091F\u093F\u0902\u0917 \u0909\u092A\u0915\u0930\u0923 \u0921\u0940\u0932\u0930\u0964 \u0938\u0930\u094D\u0935\u093E\u0927\u093F\u0915\u093E\u0930 \u0938\u0941\u0930\u0915\u094D\u0937\u093F\u0924\u0964"
       }
     };
   }

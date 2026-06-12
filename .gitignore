@@ -17,7 +17,15 @@ npm-debug.log*
 .env
 .env.local
 
-# Temp
+# Temp & Logs
 tmp/
 temp/
+logs/
 *.log
+
+# Admin uploads
+admin/uploads/*
+!admin/uploads/.gitkeep
+
+# Backups
+backups/

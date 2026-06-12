@@ -7,8 +7,8 @@
 var RSM_API = (function () {
 
   // ── CONFIG ──────────────────────────────────────────────────────────────
-  // UPDATE THIS with your deployed Apps Script Web App URL
-  var BASE_URL = 'https://script.google.com/macros/s/AKfycbzBj0zQOrdI8VvZ7Z8H_ITyG2gkiS6orGqXSD5_oagIDgHwIUOuFHlCXrA_hy__LpVb/exec';
+  // Local PHP API
+  var BASE_URL = '/api/index.php';
 
   // ── PUBLIC ENDPOINTS ────────────────────────────────────────────────────
 
@@ -46,7 +46,6 @@ var RSM_API = (function () {
     if (data.name)    params.name = data.name;
     if (data.phone)   params.phone = data.phone;
     if (data.product) params.product = data.product;
-    if (data.message) params.message = data.message;
     return postToApi(params);
   }
 
@@ -110,6 +109,14 @@ var RSM_API = (function () {
     return postToApi({ route: 'changePassword', admin_key: adminKey, current_password: currentPassword, new_password: newPassword });
   }
 
+  // ── IMAGE URL HELPER ───────────────────────────────────────────────────
+
+  function getProductImageUrl(filename) {
+    if (!filename) return 'assets/placeholder.svg';
+    if (filename.indexOf('http') === 0 || filename.charAt(0) === '/') return filename;
+    return '/uploads/products/' + filename;
+  }
+
   // ── INTERNAL ────────────────────────────────────────────────────────────
 
   function getFromApi(queryString) {
@@ -153,7 +160,7 @@ var RSM_API = (function () {
     deleteCategory: deleteCategory,
     updateInquiry: updateInquiry,
     changePassword: changePassword,
-    // Expose BASE_URL so it can be updated at runtime if needed
+    getProductImageUrl: getProductImageUrl,
     setBaseUrl: function (url) { BASE_URL = url; }
   };
 

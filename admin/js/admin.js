@@ -29,14 +29,8 @@ var RS_ADMIN = (function () {
     var page = document.body.getAttribute('data-page');
 
     if (page === 'login') {
-      initLoginPage();
-      return;
-    }
-
-    // Auth guard for all other pages
-    var adminKey = getAdminKey();
-    if (!adminKey) {
-      redirectToLogin();
+      // Login disabled - redirect directly to dashboard
+      window.location.href = 'dashboard.html';
       return;
     }
 
@@ -75,20 +69,13 @@ var RS_ADMIN = (function () {
   // ─── API HELPERS ───────────────────────────────────────────────────────────
 
   function checkAuth(res) {
-    if (!res.success && res.error === 'Unauthorized') {
-      showToast('Session expired. Redirecting to login.', 'error');
-      clearAdminKey();
-      setTimeout(function () { redirectToLogin(); }, 1500);
-      return false;
-    }
     return true;
   }
 
   function api() {
-    var key = getAdminKey();
     return {
       getDashboard: function () {
-        return RSM_API.getDashboard(key);
+        return RSM_API.getDashboard();
       },
       getProducts: function (params) {
         return RSM_API.getProducts(params || {});
@@ -97,37 +84,43 @@ var RS_ADMIN = (function () {
         return RSM_API.getProduct(id);
       },
       addProduct: function (data) {
-        return RSM_API.addProduct(data, key);
+        return RSM_API.addProduct(data);
       },
       updateProduct: function (data) {
-        return RSM_API.updateProduct(data, key);
+        return RSM_API.updateProduct(data);
       },
       deleteProduct: function (id) {
-        return RSM_API.deleteProduct(id, key);
+        return RSM_API.deleteProduct(id);
       },
       getCategories: function () {
         return RSM_API.getCategories();
       },
       addCategory: function (data) {
-        return RSM_API.addCategory(data, key);
+        return RSM_API.addCategory(data);
       },
       updateCategory: function (data) {
-        return RSM_API.updateCategory(data, key);
+        return RSM_API.updateCategory(data);
       },
       deleteCategory: function (id) {
-        return RSM_API.deleteCategory(id, key);
+        return RSM_API.deleteCategory(id);
       },
       getInquiries: function () {
-        return RSM_API.getInquiries(key);
+        return RSM_API.getInquiries();
       },
       login: function (password) {
         return RSM_API.login(password);
       },
       updateInquiry: function (id, status) {
-        return RSM_API.updateInquiry(id, status, key);
+        return RSM_API.updateInquiry(id, status);
       },
       changePassword: function (currentPassword, newPassword) {
-        return RSM_API.changePassword(currentPassword, newPassword, key);
+        return RSM_API.changePassword(currentPassword, newPassword);
+      },
+      getSetting: function (key) {
+        return RSM_API.getSetting(key);
+      },
+      updateSetting: function (key, value) {
+        return RSM_API.updateSetting(key, value);
       },
       handleResponse: function (promise, cb) {
         return promise.then(function (res) {
@@ -208,9 +201,7 @@ var RS_ADMIN = (function () {
     if (!btn) return;
 
     btn.addEventListener('click', function () {
-      if (confirm('Are you sure you want to logout?')) {
-        clearAdminKey();
-        redirectToLogin();
+      if (confirm('Logout disabled - login is temporarily disabled.')) {
       }
     });
   }
@@ -306,6 +297,9 @@ var RS_ADMIN = (function () {
 
     container.innerHTML = '<div class="loading-spinner">Loading products...</div>';
 
+    // Check paused state and setup toggle
+    checkPauseState();
+
     // Load categories for name mapping
     api().getCategories().then(function (catRes) {
       var catMap = {};
@@ -326,10 +320,13 @@ var RS_ADMIN = (function () {
         }
 
         var html = '<div class="table-wrapper"><table class="data-table">' +
-          '<thead><tr><th>ID</th><th>Name</th><th>Category</th><th>Featured</th><th>Active</th><th class="actions-cell">Actions</th></tr></thead><tbody>';
+          '<thead><tr><th>Image</th><th>ID</th><th>Name</th><th>Category</th><th>Featured</th><th>Active</th><th class="actions-cell">Actions</th></tr></thead><tbody>';
 
         products.forEach(function (p) {
+          var imgSrc = getProductImageUrl(p.image);
+          var imgHtml = imgSrc && imgSrc !== 'assets/placeholder.svg' ? '<img src="' + escapeHtml(imgSrc) + '" alt="' + escapeHtml(p.name || '') + '" style="width:50px;height:50px;object-fit:cover;border-radius:4px;">' : '<span style="color:#999;font-size:12px;">No image</span>';
           html += '<tr>' +
+            '<td>' + imgHtml + '</td>' +
             '<td>' + escapeHtml(p.id) + '</td>' +
             '<td><strong>' + escapeHtml(p.name || '') + '</strong></td>' +
             '<td>' + escapeHtml(catMap[p.category_id] || '-') + '</td>' +
@@ -360,6 +357,51 @@ var RS_ADMIN = (function () {
     });
   }
 
+  function checkPauseState() {
+    var pauseBanner = document.getElementById('pauseBanner');
+    var pauseBtn = document.getElementById('pauseBtn');
+    var resumeTopBtn = document.getElementById('resumeTopBtn');
+    if (!pauseBanner || !pauseBtn) return;
+
+    api().getSetting('products_paused').then(function (res) {
+      var paused = res.success && res.data && res.data.value === 'TRUE';
+      pauseBanner.style.display = paused ? 'flex' : 'none';
+      pauseBtn.style.display = paused ? 'none' : 'inline-flex';
+      if (resumeTopBtn) resumeTopBtn.style.display = paused ? 'inline-flex' : 'none';
+    });
+
+    pauseBtn.addEventListener('click', function () {
+      pauseBtn.disabled = true;
+      api().updateSetting('products_paused', 'TRUE').then(function (res) {
+        pauseBtn.disabled = false;
+        if (res.success) {
+          showToast('Products paused. They are now hidden from the website.', 'success');
+          checkPauseState();
+          initProducts();
+        } else {
+          showToast(res.error || 'Failed to pause.', 'error');
+        }
+      });
+    });
+
+    var resumeBtns = document.querySelectorAll('#resumeBtn, #resumeTopBtn');
+    resumeBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        btn.disabled = true;
+        api().updateSetting('products_paused', 'FALSE').then(function (res) {
+          btn.disabled = false;
+          if (res.success) {
+            showToast('Products resumed. They are now visible on the website.', 'success');
+            checkPauseState();
+            initProducts();
+          } else {
+            showToast(res.error || 'Failed to resume.', 'error');
+          }
+        });
+      });
+    });
+  }
+
   // ─── PRODUCT FORM ──────────────────────────────────────────────────────────
 
   function initProductForm() {
@@ -372,6 +414,9 @@ var RS_ADMIN = (function () {
     var isEdit = !!editId;
 
     if (titleEl) titleEl.textContent = isEdit ? 'Edit Product' : 'Add Product';
+
+    // Init local upload
+    initLocalUpload(form, editId);
 
     // Load categories for dropdown
     var catSelect = form.querySelector('[name="category_id"]');
@@ -407,6 +452,22 @@ var RS_ADMIN = (function () {
       }
     }
 
+    // Main image URL preview
+    var imageInput = form.querySelector('[name="image"]');
+    if (imageInput) {
+      imageInput.addEventListener('input', function () {
+        var preview = document.getElementById('mainImagePreview');
+        if (!preview) return;
+        var val = imageInput.value.trim();
+        if (val) {
+          var previewSrc = getProductImageUrl(val);
+          preview.innerHTML = '<img src="' + escapeHtml(previewSrc) + '" alt="Preview" style="max-width:200px;max-height:150px;margin-top:8px;border:1px solid #ddd;border-radius:4px;" onerror="this.parentNode.innerHTML=\'<span style=color:red>Invalid image</span>\'">';
+        } else {
+          preview.innerHTML = '';
+        }
+      });
+    }
+
     function populateForm(product) {
       form.querySelector('[name="name"]').value = product.name || '';
       form.querySelector('[name="slug"]').value = product.slug || '';
@@ -422,6 +483,8 @@ var RS_ADMIN = (function () {
       form.querySelector('[name="sort_order"]').value = product.sort_order || '0';
       if (form.querySelector('[name="featured"]')) form.querySelector('[name="featured"]').checked = product.featured === true || product.featured === 'TRUE';
       if (form.querySelector('[name="active"]')) form.querySelector('[name="active"]').checked = product.active === true || product.active === 'TRUE';
+      // Trigger image preview
+      if (imageInput) imageInput.dispatchEvent(new Event('input'));
     }
 
     form.addEventListener('submit', function (e) {
@@ -467,6 +530,243 @@ var RS_ADMIN = (function () {
         showToast('Network error. Please try again.', 'error');
       });
     });
+  }
+
+  // ─── LOCAL IMAGE UPLOAD ──────────────────────────────────────────────────
+
+  function initLocalUpload(form, editId) {
+    var dropArea = document.getElementById('dropArea');
+    var fileInput = document.getElementById('fileInput');
+    var uploadPreview = document.getElementById('uploadPreview');
+    var uploadBtn = document.getElementById('uploadBtn');
+    var uploadProgress = document.getElementById('uploadProgress');
+    var progressFill = document.getElementById('progressFill');
+    var progressText = document.getElementById('progressText');
+    var uploadResult = document.getElementById('uploadResult');
+    var selectedFiles = [];
+
+    if (!dropArea || !fileInput) return;
+
+    // Load upload key from settings
+    var uploadKey = '';
+
+    // Drag and drop handlers
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(function (evt) {
+      dropArea.addEventListener(evt, function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      });
+    });
+
+    ['dragenter', 'dragover'].forEach(function (evt) {
+      dropArea.addEventListener(evt, function () {
+        dropArea.classList.add('is-dragover');
+      });
+    });
+    ['dragleave', 'drop'].forEach(function (evt) {
+      dropArea.addEventListener(evt, function () {
+        dropArea.classList.remove('is-dragover');
+      });
+    });
+
+    dropArea.addEventListener('drop', function (e) {
+      var files = e.dataTransfer.files;
+      handleFiles(files);
+    });
+
+    dropArea.querySelector('.upload-link').addEventListener('click', function () {
+      fileInput.click();
+    });
+    dropArea.addEventListener('click', function () {
+      fileInput.click();
+    });
+
+    fileInput.addEventListener('change', function () {
+      handleFiles(fileInput.files);
+    });
+
+    function handleFiles(files) {
+      for (var i = 0; i < files.length; i++) {
+        var file = files[i];
+        var err = validateFile(file);
+        if (err) {
+          showToast(err, 'error');
+          continue;
+        }
+        selectedFiles.push(file);
+        addFilePreview(file);
+      }
+      uploadBtn.disabled = selectedFiles.length === 0;
+      updateFileCount();
+    }
+
+    function validateFile(file) {
+      var ALLOWED = ['image/jpeg', 'image/png', 'image/webp'];
+      var MAX_SIZE = 5 * 1024 * 1024;
+      if (ALLOWED.indexOf(file.type) === -1) {
+        return 'Invalid format: ' + file.name + '. Only JPG, PNG, WebP allowed.';
+      }
+      if (file.size > MAX_SIZE) {
+        return 'File too large: ' + file.name + ' (' + Math.round(file.size / 1024) + ' KB). Max 5 MB.';
+      }
+      return null;
+    }
+
+    function addFilePreview(file) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        var div = document.createElement('div');
+        div.className = 'upload-preview-item';
+
+        var isImage = file.type.startsWith('image/');
+        div.innerHTML =
+          '<div class="preview-thumb">' +
+            (isImage ? '<img src="' + e.target.result + '" alt="">' : '<div class="preview-pdf">IMG</div>') +
+          '</div>' +
+          '<div class="preview-info">' +
+            '<span class="preview-name">' + escapeHtml(file.name) + '</span>' +
+            '<span class="preview-size">' + Math.round(file.size / 1024) + ' KB</span>' +
+          '</div>' +
+          '<button type="button" class="preview-remove">&times;</button>';
+
+        div.querySelector('.preview-remove').addEventListener('click', function () {
+          var idx = -1;
+          for (var j = 0; j < selectedFiles.length; j++) {
+            if (selectedFiles[j].name === file.name) { idx = j; break; }
+          }
+          if (idx >= 0) selectedFiles.splice(idx, 1);
+          div.remove();
+          uploadBtn.disabled = selectedFiles.length === 0;
+          updateFileCount();
+        });
+
+        uploadPreview.appendChild(div);
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function updateFileCount() {
+      var count = selectedFiles.length;
+      uploadBtn.textContent = count > 0 ? 'Upload ' + count + ' file(s)' : 'Upload to Server';
+    }
+
+    // Upload button handler
+    uploadBtn.addEventListener('click', function () {
+      if (selectedFiles.length === 0) return;
+      var name = form.querySelector('[name="name"]').value.trim();
+      if (!name) {
+        showToast('Enter a product name before uploading.', 'error');
+        return;
+      }
+      performUpload(name);
+    });
+
+    function performUpload(productName) {
+      uploadBtn.disabled = true;
+      uploadProgress.style.display = 'block';
+      uploadResult.innerHTML = '';
+      var total = selectedFiles.length;
+
+      function uploadNext(index) {
+        if (index >= total) {
+          uploadBtn.disabled = false;
+          uploadBtn.textContent = 'Upload to Server';
+          showToast('All ' + total + ' file(s) uploaded!', 'success');
+          selectedFiles = [];
+          uploadPreview.innerHTML = '';
+          updateFileCount();
+          return;
+        }
+
+        var file = selectedFiles[index];
+        var variant = index === 0 ? 'MAIN' : 'GAL' + padZero(index, 2);
+
+        var formData = new FormData();
+        formData.append('image', file);
+        formData.append('product_name', productName);
+        formData.append('variant', variant);
+
+        var pct = Math.round(((index + 1) / total) * 100);
+        progressFill.style.width = pct + '%';
+        progressText.textContent = 'Uploading ' + (index + 1) + '/' + total + ' (' + pct + '%)';
+
+        uploadToServer(formData)
+          .then(function (res) {
+            if (res.success) {
+              var item = document.createElement('div');
+              item.className = 'upload-result-item success';
+              item.innerHTML =
+                '<span class="result-icon">&#10003;</span>' +
+                '<span class="result-name">' + escapeHtml(res.filename || file.name) + '</span>' +
+                '<a href="' + escapeHtml(res.url) + '" target="_blank" class="result-link">View</a>';
+              uploadResult.appendChild(item);
+
+              // Auto-fill image filename for MAIN variant
+              if (variant === 'MAIN' && res.filename) {
+                var imgInput = form.querySelector('[name="image"]');
+                if (imgInput) {
+                  imgInput.value = res.filename;
+                  imgInput.dispatchEvent(new Event('input'));
+                }
+              }
+              // Auto-fill gallery filenames for GAL variants
+              if (variant.indexOf('GAL') === 0 && res.filename) {
+                var galInput = form.querySelector('[name="gallery_images"]');
+                if (galInput) {
+                  var existing = [];
+                  try { existing = JSON.parse(galInput.value || '[]'); } catch(e) { existing = []; }
+                  existing.push(res.filename);
+                  galInput.value = JSON.stringify(existing);
+                }
+              }
+            } else {
+              var errItem = document.createElement('div');
+              errItem.className = 'upload-result-item error';
+              errItem.innerHTML =
+                '<span class="result-icon">&#10007;</span>' +
+                '<span class="result-name">' + escapeHtml(file.name) + '</span>' +
+                '<span class="result-error">' + escapeHtml(res.message || 'Upload failed') + '</span>';
+              uploadResult.appendChild(errItem);
+            }
+            uploadNext(index + 1);
+          })
+          .catch(function () {
+            var errItem = document.createElement('div');
+            errItem.className = 'upload-result-item error';
+            errItem.innerHTML =
+              '<span class="result-icon">&#10007;</span>' +
+              '<span class="result-name">' + escapeHtml(file.name) + '</span>' +
+              '<span class="result-error">Network error</span>';
+            uploadResult.appendChild(errItem);
+            uploadNext(index + 1);
+          });
+      }
+
+      uploadNext(0);
+    }
+  }
+
+  function uploadToServer(formData) {
+    return fetch('/api/upload.php', {
+      method: 'POST',
+      body: formData
+    }).then(function (response) {
+      return response.json();
+    }).catch(function () {
+      return { success: false, message: 'Could not reach upload server' };
+    });
+  }
+
+  function getProductImageUrl(filename) {
+    if (!filename) return 'assets/placeholder.svg';
+    if (filename.indexOf('http') === 0 || filename.charAt(0) === '/') return filename;
+    return '/uploads/products/' + filename;
+  }
+
+  function padZero(num, len) {
+    var s = String(num);
+    while (s.length < len) s = '0' + s;
+    return s;
   }
 
   function formatJsonField(val) {
@@ -663,6 +963,37 @@ var RS_ADMIN = (function () {
         }
         api().setApiBase(url);
         showToast('API URL updated.', 'success');
+      });
+    }
+
+    // Upload key config
+    var uploadKeyInput = document.getElementById('uploadKey');
+    var saveUploadKeyBtn = document.getElementById('saveUploadKey');
+
+    if (uploadKeyInput && saveUploadKeyBtn) {
+      api().getSetting('upload_key').then(function (res) {
+        if (res.success && res.data && res.data.value) {
+          uploadKeyInput.value = res.data.value;
+        }
+      });
+
+      saveUploadKeyBtn.addEventListener('click', function () {
+        var key = uploadKeyInput.value.trim();
+        if (!key) {
+          showToast('Please enter an upload key.', 'error');
+          return;
+        }
+        saveUploadKeyBtn.disabled = true;
+        saveUploadKeyBtn.textContent = 'Saving...';
+        api().updateSetting('upload_key', key).then(function (res) {
+          saveUploadKeyBtn.disabled = false;
+          saveUploadKeyBtn.textContent = 'Save Upload Key';
+          if (res.success) {
+            showToast('Upload key saved. Make sure it matches upload.php', 'success');
+          } else {
+            showToast(res.error || 'Failed to save.', 'error');
+          }
+        });
       });
     }
 

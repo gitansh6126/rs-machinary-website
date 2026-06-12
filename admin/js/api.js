@@ -7,8 +7,8 @@
 var RSM_API = (function () {
 
   // ── CONFIG ──────────────────────────────────────────────────────────────
-  // UPDATE THIS with your deployed Apps Script Web App URL
-  var BASE_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
+  // Local PHP API
+  var BASE_URL = '/api/index.php';
 
   // ── PUBLIC ENDPOINTS ────────────────────────────────────────────────────
 
@@ -50,64 +50,80 @@ var RSM_API = (function () {
     return postToApi(params);
   }
 
-  // ── ADMIN ENDPOINTS (require admin_key) ─────────────────────────────────
+  // ── ADMIN ENDPOINTS (auth temporarily disabled) ─────────────────────────
 
   /** Get dashboard stats */
-  function getDashboard(adminKey) {
-    return postToApi({ route: 'getDashboard', admin_key: adminKey });
+  function getDashboard() {
+    return postToApi({ route: 'getDashboard' });
   }
 
   /** Get all inquiries (admin) */
-  function getInquiries(adminKey) {
-    return postToApi({ route: 'getInquiries', admin_key: adminKey });
+  function getInquiries() {
+    return postToApi({ route: 'getInquiries' });
   }
 
   /** Add a new product */
-  function addProduct(data, adminKey) {
+  function addProduct(data) {
     data.route = 'addProduct';
-    data.admin_key = adminKey;
     return postToApi(data);
   }
 
   /** Update an existing product */
-  function updateProduct(data, adminKey) {
+  function updateProduct(data) {
     data.route = 'updateProduct';
-    data.admin_key = adminKey;
     return postToApi(data);
   }
 
   /** Delete (soft-deactivate) a product */
-  function deleteProduct(id, adminKey) {
-    return postToApi({ route: 'deleteProduct', admin_key: adminKey, id: id });
+  function deleteProduct(id) {
+    return postToApi({ route: 'deleteProduct', id: id });
   }
 
   /** Add a new category */
-  function addCategory(data, adminKey) {
+  function addCategory(data) {
     data.route = 'addCategory';
-    data.admin_key = adminKey;
     return postToApi(data);
   }
 
   /** Update an existing category */
-  function updateCategory(data, adminKey) {
+  function updateCategory(data) {
     data.route = 'updateCategory';
-    data.admin_key = adminKey;
     return postToApi(data);
   }
 
   /** Delete (soft-deactivate) a category */
-  function deleteCategory(id, adminKey) {
-    return postToApi({ route: 'deleteCategory', admin_key: adminKey, id: id });
+  function deleteCategory(id) {
+    return postToApi({ route: 'deleteCategory', id: id });
   }
 
   /** Update inquiry status */
-  function updateInquiry(id, status, adminKey) {
-    return postToApi({ route: 'updateInquiry', admin_key: adminKey, id: id, status: status });
+  function updateInquiry(id, status) {
+    return postToApi({ route: 'updateInquiry', id: id, status: status });
   }
 
   /** Change admin password */
-  function changePassword(currentPassword, newPassword, adminKey) {
-    return postToApi({ route: 'changePassword', admin_key: adminKey, current_password: currentPassword, new_password: newPassword });
+  function changePassword(currentPassword, newPassword) {
+    return postToApi({ route: 'changePassword', current_password: currentPassword, new_password: newPassword });
+  }
+
+  // ── SETTINGS ROUTES ─────────────────────────────────────────────────────
+
+  /** Get a public setting by key */
+  function getSetting(key) {
+    return getFromApi('route=getSetting&key=' + encodeURIComponent(key));
+  }
+
+  /** Update a setting (admin only) */
+  function updateSetting(key, value) {
+    return postToApi({ route: 'updateSetting', key: key, value: value });
+  }
+
+  // ── IMAGE URL HELPER ───────────────────────────────────────────────────
+
+  function getProductImageUrl(filename) {
+    if (!filename) return 'assets/placeholder.svg';
+    if (filename.indexOf('http') === 0 || filename.charAt(0) === '/') return filename;
+    return '/uploads/products/' + filename;
   }
 
   // ── INTERNAL ────────────────────────────────────────────────────────────
@@ -153,7 +169,9 @@ var RSM_API = (function () {
     deleteCategory: deleteCategory,
     updateInquiry: updateInquiry,
     changePassword: changePassword,
-    // Expose BASE_URL so it can be updated at runtime if needed
+    getSetting: getSetting,
+    updateSetting: updateSetting,
+    getProductImageUrl: getProductImageUrl,
     setBaseUrl: function (url) { BASE_URL = url; }
   };
 
