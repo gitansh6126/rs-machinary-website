@@ -84,3 +84,13 @@ php_value max_execution_time 60
     Order Allow,Deny
     Allow from all
 </FilesMatch>
+
+<FilesMatch "api/upload-product-image\.php$">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
+
+<FilesMatch "api/upload-category-image\.php$">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
