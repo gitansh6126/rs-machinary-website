@@ -63,37 +63,43 @@ function handleRequest(e, method) {
         if (method !== 'post') return createResponse({ success: false, error: 'Use POST' });
         return handleAddInquiry(e);
 
-      // ── Admin Routes (auth required) ──
+      // ── Admin Routes (auth temporarily disabled) ──
 
       case 'getDashboard':
-        return requireAuth(e, handleGetDashboard);
+        return handleGetDashboard(e);
 
       case 'getInquiries':
-        return requireAuth(e, handleGetInquiries);
+        return handleGetInquiries(e);
 
       case 'addProduct':
-        return requireAuth(e, handleAddProduct);
+        return handleAddProduct(e);
 
       case 'updateProduct':
-        return requireAuth(e, handleUpdateProduct);
+        return handleUpdateProduct(e);
 
       case 'deleteProduct':
-        return requireAuth(e, handleDeleteProduct);
+        return handleDeleteProduct(e);
 
       case 'addCategory':
-        return requireAuth(e, handleAddCategory);
+        return handleAddCategory(e);
 
       case 'updateCategory':
-        return requireAuth(e, handleUpdateCategory);
+        return handleUpdateCategory(e);
 
       case 'deleteCategory':
-        return requireAuth(e, handleDeleteCategory);
+        return handleDeleteCategory(e);
 
       case 'updateInquiry':
-        return requireAuth(e, handleUpdateInquiry);
+        return handleUpdateInquiry(e);
 
       case 'changePassword':
-        return requireAuth(e, handleChangePassword);
+        return handleChangePassword(e);
+
+      case 'getSetting':
+        return handleGetSetting(e);
+
+      case 'updateSetting':
+        return handleUpdateSetting(e);
 
       default:
         return createResponse({ success: false, error: 'Unknown route: ' + route });
@@ -317,6 +323,15 @@ function handleLogin(e) {
 // ─── HANDLERS: PRODUCTS ─────────────────────────────────────────────────────
 
 function handleGetProducts(e) {
+  // Check if products are paused
+  var paused = getSetting('products_paused');
+  if (paused === 'TRUE') {
+    return createResponse({
+      success: true,
+      data: { products: [], total: 0, page: 1, limit: 20, hasMore: false }
+    });
+  }
+
   var sheet = getSheet(SHEET_PRODUCTS);
   var allProducts = getAllRows(sheet, false);
   var categoryId = e.parameter.category_id || '';
@@ -748,6 +763,38 @@ function handleChangePassword(e) {
   return createResponse({ success: true, data: { admin_key: newKey, message: 'Password changed successfully.' } });
 }
 
+// ─── HANDLERS: SETTINGS ──────────────────────────────────────────────────────
+
+function handleGetSetting(e) {
+  var key = e.parameter.key || '';
+  if (!key) return createResponse({ success: false, error: 'Key required' });
+
+  var publicKeys = ['site_name','phone','whatsapp','email','address','upload_key','products_paused'];
+  if (publicKeys.indexOf(key) < 0) {
+    return createResponse({ success: false, error: 'Access denied' });
+  }
+
+  var val = getSetting(key);
+  return createResponse({ success: true, data: { key: key, value: val } });
+}
+
+function handleUpdateSetting(e) {
+  var key = e.parameter.key || '';
+  var value = e.parameter.value || '';
+  var adminKey = e.parameter.admin_key || '';
+
+  if (!key) return createResponse({ success: false, error: 'Key required' });
+
+  // Only allow updating safe keys via API
+  var allowedKeys = ['site_name','phone','whatsapp','email','address','upload_key','products_paused'];
+  if (allowedKeys.indexOf(key) < 0) {
+    return createResponse({ success: false, error: 'Cannot update this setting via API' });
+  }
+
+  updateSetting(key, value);
+  return createResponse({ success: true, data: { key: key, value: value } });
+}
+
 function sanitize(str) {
   return str.toString()
     .replace(/[<>"'&]/g, '')
@@ -755,7 +802,9 @@ function sanitize(str) {
     .substring(0, 2000);
 }
 
-// ─── DATABASE SETUP ──────────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════════════════════════════
+// DATABASE SETUP
+// ═══════════════════════════════════════════════════════════════════════════════
 
 var SHEET_DEFINITIONS = {
   Products: ['id','name','slug','category_id','seo_title','seo_description','short_description','description','image','gallery_images','specifications','variations','featured','active','sort_order','created_at','updated_at'],
@@ -764,7 +813,7 @@ var SHEET_DEFINITIONS = {
   Inquiries: ['id','date','name','phone','product','message','status']
 };
 
-var DEFAULT_SETTINGS_KEYS = ['admin_password_hash','admin_key','site_name','phone','whatsapp','email','address'];
+var DEFAULT_SETTINGS_KEYS = ['admin_password_hash','admin_key','site_name','phone','whatsapp','email','address','upload_key'];
 
 function onOpen() {
   var ui = SpreadsheetApp.getUi();
