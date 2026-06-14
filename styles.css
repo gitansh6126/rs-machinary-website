@@ -1108,6 +1108,10 @@ main {
     }
 
     .pslider-viewport {
+        --slide-width: 92%;
+    }
+
+    .pslider-viewport {
         --slide-width: 82%;
     }
 
@@ -1131,7 +1135,7 @@ main {
 
 @media (max-width: 768px) {
     .pslider-viewport {
-        --slide-width: 78%;
+        --slide-width: 92%;
     }
 
     .pslide-grid {
@@ -1139,6 +1143,10 @@ main {
         text-align: left;
         padding: 1.5rem 1rem 0.5rem;
         min-height: auto;
+    }
+
+    .pslider-viewport {
+        --slide-width: 78%;
     }
 
     .pslide-copy {
@@ -1234,7 +1242,7 @@ main {
 
 @media (max-width: 480px) {
     .pslider-viewport {
-        --slide-width: 74%;
+        --slide-width: 92%;
     }
 
     .pslide-grid {
@@ -1281,6 +1289,7 @@ main {
     .pslider-edge {
         width: 30px;
     }
+
 }
 
 /* ═══ REDUCED MOTION ═══ */
@@ -1305,6 +1314,7 @@ main {
     .pslider-swipe-icon {
         animation: none;
     }
+
 }
 
 .hero,

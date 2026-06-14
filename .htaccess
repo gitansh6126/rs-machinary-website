@@ -59,6 +59,13 @@ RewriteRule ^(.*)$ index.html [L]
   </FilesMatch>
 </IfModule>
 
+# ─── CORS HEADERS ──────────────────────────────────────────────────────────
+<IfModule mod_headers.c>
+  Header always set Access-Control-Allow-Origin "*"
+  Header always set Access-Control-Allow-Methods "POST, GET, OPTIONS"
+  Header always set Access-Control-Allow-Headers "Content-Type"
+</IfModule>
+
 # ─── SECURITY HEADERS ─────────────────────────────────────────────────────
 <IfModule mod_headers.c>
   Header always set X-Content-Type-Options "nosniff"
