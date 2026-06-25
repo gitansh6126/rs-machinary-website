@@ -24,6 +24,7 @@ body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxy
 .tab-content.active{display:block}
 
 .upload-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.upload-grid.converted{grid-template-columns:1fr}
 @media(max-width:800px){.upload-grid{grid-template-columns:1fr}}
 
 .panel{background:#fff;border:1px solid #e5e7eb;border-radius:10px;overflow:hidden}
@@ -77,20 +78,27 @@ body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxy
 .progress-fill{height:100%;background:#6366f1;border-radius:10px;width:0;transition:width .3s}
 .progress-text{font-size:.78rem;color:#6b7280;margin-top:6px;text-align:center}
 
-.status-list{margin-top:14px;max-height:300px;overflow-y:auto}
+.left-panel{transition:opacity .2s}
+.left-panel.hidden{display:none}
+
+.status-list{margin-top:14px;max-height:420px;overflow-y:auto}
 .status-list::-webkit-scrollbar{width:5px}
 .status-list::-webkit-scrollbar-thumb{background:#d1d5db;border-radius:10px}
-.status-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:6px;font-size:.8rem}
+.status-item{display:flex;align-items:flex-start;gap:12px;padding:10px 12px;border-radius:8px;font-size:.8rem}
+.status-item:hover{background:#f9fafb}
 .status-item .idx{color:#9ca3af;font-size:.72rem;min-width:18px}
 .status-item .name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#374151}
-.status-item .fname-link{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#4f46e5;font-family:'SF Mono',Consolas,monospace;font-size:.75rem;cursor:pointer}
+.status-item .status-thumb{width:56px;height:56px;border-radius:6px;object-fit:cover;background:#f3f4f6;flex-shrink:0;border:1px solid #e5e7eb}
+.status-item .status-info{flex:1;min-width:0;display:flex;flex-direction:column;gap:6px}
+.status-item .fname-link{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#4f46e5;font-family:'SF Mono',Consolas,monospace;font-size:.75rem;cursor:pointer;line-height:1.4}
 .status-item .fname-link:hover{text-decoration:underline}
+.status-item .status-actions{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
 .status-item .badge-done{color:#059669;font-weight:500}
 .status-item .badge-fail{color:#ef4444;font-weight:500}
-.status-item .btn-copy-url{flex-shrink:0;padding:3px 10px;font-size:.72rem;border-radius:4px}
-.status-item .btn-rename{flex-shrink:0;padding:3px 8px;font-size:.72rem;border-radius:4px;background:transparent;border:1px solid #d1d5db;color:#6b7280;cursor:pointer}
+.status-item .btn-copy-url{flex-shrink:0;padding:4px 10px;font-size:.72rem;border-radius:4px}
+.status-item .btn-rename{flex-shrink:0;padding:4px 8px;font-size:.72rem;border-radius:4px;background:transparent;border:1px solid #d1d5db;color:#6b7280;cursor:pointer}
 .status-item .btn-rename:hover{border-color:#6366f1;color:#6366f1}
-.status-item .rename-wrap{display:none;flex:1;align-items:center;gap:6px}
+.status-item .rename-wrap{display:none;align-items:center;gap:6px;width:100%}
 .status-item .rename-wrap.show{display:flex}
 .status-item .rename-input{flex:1;padding:4px 8px;border:1px solid #d1d5db;border-radius:4px;font-size:.78rem;outline:none;background:#fff;color:#1f2937;min-width:0}
 .status-item .rename-input:focus{border-color:#6366f1;box-shadow:0 0 0 2px rgba(99,102,241,.1)}
@@ -152,7 +160,7 @@ body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxy
 
 <div class="tab-content active" id="tab-upload">
 <div class="upload-grid">
-<div class="panel">
+<div class="panel left-panel" id="leftPanel">
 <div class="panel-h">Select Images <span class="badge" id="fileCountBadge">0</span></div>
 <div class="panel-b">
 <div class="upload-zone" id="uploadZone">
@@ -179,7 +187,7 @@ body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxy
 <div class="status-list" id="statusList"></div>
 
 <div class="copy-all-row" id="copyAllRow">
-<button class="btn btn-success btn-block" id="copyAllBtn">&#128203; Copy All Links</button>
+<button class="btn btn-success btn-block" id="copyAllBtn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy All</button>
 </div>
 </div>
 </div>
@@ -295,6 +303,8 @@ fileList.appendChild(div);
 convertBtn.addEventListener('click',function(){
 if(!allFiles.length||converting)return;
 converting=true;
+document.getElementById('leftPanel').classList.remove('hidden');
+document.querySelector('.upload-grid').classList.remove('converted');
 convertBtn.disabled=true;convertBtn.innerHTML='<span class="spinner" style="display:inline-block;width:14px;height:14px;border:2px solid #e5e7eb;border-top-color:#6366f1;border-radius:50%;animation:spin .5s linear infinite"></span> Converting&hellip;';
 progressWrap.classList.add('visible');
 progressFill.style.width='0%';
@@ -330,7 +340,7 @@ progressFill.style.width='100%';
 progressText.textContent='Done: '+done+' converted, '+failed+' failed';
 convertBtn.disabled=false;convertBtn.textContent='Convert All ('+allFiles.length+')';
 converting=false;
-if(completedUrls.length){copyAllRow.classList.add('visible');copyAllBtn.dataset.urls=JSON.stringify(completedUrls)}
+if(completedUrls.length){copyAllRow.classList.add('visible');copyAllBtn.dataset.urls=JSON.stringify(completedUrls);document.getElementById('leftPanel').classList.add('hidden');document.querySelector('.upload-grid').classList.add('converted')}
 }
 return;
 }
@@ -351,18 +361,18 @@ completedUrls.push(res.url);
 urlMap[idx]=res.url;
 if(rowEl){
 var fname=res.filename||res.url.split('/').pop();
-rowEl.innerHTML='<span class="idx">'+(idx+1)+'</span>'+
+rowEl.innerHTML='<img class="status-thumb" src="'+res.url+'" alt="'+fname+'">'+
+'<div class="status-info">'+
 '<span class="fname-link" onclick="window.open(\''+res.url+'\',\'_blank\')" title="'+fname+'">'+fname+'</span>'+
+'<div class="status-actions">'+
+'<button class="btn btn-success btn-sm btn-copy-url" onclick="window.copyItem(\''+res.url+'\',this)"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>'+
+'<button class="btn-rename" onclick="showRename('+idx+')">&#9998;</button>'+
 '<span class="rename-wrap" id="rw-'+idx+'">'+
 '<input class="rename-input" id="ri-'+idx+'" value="'+fname.replace(/\.webp$/,'')+'">'+
 '<button class="btn btn-success btn-sm rename-save" onclick="saveRename('+idx+',\''+fname+'\')">Save</button>'+
-'</span>';
-var cb=document.createElement('button');cb.className='btn btn-success btn-sm btn-copy-url';cb.textContent='Copy';
-(function(u,b){b.onclick=function(){copyText(u,b)}})(res.url,cb);
-rowEl.appendChild(cb);
-var rb=document.createElement('button');rb.className='btn-rename';rb.textContent='\u270E';
-(function(i){rb.onclick=function(){showRename(i)}})(idx);
-rowEl.appendChild(rb);
+'</span>'+
+'</div>'+
+'</div>';
 }
 if(fileEl){fileEl.className='file-item-status done';fileEl.textContent='done'}
 } else {
@@ -428,7 +438,7 @@ html+='<div class="gallery-item">'+
 '<div class="meta"><div class="fname" title="'+img.filename+'">'+img.filename+'</div>'+
 '<div class="fstats"><span>'+img.size_formatted+'</span><span>'+d.toLocaleDateString()+'</span></div></div>'+
 '<div class="actions">'+
-'<button class="btn btn-success btn-sm" onclick="window.copyItem(\''+img.url+'\',this)">Copy Link</button>'+
+'<button class="btn btn-success btn-sm" onclick="window.copyItem(\''+img.url+'\',this)"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>'+
 '<button class="btn btn-danger btn-sm" onclick="window.delItem(\''+img.filename+'\',this)">Delete</button>'+
 '</div></div>';
 });
@@ -463,17 +473,17 @@ function copyText(text,btn){
 try {
 if(navigator.clipboard&&navigator.clipboard.writeText){
 navigator.clipboard.writeText(text).then(function(){
-var orig=btn.textContent||btn.innerHTML;btn.textContent='Copied!';
+var orig=btn.innerHTML;btn.innerHTML='<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
 if(btn.classList)btn.classList.add('copied');
-setTimeout(function(){btn.textContent=orig;if(btn.classList)btn.classList.remove('copied')},2000);
+setTimeout(function(){btn.innerHTML=orig;if(btn.classList)btn.classList.remove('copied')},2000);
 });
 }else{
 var ta=document.createElement('textarea');
 ta.value=text;ta.style.cssText='position:fixed;opacity:0';
 document.body.appendChild(ta);ta.select();
 document.execCommand('copy');document.body.removeChild(ta);
-var orig=btn.textContent||btn.innerHTML;btn.textContent='Copied!';
-setTimeout(function(){btn.textContent=orig},2000);
+var orig=btn.innerHTML;btn.innerHTML='<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+setTimeout(function(){btn.innerHTML=orig},2000);
 }
 }catch(e){showToast('Copy failed')}
 }

@@ -71,7 +71,7 @@ h1{margin:0 0 4px;font-size:1.3rem;font-weight:700;color:#f8fafc}
 <span id="resultUrl"></span>
 </div>
 
-<button class="btn btn-copy" id="copyBtn" style="display:none">&#128203; Copy Link</button>
+<button class="btn btn-copy" id="copyBtn" style="display:none"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
 </div>
 
 <script>
@@ -171,10 +171,10 @@ copyBtn.addEventListener('click', function() {
 if (!convertedUrl) return;
 if (navigator.clipboard && navigator.clipboard.writeText) {
 navigator.clipboard.writeText(convertedUrl).then(function() {
-copyBtn.textContent = '&#10003; Copied!';
+copyBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copied!';
 copyBtn.classList.add('copied');
 setTimeout(function() {
-copyBtn.innerHTML = '&#128203; Copy Link';
+copyBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy';
 copyBtn.classList.remove('copied');
 }, 2000);
 });
@@ -190,7 +190,7 @@ ta.style.position = 'fixed';
 ta.style.opacity = '0';
 document.body.appendChild(ta);
 ta.select();
-try { document.execCommand('copy'); copyBtn.textContent = 'Copied!'; } catch(e) {}
+try { document.execCommand('copy'); copyBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copied!'; } catch(e) {}
 document.body.removeChild(ta);
 }
 
