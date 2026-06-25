@@ -2,6 +2,8 @@
 error_reporting(0);
 ini_set('display_errors', 0);
 
+@ob_end_clean();
+
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
@@ -49,37 +51,55 @@ if (!$info) {
     exit;
 }
 
+if (!extension_loaded('gd')) {
+    http_response_code(500);
+    echo json_encode(['success' => false, 'error' => 'Server does not have GD library installed. WebP conversion requires GD.']);
+    exit;
+}
+
 $uploadDir = __DIR__ . '/uploads/';
 if (!is_dir($uploadDir)) {
     mkdir($uploadDir, 0755, true);
 }
 
-$filename = bin2hex(random_bytes(12)) . '.webp';
+if (function_exists('random_bytes')) {
+    $filename = bin2hex(random_bytes(12)) . '.webp';
+} else {
+    $filename = bin2hex(openssl_random_pseudo_bytes(12)) . '.webp';
+}
 $destPath = $uploadDir . $filename;
 
 $src = null;
 switch ($ext) {
     case 'png':
-        $src = @imagecreatefrompng($file['tmp_name']);
-        if ($src) {
-            imagepalettetotruecolor($src);
-            imagealphablending($src, true);
-            imagesavealpha($src, true);
+        if (function_exists('imagecreatefrompng')) {
+            $src = @imagecreatefrompng($file['tmp_name']);
+            if ($src) {
+                imagepalettetotruecolor($src);
+                imagealphablending($src, true);
+                imagesavealpha($src, true);
+            }
         }
         break;
     case 'jpeg':
     case 'jpg':
-        $src = @imagecreatefromjpeg($file['tmp_name']);
+        if (function_exists('imagecreatefromjpeg')) {
+            $src = @imagecreatefromjpeg($file['tmp_name']);
+        }
         break;
     case 'webp':
-        $src = @imagecreatefromwebp($file['tmp_name']);
+        if (function_exists('imagecreatefromwebp')) {
+            $src = @imagecreatefromwebp($file['tmp_name']);
+        }
         break;
     case 'gif':
-        $src = @imagecreatefromgif($file['tmp_name']);
-        if ($src) {
-            imagepalettetotruecolor($src);
-            imagealphablending($src, true);
-            imagesavealpha($src, true);
+        if (function_exists('imagecreatefromgif')) {
+            $src = @imagecreatefromgif($file['tmp_name']);
+            if ($src) {
+                imagepalettetotruecolor($src);
+                imagealphablending($src, true);
+                imagesavealpha($src, true);
+            }
         }
         break;
 }
@@ -101,7 +121,6 @@ if (!$converted) {
 
 $imageUrl = 'https://img.rsmachinary.in/uploads/' . $filename;
 
-ob_clean();
 echo json_encode([
     'success' => true,
     'url' => $imageUrl,
