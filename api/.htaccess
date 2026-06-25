@@ -4,6 +4,8 @@
   Header always set Access-Control-Allow-Headers "Content-Type"
 </IfModule>
 
+LimitRequestBody 10485760
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteCond %{REQUEST_METHOD} OPTIONS

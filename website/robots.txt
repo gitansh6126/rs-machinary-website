@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://rsmachinery.com/sitemap.xml

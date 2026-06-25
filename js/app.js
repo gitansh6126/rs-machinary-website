@@ -103,7 +103,7 @@
     var lightboxImg = overlay.querySelector('.lightbox-image');
     var closeBtn = overlay.querySelector('.lightbox-close');
 
-    document.querySelectorAll('.product-img, .product-scroll-card-image img, .product-detail-image').forEach(function (img) {
+    document.querySelectorAll('.product-img, .product-scroll-card-image img, .product-detail-image, .variation-thumb').forEach(function (img) {
       img.addEventListener('click', function (e) {
         e.stopPropagation();
         lightboxImg.src = img.src;
@@ -581,21 +581,14 @@
     loadProducts();
   }
 
-  // ─── PRODUCT IMAGE URL HELPER ──────────────────────────────────────────
-
-  function getProductImageUrl(filename) {
-    if (!filename) return 'assets/placeholder.svg';
-    if (filename.indexOf('http') === 0 || filename.charAt(0) === '/') return filename;
-    return '/uploads/products/' + filename;
-  }
-
   // ─── PRODUCT CARD FACTORY ───────────────────────────────────────────────
 
   function createProductCard(product, categoryName) {
     var article = document.createElement('article');
     article.className = 'product-scroll-card';
 
-    var imgSrc = getProductImageUrl(product.image);
+    var imgSrc = RSM_API.getDisplayImage(product);
+    var fallbackSrc = RSM_API.PLACEHOLDER_IMAGE;
     var detailUrl = 'product.html?' + (product.slug ? 'slug=' + encodeURIComponent(product.slug) : 'id=' + product.id);
     var whatsappUrl = 'https://wa.me/918708795253?text=' + encodeURIComponent('Hi, I am interested in ' + (product.name || '') + '. Please share price and details.');
 
@@ -604,7 +597,8 @@
     article.innerHTML =
       '<div class="product-scroll-card-image">' +
         '<a href="' + detailUrl + '">' +
-          '<img src="' + imgSrc + '" alt="' + escapeHtml(product.name || '') + '" loading="lazy">' +
+          '<img src="' + imgSrc + '" alt="' + escapeHtml(product.name || '') + '" loading="lazy"' +
+            ' onerror="this.onerror=null;this.src=\'' + fallbackSrc + '\'">' +
         '</a>' +
       '</div>' +
       '<div class="product-scroll-card-content">' +
@@ -656,9 +650,9 @@
     }
     if (!Array.isArray(gallery)) gallery = [];
 
-    var mainImage = getProductImageUrl(product.image);
-    if (mainImage === 'assets/placeholder.svg' && gallery.length > 0) {
-      mainImage = getProductImageUrl(gallery[0]);
+    var mainImage = RSM_API.getDisplayImage(product);
+    if ((mainImage === RSM_API.PLACEHOLDER_IMAGE || !mainImage) && gallery.length > 0) {
+      mainImage = RSM_API.getProductImageUrl(gallery[0]);
     }
 
     var specs = product.specifications;
@@ -697,7 +691,7 @@
     if (gallery.length > 1) {
       html += '<div class="product-detail-gallery">';
       gallery.forEach(function (filename) {
-        html += '<img class="gallery-thumb" src="' + getProductImageUrl(filename) + '" alt="" loading="lazy" onclick="document.querySelector(\'.product-detail-image\').src=this.src">';
+        html += '<img class="gallery-thumb" src="' + RSM_API.getProductImageUrl(filename) + '" alt="" loading="lazy" onerror="this.style.display=\'none\'" onclick="document.querySelector(\'.product-detail-image\').src=this.src">';
       });
       html += '</div>';
     }
@@ -735,8 +729,9 @@
       html += '<table class="variations-table">';
       html += '<tr><th>Variant</th><th>Price</th><th>SKU</th><th>Stock</th></tr>';
       variations.forEach(function (v) {
+        var varImg = v.image_url ? v.image_url : '';
         html += '<tr>' +
-          '<td>' + escapeHtml(v.name || '') + '</td>' +
+          '<td>' + (varImg ? '<img src="' + varImg + '" alt="" class="variation-thumb" loading="lazy" onerror="this.style.display=\'none\'"> ' : '') + escapeHtml(v.name || '') + '</td>' +
           '<td>' + escapeHtml(v.price || '') + '</td>' +
           '<td>' + escapeHtml(v.sku || '') + '</td>' +
           '<td>' + (v.in_stock ? 'In Stock' : 'Out of Stock') + '</td>' +

@@ -187,9 +187,9 @@ function getSheet(name) {
     sheet = ss.insertSheet(name);
     // Add default headers
     if (name === SHEET_PRODUCTS) {
-      sheet.appendRow(['id','name','slug','category_id','seo_title','seo_description','short_description','description','image','gallery_images','specifications','variations','featured','active','sort_order','created_at','updated_at']);
+      sheet.appendRow(['id','name','slug','category_id','seo_title','seo_description','short_description','description','image','product_image_url','gallery_images','specifications','variations','featured','active','sort_order','created_at','updated_at']);
     } else if (name === SHEET_CATEGORIES) {
-      sheet.appendRow(['id','name','slug','description','image','active','sort_order','created_at','updated_at']);
+      sheet.appendRow(['id','name','slug','description','image','category_image_url','active','sort_order','created_at','updated_at']);
     } else if (name === SHEET_SETTINGS) {
       sheet.appendRow(['key','value']);
     } else if (name === SHEET_INQUIRIES) {
@@ -450,6 +450,7 @@ function handleAddProduct(e) {
     e.parameter.short_description || '',
     e.parameter.description || '',
     e.parameter.image || '',
+    e.parameter.product_image_url || '',
     galleryImages,
     specs,
     variations,
@@ -475,7 +476,7 @@ function handleUpdateProduct(e) {
   var now = new Date().toISOString();
 
   // Fields that can be updated
-  var fields = ['name','slug','category_id','seo_title','seo_description','short_description','description','image','gallery_images','specifications','variations','featured','active','sort_order'];
+  var fields = ['name','slug','category_id','seo_title','seo_description','short_description','description','image','product_image_url','gallery_images','specifications','variations','featured','active','sort_order'];
 
   var updates = {};
   for (var f = 0; f < fields.length; f++) {
@@ -587,6 +588,7 @@ function handleAddCategory(e) {
     slug,
     e.parameter.description || '',
     e.parameter.image || '',
+    e.parameter.category_image_url || '',
     'TRUE',
     e.parameter.sort_order || '0',
     now,
@@ -607,7 +609,7 @@ function handleUpdateCategory(e) {
 
   var headers = getHeaders(sheet);
   var now = new Date().toISOString();
-  var fields = ['name','slug','description','image','active','sort_order'];
+  var fields = ['name','slug','description','image','category_image_url','active','sort_order'];
 
   for (var f = 0; f < fields.length; f++) {
     var key = fields[f];
@@ -807,8 +809,8 @@ function sanitize(str) {
 // ═══════════════════════════════════════════════════════════════════════════════
 
 var SHEET_DEFINITIONS = {
-  Products: ['id','name','slug','category_id','seo_title','seo_description','short_description','description','image','gallery_images','specifications','variations','featured','active','sort_order','created_at','updated_at'],
-  Categories: ['id','name','slug','description','image','active','sort_order','created_at','updated_at'],
+  Products: ['id','name','slug','category_id','seo_title','seo_description','short_description','description','image','product_image_url','gallery_images','specifications','variations','featured','active','sort_order','created_at','updated_at'],
+  Categories: ['id','name','slug','description','image','category_image_url','active','sort_order','created_at','updated_at'],
   Settings: ['key','value'],
   Inquiries: ['id','date','name','phone','product','message','status']
 };
@@ -922,10 +924,10 @@ function insertSeedData() {
   var catSheet = getSheet(SHEET_CATEGORIES);
   if (catSheet.getDataRange().getValues().length <= 1) {
     var cats = [
-      [1,'Monkey Cranes','monkey-cranes','Heavy lifting monkey cranes for industrial use.','','TRUE',1,now,now],
-      [2,'Electric Hoists','electric-hoists','Electric hoists for material handling.','','TRUE',2,now,now],
-      [3,'Wire Ropes','wire-ropes','High-quality wire ropes for various applications.','','TRUE',3,now,now],
-      [4,'Chain Pulley Blocks','chain-pulley-blocks','Manual chain pulley blocks for lifting.','','TRUE',4,now,now]
+      [1,'Monkey Cranes','monkey-cranes','Heavy lifting monkey cranes for industrial use.','','','TRUE',1,now,now],
+      [2,'Electric Hoists','electric-hoists','Electric hoists for material handling.','','','TRUE',2,now,now],
+      [3,'Wire Ropes','wire-ropes','High-quality wire ropes for various applications.','','','TRUE',3,now,now],
+      [4,'Chain Pulley Blocks','chain-pulley-blocks','Manual chain pulley blocks for lifting.','','','TRUE',4,now,now]
     ];
     for (var c = 0; c < cats.length; c++) catSheet.appendRow(cats[c]);
     added.push('categories (4 rows)');
@@ -934,9 +936,9 @@ function insertSeedData() {
   var prodSheet = getSheet(SHEET_PRODUCTS);
   if (prodSheet.getDataRange().getValues().length <= 1) {
     var prods = [
-      [1,'Heavy Duty Monkey Crane','heavy-duty-monkey-crane',1,'Heavy Duty Monkey Crane | RS Machinery','High-performance heavy duty monkey crane for construction and industrial lifting applications.','Premium quality heavy duty monkey crane for all your lifting needs.','<p>Our Heavy Duty Monkey Crane is built to handle the toughest lifting jobs. With a robust design and high-grade materials, this crane delivers exceptional performance and reliability.</p><ul><li>Load capacity: up to 10 tons</li><li>Durable steel construction</li><li>Smooth operation</li><li>Safety certified</li></ul>','/images/products/monkey-crane.jpg','["/images/products/monkey-crane-1.jpg","/images/products/monkey-crane-2.jpg"]','[{"label":"Capacity","value":"5-10 tons"},{"label":"Material","value":"High-grade steel"},{"label":"Height","value":"Variable"}]','[{"name":"5 Ton","price":250000},{"name":"10 Ton","price":450000}]','TRUE','TRUE',1,now,now],
-      [2,'Electric Hoist 1 Ton','electric-hoist-1-ton',2,'Electric Hoist 1 Ton | RS Machinery','Reliable electric hoist with 1 ton capacity for warehouses and workshops.','Electric hoist with 1 ton capacity for efficient material handling.','<p>Our Electric Hoist is designed for efficient and safe lifting in warehouses, factories, and construction sites. Features include overload protection and emergency stop.</p><ul><li>1 ton capacity</li><li>Overload protection</li><li>Emergency stop</li><li>Low maintenance</li></ul>','/images/products/electric-hoist.jpg','["/images/products/electric-hoist-1.jpg"]','[{"label":"Capacity","value":"1 ton"},{"label":"Power","value":"1.5 kW"},{"label":"Voltage","value":"220V/380V"}]','[{"name":"Single Speed","price":85000},{"name":"Variable Speed","price":120000}]','TRUE','TRUE',2,now,now],
-      [3,'Industrial Wire Rope','industrial-wire-rope',3,'Industrial Wire Rope | RS Machinery','High-strength industrial wire rope for heavy lifting and towing.','Premium industrial wire rope with high tensile strength.','<p>Our Industrial Wire Rope is manufactured from high-quality steel wires, providing excellent strength and durability for the most demanding applications.</p><ul><li>High tensile strength</li><li>Corrosion resistant</li><li>Flexible construction</li><li>Available in various diameters</li></ul>','/images/products/wire-rope.jpg','["/images/products/wire-rope-1.jpg"]','[{"label":"Diameter","value":"6mm-50mm"},{"label":"Material","value":"Galvanized steel"},{"label":"Breaking load","value":"Variable"}]','[]','TRUE','TRUE',3,now,now]
+      [1,'Heavy Duty Monkey Crane','heavy-duty-monkey-crane',1,'Heavy Duty Monkey Crane | RS Machinery','High-performance heavy duty monkey crane for construction and industrial lifting applications.','Premium quality heavy duty monkey crane for all your lifting needs.','<p>Our Heavy Duty Monkey Crane is built to handle the toughest lifting jobs. With a robust design and high-grade materials, this crane delivers exceptional performance and reliability.</p><ul><li>Load capacity: up to 10 tons</li><li>Durable steel construction</li><li>Smooth operation</li><li>Safety certified</li></ul>','/images/products/monkey-crane.jpg','https://img.rsmachinary.in/products/monkey-crane.webp','["/images/products/monkey-crane-1.jpg","/images/products/monkey-crane-2.jpg"]','[{"label":"Capacity","value":"5-10 tons"},{"label":"Material","value":"High-grade steel"},{"label":"Height","value":"Variable"}]','[{"name":"5 Ton","price":250000,"image_url":""},{"name":"10 Ton","price":450000,"image_url":""}]','TRUE','TRUE',1,now,now],
+      [2,'Electric Hoist 1 Ton','electric-hoist-1-ton',2,'Electric Hoist 1 Ton | RS Machinery','Reliable electric hoist with 1 ton capacity for warehouses and workshops.','Electric hoist with 1 ton capacity for efficient material handling.','<p>Our Electric Hoist is designed for efficient and safe lifting in warehouses, factories, and construction sites. Features include overload protection and emergency stop.</p><ul><li>1 ton capacity</li><li>Overload protection</li><li>Emergency stop</li><li>Low maintenance</li></ul>','/images/products/electric-hoist.jpg','https://img.rsmachinary.in/products/electric-hoist.webp','["/images/products/electric-hoist-1.jpg"]','[{"label":"Capacity","value":"1 ton"},{"label":"Power","value":"1.5 kW"},{"label":"Voltage","value":"220V/380V"}]','[{"name":"Single Speed","price":85000,"image_url":""},{"name":"Variable Speed","price":120000,"image_url":""}]','TRUE','TRUE',2,now,now],
+      [3,'Industrial Wire Rope','industrial-wire-rope',3,'Industrial Wire Rope | RS Machinery','High-strength industrial wire rope for heavy lifting and towing.','Premium industrial wire rope with high tensile strength.','<p>Our Industrial Wire Rope is manufactured from high-quality steel wires, providing excellent strength and durability for the most demanding applications.</p><ul><li>High tensile strength</li><li>Corrosion resistant</li><li>Flexible construction</li><li>Available in various diameters</li></ul>','/images/products/wire-rope.jpg','https://img.rsmachinary.in/products/wire-rope.webp','["/images/products/wire-rope-1.jpg"]','[{"label":"Diameter","value":"6mm-50mm"},{"label":"Material","value":"Galvanized steel"},{"label":"Breaking load","value":"Variable"}]','[]','TRUE','TRUE',3,now,now]
     ];
     for (var p = 0; p < prods.length; p++) prodSheet.appendRow(prods[p]);
     added.push('products (3 rows)');

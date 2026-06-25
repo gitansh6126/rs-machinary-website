@@ -109,12 +109,35 @@ var RSM_API = (function () {
     return postToApi({ route: 'changePassword', admin_key: adminKey, current_password: currentPassword, new_password: newPassword });
   }
 
-  // ── IMAGE URL HELPER ───────────────────────────────────────────────────
+  // ── IMAGE URL HELPERS ──────────────────────────────────────────────────
+
+  var IMG_BASE_URL = 'https://img.rsmachinary.in';
+  var PLACEHOLDER_IMAGE = 'assets/placeholder.svg';
 
   function getProductImageUrl(filename) {
-    if (!filename) return 'assets/placeholder.svg';
+    if (!filename) return PLACEHOLDER_IMAGE;
     if (filename.indexOf('http') === 0 || filename.charAt(0) === '/') return filename;
-    return '/uploads/products/' + filename;
+    return IMG_BASE_URL + '/products/' + filename;
+  }
+
+  function getVariationImageUrl(filename) {
+    if (!filename) return '';
+    if (filename.indexOf('http') === 0 || filename.charAt(0) === '/') return filename;
+    return IMG_BASE_URL + '/variations/' + filename;
+  }
+
+  function getCategoryImageUrl(filename) {
+    if (!filename) return PLACEHOLDER_IMAGE;
+    if (filename.indexOf('http') === 0 || filename.charAt(0) === '/') return filename;
+    return IMG_BASE_URL + '/categories/' + filename;
+  }
+
+  function getDisplayImage(item) {
+    if (item.variation_image_url) return item.variation_image_url;
+    if (item.product_image_url) return item.product_image_url;
+    if (item.image_url) return item.image_url;
+    if (item.image) return getProductImageUrl(item.image);
+    return PLACEHOLDER_IMAGE;
   }
 
   // ── INTERNAL ────────────────────────────────────────────────────────────
@@ -161,6 +184,10 @@ var RSM_API = (function () {
     updateInquiry: updateInquiry,
     changePassword: changePassword,
     getProductImageUrl: getProductImageUrl,
+    getVariationImageUrl: getVariationImageUrl,
+    getCategoryImageUrl: getCategoryImageUrl,
+    getDisplayImage: getDisplayImage,
+    PLACEHOLDER_IMAGE: PLACEHOLDER_IMAGE,
     setBaseUrl: function (url) { BASE_URL = url; }
   };
 
