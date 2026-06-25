@@ -83,11 +83,18 @@ body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxy
 .status-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:6px;font-size:.8rem}
 .status-item .idx{color:#9ca3af;font-size:.72rem;min-width:18px}
 .status-item .name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#374151}
-.status-item .url{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#4f46e5;font-family:'SF Mono',Consolas,monospace;font-size:.75rem;cursor:pointer}
-.status-item .url:hover{text-decoration:underline}
+.status-item .fname-link{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#4f46e5;font-family:'SF Mono',Consolas,monospace;font-size:.75rem;cursor:pointer}
+.status-item .fname-link:hover{text-decoration:underline}
 .status-item .badge-done{color:#059669;font-weight:500}
 .status-item .badge-fail{color:#ef4444;font-weight:500}
 .status-item .btn-copy-url{flex-shrink:0;padding:3px 10px;font-size:.72rem;border-radius:4px}
+.status-item .btn-rename{flex-shrink:0;padding:3px 8px;font-size:.72rem;border-radius:4px;background:transparent;border:1px solid #d1d5db;color:#6b7280;cursor:pointer}
+.status-item .btn-rename:hover{border-color:#6366f1;color:#6366f1}
+.status-item .rename-wrap{display:none;flex:1;align-items:center;gap:6px}
+.status-item .rename-wrap.show{display:flex}
+.status-item .rename-input{flex:1;padding:4px 8px;border:1px solid #d1d5db;border-radius:4px;font-size:.78rem;outline:none;background:#fff;color:#1f2937;min-width:0}
+.status-item .rename-input:focus{border-color:#6366f1;box-shadow:0 0 0 2px rgba(99,102,241,.1)}
+.status-item .rename-save{padding:4px 10px;font-size:.72rem;border-radius:4px}
 
 .copy-all-row{display:none;margin-top:14px;gap:8px}
 .copy-all-row.visible{display:flex}
@@ -215,6 +222,7 @@ var refreshBtn=document.getElementById('refreshBtn');
 var allFiles=[];
 var toastTimer=null;
 var converting=false;
+var urlMap={};
 
 // Tabs
 tabs.forEach(function(t){t.addEventListener('click',function(){
@@ -340,11 +348,21 @@ fetch('upload.php',{method:'POST',body:fd})
 if(res.success){
 done++;
 completedUrls.push(res.url);
+urlMap[idx]=res.url;
 if(rowEl){
-rowEl.innerHTML='<span class="idx">'+(idx+1)+'</span><span class="url" title="'+res.url+'" onclick="copyThis(\''+res.url+'\')">'+res.url+'</span>';
+var fname=res.filename||res.url.split('/').pop();
+rowEl.innerHTML='<span class="idx">'+(idx+1)+'</span>'+
+'<span class="fname-link" onclick="window.open(\''+res.url+'\',\'_blank\')" title="'+fname+'">'+fname+'</span>'+
+'<span class="rename-wrap" id="rw-'+idx+'">'+
+'<input class="rename-input" id="ri-'+idx+'" value="'+fname.replace(/\.webp$/,'')+'">'+
+'<button class="btn btn-success btn-sm rename-save" onclick="saveRename('+idx+',\''+fname+'\')">Save</button>'+
+'</span>';
 var cb=document.createElement('button');cb.className='btn btn-success btn-sm btn-copy-url';cb.textContent='Copy';
 (function(u,b){b.onclick=function(){copyText(u,b)}})(res.url,cb);
 rowEl.appendChild(cb);
+var rb=document.createElement('button');rb.className='btn-rename';rb.textContent='\u270E';
+(function(i){rb.onclick=function(){showRename(i)}})(idx);
+rowEl.appendChild(rb);
 }
 if(fileEl){fileEl.className='file-item-status done';fileEl.textContent='done'}
 } else {
@@ -464,6 +482,42 @@ window.copyThis=function(url){
 var btn=document.createElement('button');
 copyText(url,btn);
 showToast('Copied');
+};
+
+// Rename
+window.showRename=function(idx){
+var fname=document.getElementById('si-'+idx).querySelector('.fname-link');
+var rw=document.getElementById('rw-'+idx);
+if(fname)fname.style.display='none';
+if(rw)rw.classList.add('show');
+};
+
+window.saveRename=function(idx,oldFname){
+var input=document.getElementById('ri-'+idx);
+var rw=document.getElementById('rw-'+idx);
+var fnameEl=document.getElementById('si-'+idx).querySelector('.fname-link');
+var newName=input.value.trim();
+if(!newName||newName===oldFname.replace(/\.webp$/,'')){rw.classList.remove('show');if(fnameEl)fnameEl.style.display='';return}
+var oldUrl=urlMap[idx];
+if(!oldUrl){showToast('Error: no URL');return}
+fetch('rename.php',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({filename:oldFname,newname:newName})})
+.then(function(r){return r.json()})
+.then(function(res){
+if(res.success){
+urlMap[idx]=res.url;
+if(fnameEl){fnameEl.textContent=res.filename;fnameEl.onclick=function(){window.open(res.url,'_blank')};fnameEl.style.display=''}
+if(rw)rw.classList.remove('show');
+var allRows=document.querySelectorAll('.status-item .fname-link');
+var urls=[];
+allRows.forEach(function(el,i){urls.push(urlMap[i]||'')});
+var validUrls=urls.filter(function(u){return u});
+copyAllBtn.dataset.urls=JSON.stringify(validUrls);
+showToast('Renamed to '+res.filename);
+}else{
+showToast(res.error||'Rename failed');
+}
+})
+.catch(function(){showToast('Network error')});
 };
 
 function showToast(msg){

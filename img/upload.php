@@ -62,11 +62,17 @@ if (!is_dir($uploadDir)) {
     mkdir($uploadDir, 0755, true);
 }
 
+$originalName = pathinfo($file['name'], PATHINFO_FILENAME);
+$originalName = preg_replace('/[^a-zA-Z0-9_-]/', '', $originalName);
+$originalName = substr($originalName, 0, 48);
+if (empty($originalName)) $originalName = 'image';
+
 if (function_exists('random_bytes')) {
-    $filename = bin2hex(random_bytes(12)) . '.webp';
+    $suffix = bin2hex(random_bytes(3));
 } else {
-    $filename = bin2hex(openssl_random_pseudo_bytes(12)) . '.webp';
+    $suffix = bin2hex(openssl_random_pseudo_bytes(3));
 }
+$filename = $originalName . '_' . $suffix . '.webp';
 $destPath = $uploadDir . $filename;
 
 $src = null;
