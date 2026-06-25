@@ -1,4 +1,7 @@
 <?php
+error_reporting(0);
+ini_set('display_errors', 0);
+
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
@@ -9,35 +12,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit;
 }
 
-$allowedDirs = ['products', 'variations', 'categories', 'brands', 'temp'];
-$subdir = isset($_GET['subdir']) && in_array($_GET['subdir'], $allowedDirs) ? $_GET['subdir'] : 'products';
-$search = isset($_GET['search']) ? trim($_GET['search']) : '';
-$page = max(1, isset($_GET['page']) ? (int)$_GET['page'] : 1);
-$limit = max(1, min(100, isset($_GET['limit']) ? (int)$_GET['limit'] : 48));
+if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
+    http_response_code(405);
+    echo json_encode(['success' => false, 'error' => 'Method not allowed']);
+    exit;
+}
 
-$scanDir = __DIR__ . '/' . $subdir . '/';
-$baseUrl = 'https://img.rsmachinary.in/' . $subdir . '/';
-
+$scanDir = __DIR__ . '/uploads/';
 $images = [];
 
 if (is_dir($scanDir)) {
     $iterator = new FilesystemIterator($scanDir, FilesystemIterator::SKIP_DOTS);
     foreach ($iterator as $file) {
         if (!$file->isFile()) continue;
-        $ext = strtolower($file->getExtension());
-        if (!in_array($ext, ['jpg', 'jpeg', 'png', 'webp', 'gif', 'svg'])) continue;
-
+        if (strtolower($file->getExtension()) !== 'webp') continue;
         $filename = $file->getFilename();
-        if ($search && stripos($filename, $search) === false) continue;
-
         $images[] = [
-            'filename'   => $filename,
-            'url'        => $baseUrl . rawurlencode($filename),
-            'size'       => $file->getSize(),
+            'filename'  => $filename,
+            'url'       => 'https://img.rsmachinary.in/uploads/' . rawurlencode($filename),
+            'size'      => $file->getSize(),
             'size_formatted' => formatBytes($file->getSize()),
-            'modified'   => $file->getMTime(),
-            'modified_formatted' => date('Y-m-d H:i:s', $file->getMTime()),
-            'ext'        => $ext
+            'modified'  => $file->getMTime(),
         ];
     }
 }
@@ -46,19 +41,10 @@ usort($images, function ($a, $b) {
     return $b['modified'] - $a['modified'];
 });
 
-$total = count($images);
-$totalPages = max(1, ceil($total / $limit));
-$offset = ($page - 1) * $limit;
-$paged = array_slice($images, $offset, $limit);
-
 echo json_encode([
-    'success'    => true,
-    'data'       => $paged,
-    'total'      => $total,
-    'page'       => $page,
-    'limit'      => $limit,
-    'totalPages' => $totalPages,
-    'subdir'     => $subdir
+    'success' => true,
+    'data'    => $images,
+    'total'   => count($images)
 ]);
 
 function formatBytes($bytes, $precision = 2) {
