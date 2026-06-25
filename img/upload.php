@@ -1,4 +1,7 @@
 <?php
+error_reporting(0);
+ini_set('display_errors', 0);
+
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
@@ -30,14 +33,19 @@ if ($file['size'] > $maxSize) {
     exit;
 }
 
-$allowedMimes = ['image/png', 'image/jpeg', 'image/jpg', 'image/webp', 'image/gif'];
-$finfo = finfo_open(FILEINFO_MIME_TYPE);
-$mimeType = finfo_file($finfo, $file['tmp_name']);
-finfo_close($finfo);
+$ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+$allowedExts = ['png', 'jpeg', 'jpg', 'webp', 'gif'];
 
-if (!in_array($mimeType, $allowedMimes)) {
+if (!in_array($ext, $allowedExts)) {
     http_response_code(400);
-    echo json_encode(['success' => false, 'error' => 'Invalid file type. Allowed: PNG, JPEG, WebP, GIF']);
+    echo json_encode(['success' => false, 'error' => 'Invalid file extension. Allowed: png, jpeg, jpg, webp, gif']);
+    exit;
+}
+
+$info = @getimagesize($file['tmp_name']);
+if (!$info) {
+    http_response_code(400);
+    echo json_encode(['success' => false, 'error' => 'File is not a valid image']);
     exit;
 }
 
@@ -49,44 +57,41 @@ if (!is_dir($uploadDir)) {
 $filename = bin2hex(random_bytes(12)) . '.webp';
 $destPath = $uploadDir . $filename;
 
-$converted = false;
-switch ($mimeType) {
-    case 'image/png':
+$src = null;
+switch ($ext) {
+    case 'png':
         $src = @imagecreatefrompng($file['tmp_name']);
         if ($src) {
             imagepalettetotruecolor($src);
             imagealphablending($src, true);
             imagesavealpha($src, true);
-            $converted = @imagewebp($src, $destPath, 80);
-            imagedestroy($src);
         }
         break;
-    case 'image/jpeg':
-    case 'image/jpg':
+    case 'jpeg':
+    case 'jpg':
         $src = @imagecreatefromjpeg($file['tmp_name']);
-        if ($src) {
-            $converted = @imagewebp($src, $destPath, 80);
-            imagedestroy($src);
-        }
         break;
-    case 'image/webp':
+    case 'webp':
         $src = @imagecreatefromwebp($file['tmp_name']);
-        if ($src) {
-            $converted = @imagewebp($src, $destPath, 80);
-            imagedestroy($src);
-        }
         break;
-    case 'image/gif':
+    case 'gif':
         $src = @imagecreatefromgif($file['tmp_name']);
         if ($src) {
             imagepalettetotruecolor($src);
             imagealphablending($src, true);
             imagesavealpha($src, true);
-            $converted = @imagewebp($src, $destPath, 80);
-            imagedestroy($src);
         }
         break;
 }
+
+if (!$src) {
+    http_response_code(500);
+    echo json_encode(['success' => false, 'error' => 'Failed to read image']);
+    exit;
+}
+
+$converted = @imagewebp($src, $destPath, 80);
+imagedestroy($src);
 
 if (!$converted) {
     http_response_code(500);
@@ -96,6 +101,7 @@ if (!$converted) {
 
 $imageUrl = 'https://img.rsmachinary.in/uploads/' . $filename;
 
+ob_clean();
 echo json_encode([
     'success' => true,
     'url' => $imageUrl,
