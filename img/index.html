@@ -8,48 +8,56 @@
 *,*::before,*::after{box-sizing:border-box}
 body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,sans-serif;background:#f3f4f6;color:#1f2937;min-height:100vh}
 
-/* Top Bar */
 .topbar{background:#fff;border-bottom:1px solid #e5e7eb;padding:0 24px;display:flex;align-items:center;height:52px;position:sticky;top:0;z-index:50}
 .topbar-brand{font-weight:700;font-size:1rem;color:#111827;letter-spacing:-.01em}
 .topbar-brand span{color:#6366f1}
 .topbar-sub{font-size:.78rem;color:#9ca3af;margin-left:12px;padding-left:12px;border-left:1px solid #e5e7eb}
 .topbar-right{margin-left:auto;display:flex;align-items:center;gap:8px;font-size:.78rem;color:#9ca3af}
 
-/* Tabs */
 .tabbar{background:#fff;border-bottom:1px solid #e5e7eb;display:flex;padding:0 24px;gap:0;position:sticky;top:52px;z-index:49}
 .tab{padding:12px 24px;border:none;background:none;font-size:.85rem;font-weight:500;color:#6b7280;cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;margin-bottom:-1px}
 .tab:hover{color:#374151}
 .tab.active{color:#6366f1;border-bottom-color:#6366f1;font-weight:600}
 
-/* Layout */
 .container{max-width:1200px;margin:0 auto;padding:24px}
 .tab-content{display:none}
 .tab-content.active{display:block}
 
-/* Upload Section */
 .upload-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
 @media(max-width:800px){.upload-grid{grid-template-columns:1fr}}
 
 .panel{background:#fff;border:1px solid #e5e7eb;border-radius:10px;overflow:hidden}
-.panel-h{padding:14px 20px;border-bottom:1px solid #e5e7eb;font-size:.82rem;font-weight:600;color:#374151;text-transform:uppercase;letter-spacing:.04em}
+.panel-h{padding:14px 20px;border-bottom:1px solid #e5e7eb;font-size:.82rem;font-weight:600;color:#374151;text-transform:uppercase;letter-spacing:.04em;display:flex;align-items:center;justify-content:space-between}
+.panel-h .badge{background:#6366f1;color:#fff;font-size:.7rem;padding:2px 8px;border-radius:10px;font-weight:600}
 .panel-b{padding:20px}
 
-.upload-zone{position:relative;border:2px dashed #d1d5db;border-radius:8px;padding:48px 24px;text-align:center;cursor:pointer;transition:all .2s;background:#fafafa}
+.upload-zone{position:relative;border:2px dashed #d1d5db;border-radius:8px;padding:36px 24px;text-align:center;cursor:pointer;transition:all .2s;background:#fafafa}
 .upload-zone:hover,.upload-zone.drag-over{border-color:#6366f1;background:#f5f3ff}
 .upload-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer}
-.upload-zone-icon{font-size:2.4rem;margin-bottom:8px;line-height:1;color:#9ca3af}
-.upload-zone-title{font-size:.95rem;color:#374151;margin:0 0 2px}
+.upload-zone-icon{font-size:2rem;margin-bottom:6px;line-height:1;color:#9ca3af}
+.upload-zone-title{font-size:.9rem;color:#374151;margin:0 0 2px}
 .upload-zone-title strong{color:#6366f1;font-weight:600}
-.upload-zone-hint{font-size:.78rem;color:#9ca3af;margin:6px 0 0}
-
+.upload-zone-hint{font-size:.78rem;color:#9ca3af;margin:4px 0 0}
 .drop-active .upload-zone-icon{color:#6366f1}
 
-.preview-img{width:100%;max-height:300px;object-fit:contain;border-radius:6px;background:#f9fafb}
-.preview-info{margin-top:10px;display:flex;justify-content:space-between;font-size:.82rem;color:#6b7280}
-.preview-info .name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:70%}
+.file-list{margin-top:14px;max-height:340px;overflow-y:auto}
+.file-list::-webkit-scrollbar{width:5px}
+.file-list::-webkit-scrollbar-thumb{background:#d1d5db;border-radius:10px}
+.file-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:6px;transition:background .1s}
+.file-item:hover{background:#f9fafb}
+.file-item-thumb{width:40px;height:40px;border-radius:4px;object-fit:cover;background:#f3f4f6;flex-shrink:0}
+.file-item-info{flex:1;min-width:0}
+.file-item-name{font-size:.8rem;color:#374151;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.file-item-size{font-size:.72rem;color:#9ca3af}
+.file-item-status{font-size:.72rem;font-weight:500;flex-shrink:0}
+.file-item-status.pending{color:#9ca3af}
+.file-item-status.converting{color:#6366f1}
+.file-item-status.done{color:#059669}
+.file-item-status.fail{color:#ef4444}
+.file-item .btn-icon{width:28px;height:28px;font-size:.82rem;flex-shrink:0;padding:0}
 
 /* Buttons */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 20px;border:none;border-radius:8px;font-size:.85rem;font-weight:500;cursor:pointer;transition:all .1s;text-decoration:none;line-height:1.4}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 20px;border:none;border-radius:8px;font-size:.85rem;font-weight:500;cursor:pointer;transition:all .1s;text-decoration:none;line-height:1.4}
 .btn:disabled{opacity:.5;cursor:not-allowed}
 .btn-primary{background:#6366f1;color:#fff}
 .btn-primary:hover:not(:disabled){background:#4f46e5}
@@ -59,26 +67,30 @@ body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxy
 .btn-danger:hover:not(:disabled){background:#dc2626}
 .btn-outline{background:transparent;border:1px solid #d1d5db;color:#6b7280}
 .btn-outline:hover:not(:disabled){border-color:#9ca3af;color:#374151}
-
 .btn-block{width:100%;justify-content:center}
 .btn-sm{padding:6px 12px;font-size:.78rem;border-radius:6px}
 .btn-icon{width:34px;padding:0;justify-content:center}
 
-.btn-group{display:flex;gap:8px}
+.progress-wrap{margin:16px 0 0;display:none}
+.progress-wrap.visible{display:block}
+.progress-bar{height:6px;background:#e5e7eb;border-radius:10px;overflow:hidden}
+.progress-fill{height:100%;background:#6366f1;border-radius:10px;width:0;transition:width .3s}
+.progress-text{font-size:.78rem;color:#6b7280;margin-top:6px;text-align:center}
 
-/* Status */
-.status{margin-top:12px;font-size:.82rem;color:#6b7280;min-height:1.3em;text-align:center}
-.status.success{color:#059669}
-.status.error{color:#ef4444}
+.status-list{margin-top:14px;max-height:300px;overflow-y:auto}
+.status-list::-webkit-scrollbar{width:5px}
+.status-list::-webkit-scrollbar-thumb{background:#d1d5db;border-radius:10px}
+.status-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:6px;font-size:.8rem}
+.status-item .idx{color:#9ca3af;font-size:.72rem;min-width:18px}
+.status-item .name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#374151}
+.status-item .url{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#4f46e5;font-family:'SF Mono',Consolas,monospace;font-size:.75rem;cursor:pointer}
+.status-item .url:hover{text-decoration:underline}
+.status-item .badge-done{color:#059669;font-weight:500}
+.status-item .badge-fail{color:#ef4444;font-weight:500}
+.status-item .btn-copy-url{flex-shrink:0;padding:3px 10px;font-size:.72rem;border-radius:4px}
 
-/* Result row */
-.result-row{display:none;align-items:center;gap:8px;margin-top:12px;padding:10px 14px;background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px}
-.result-row.visible{display:flex}
-.result-row input{flex:1;background:transparent;border:none;color:#4f46e5;font-size:.82rem;outline:none;font-family:'SF Mono',Consolas,monospace}
-.result-row .btn{flex-shrink:0}
-
-.spinner{display:inline-block;width:16px;height:16px;border:2px solid #e5e7eb;border-top-color:#6366f1;border-radius:50%;animation:spin .5s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
+.copy-all-row{display:none;margin-top:14px;gap:8px}
+.copy-all-row.visible{display:flex}
 
 /* Gallery */
 .gallery-bar{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap;align-items:center}
@@ -88,7 +100,6 @@ body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxy
 .gallery-search::placeholder{color:#9ca3af}
 
 .gallery-empty{text-align:center;padding:60px 24px;color:#9ca3af;font-size:.9rem}
-
 .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
 .gallery-item{background:#fff;border:1px solid #e5e7eb;border-radius:10px;overflow:hidden;transition:box-shadow .15s,border-color .15s}
 .gallery-item:hover{border-color:#d1d5db;box-shadow:0 2px 12px rgba(0,0,0,.06)}
@@ -100,20 +111,20 @@ body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxy
 .gallery-item .actions .btn{flex:1}
 
 /* Toast */
-.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1f2937;border-radius:10px;padding:12px 24px;font-size:.85rem;color:#fff;box-shadow:0 8px 32px rgba(0,0,0,.2);opacity:0;transition:all .2s;pointer-events:none;z-index:100}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1f2937;border-radius:10px;padding:12px 24px;font-size:.85rem;color:#fff;box-shadow:0 8px 32px rgba(0,0,0,.2);opacity:0;transition:all .2s;pointer-events:none;z-index:100;white-space:nowrap}
 .toast.show{opacity:1;pointer-events:auto}
 
-/* Skeleton */
 .skeleton{background:linear-gradient(90deg,#e5e7eb 25%,#f3f4f6 50%,#e5e7eb 75%);background-size:200% 100%;animation:shimmer 1s infinite;border-radius:6px}
 @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
 
 @media(max-width:700px){
-.topbar{padding:0 16px}
-.tabbar{padding:0 16px}
-.tab{padding:10px 14px;font-size:.82rem}
+.topbar{padding:0 16px;flex-wrap:wrap;height:auto;min-height:48px;gap:4px}
+.topbar-sub,.topbar-right{display:none}
+.tabbar{padding:0 12px;overflow-x:auto}
+.tab{padding:10px 14px;font-size:.82rem;white-space:nowrap}
 .container{padding:16px}
-.upload-zone{padding:32px 16px}
-.gallery-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+.upload-zone{padding:28px 16px}
+.gallery-grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}
 }
 </style>
 </head>
@@ -121,7 +132,7 @@ body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxy
 
 <div class="topbar">
 <div class="topbar-brand">img.<span>rsmachinary</span>.in</div>
-<div class="topbar-sub">Image to WebP Converter</div>
+<div class="topbar-sub">Bulk WebP Converter</div>
 <div class="topbar-right">v2 &middot; q80</div>
 </div>
 
@@ -135,35 +146,33 @@ body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxy
 <div class="tab-content active" id="tab-upload">
 <div class="upload-grid">
 <div class="panel">
-<div class="panel-h">Select Image</div>
+<div class="panel-h">Select Images <span class="badge" id="fileCountBadge">0</span></div>
 <div class="panel-b">
 <div class="upload-zone" id="uploadZone">
 <div class="upload-zone-icon">&#128247;</div>
-<p class="upload-zone-title"><strong>Click to browse</strong> or drag here</p>
-<p class="upload-zone-hint">PNG &middot; JPEG &middot; WebP &middot; GIF &mdash; max 10MB</p>
-<input type="file" id="fileInput" accept="image/png,image/jpeg,image/jpg,image/webp,image/gif">
+<p class="upload-zone-title"><strong>Click to browse</strong> or drag images here</p>
+<p class="upload-zone-hint">PNG &middot; JPEG &middot; WebP &middot; GIF &mdash; max 10MB each</p>
+<input type="file" id="fileInput" accept="image/png,image/jpeg,image/jpg,image/webp,image/gif" multiple>
 </div>
 
-<div id="previewWrap" style="display:none;margin-top:16px">
-<img class="preview-img" id="preview" src="" alt="">
-<div class="preview-info">
-<span class="name" id="fileName"></span>
-<span id="fileSize"></span>
-</div>
-</div>
+<div class="file-list" id="fileList"></div>
 </div>
 </div>
 
 <div class="panel">
 <div class="panel-h">Convert</div>
 <div class="panel-b">
-<button class="btn btn-primary btn-block" id="convertBtn" disabled>Convert to WebP</button>
+<button class="btn btn-primary btn-block" id="convertBtn" disabled>Convert All</button>
 
-<div class="status" id="status"></div>
+<div class="progress-wrap" id="progressWrap">
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+<div class="progress-text" id="progressText"></div>
+</div>
 
-<div class="result-row" id="resultRow">
-<input id="resultUrl" readonly spellcheck="false">
-<button class="btn btn-success btn-sm" id="copyBtn">Copy</button>
+<div class="status-list" id="statusList"></div>
+
+<div class="copy-all-row" id="copyAllRow">
+<button class="btn btn-success btn-block" id="copyAllBtn">&#128203; Copy All Links</button>
 </div>
 </div>
 </div>
@@ -175,9 +184,8 @@ body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxy
 <input class="gallery-search" id="gallerySearch" type="text" placeholder="Filter images&hellip;">
 <button class="btn btn-outline" id="refreshBtn">&#x21bb;</button>
 </div>
-
 <div id="galleryGrid" class="gallery-grid"></div>
-<div id="galleryEmpty" class="gallery-empty" style="display:none">No images yet &mdash; upload one.</div>
+<div id="galleryEmpty" class="gallery-empty" style="display:none">No images yet &mdash; upload some.</div>
 </div>
 
 </div>
@@ -185,18 +193,18 @@ body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxy
 <div class="toast" id="toast"></div>
 
 <script>
-(function(){
+(function () {
 var fileInput=document.getElementById('fileInput');
 var uploadZone=document.getElementById('uploadZone');
-var previewWrap=document.getElementById('previewWrap');
-var preview=document.getElementById('preview');
-var fileName=document.getElementById('fileName');
-var fileSize=document.getElementById('fileSize');
+var fileList=document.getElementById('fileList');
+var fileCountBadge=document.getElementById('fileCountBadge');
 var convertBtn=document.getElementById('convertBtn');
-var statusEl=document.getElementById('status');
-var resultRow=document.getElementById('resultRow');
-var resultUrl=document.getElementById('resultUrl');
-var copyBtn=document.getElementById('copyBtn');
+var progressWrap=document.getElementById('progressWrap');
+var progressFill=document.getElementById('progressFill');
+var progressText=document.getElementById('progressText');
+var statusList=document.getElementById('statusList');
+var copyAllRow=document.getElementById('copyAllRow');
+var copyAllBtn=document.getElementById('copyAllBtn');
 var toast=document.getElementById('toast');
 var tabs=document.querySelectorAll('.tab');
 var galleryGrid=document.getElementById('galleryGrid');
@@ -204,8 +212,9 @@ var galleryEmpty=document.getElementById('galleryEmpty');
 var gallerySearch=document.getElementById('gallerySearch');
 var refreshBtn=document.getElementById('refreshBtn');
 
-var selectedFile=null;
+var allFiles=[];
 var toastTimer=null;
+var converting=false;
 
 // Tabs
 tabs.forEach(function(t){t.addEventListener('click',function(){
@@ -216,49 +225,157 @@ document.getElementById('tab-'+this.dataset.tab).classList.add('active');
 if(this.dataset.tab==='gallery'&&!galleryGrid.children.length) loadGallery();
 })});
 
-// Upload
-fileInput.addEventListener('change',function(){
-var file=fileInput.files[0];if(!file)return;
-selectedFile=file;convertBtn.disabled=false;
-statusEl.textContent='';statusEl.className='status';
-resultRow.classList.remove('visible');
-var reader=new FileReader();
-reader.onload=function(e){preview.src=e.target.result;previewWrap.style.display='block';fileName.textContent=file.name;fileSize.textContent=formatSize(file.size)};
-reader.readAsDataURL(file);
-});
+// Upload zone - file selection
+fileInput.addEventListener('change',function(){addFiles(fileInput.files);fileInput.value=''});
 
 uploadZone.addEventListener('dragover',function(e){e.preventDefault();uploadZone.classList.add('drop-active')});
 uploadZone.addEventListener('dragleave',function(){uploadZone.classList.remove('drop-active')});
-uploadZone.addEventListener('drop',function(e){e.preventDefault();uploadZone.classList.remove('drop-active');var f=e.dataTransfer.files;if(f.length){fileInput.files=f;fileInput.dispatchEvent(new Event('change'))}});
+uploadZone.addEventListener('drop',function(e){
+e.preventDefault();
+uploadZone.classList.remove('drop-active');
+addFiles(e.dataTransfer.files);
+});
 
+function addFiles(files){
+if(!files||!files.length)return;
+var added=0;
+Array.from(files).forEach(function(f){
+if(!f.type.match(/^image\/(png|jpeg|jpg|webp|gif)$/))return;
+var exists=allFiles.some(function(ef){return ef.name===f.name&&ef.size===f.size});
+if(!exists){
+allFiles.push(f);
+added++;
+}
+});
+if(added) renderFileList();
+}
+
+function removeFile(idx){
+allFiles.splice(idx,1);
+renderFileList();
+if(!allFiles.length){convertBtn.disabled=true;progressWrap.classList.remove('visible');copyAllRow.classList.remove('visible');statusList.innerHTML=''}
+}
+
+function renderFileList(){
+fileList.innerHTML='';
+fileCountBadge.textContent=allFiles.length;
+if(!allFiles.length){fileList.innerHTML='<div style="text-align:center;padding:16px 0;color:#9ca3af;font-size:.82rem">No images selected</div>';convertBtn.disabled=true;return}
+convertBtn.disabled=false;convertBtn.textContent='Convert All ('+allFiles.length+')';
+allFiles.forEach(function(f,i){
+var size=f.size;
+var div=document.createElement('div');div.className='file-item';
+var thumb=document.createElement('img');thumb.className='file-item-thumb';
+var r=new FileReader();r.onload=function(e){thumb.src=e.target.result};r.readAsDataURL(f);
+div.appendChild(thumb);
+var info=document.createElement('div');info.className='file-item-info';
+var nameEl=document.createElement('div');nameEl.className='file-item-name';nameEl.textContent=f.name;
+info.appendChild(nameEl);
+var sizeEl=document.createElement('div');sizeEl.className='file-item-size';sizeEl.textContent=formatSize(size);
+info.appendChild(sizeEl);
+div.appendChild(info);
+var st=document.createElement('span');st.className='file-item-status pending';st.textContent='pending';st.id='fs-'+i;
+div.appendChild(st);
+var rm=document.createElement('button');rm.className='btn btn-danger btn-icon';rm.textContent='\u2715';
+rm.setAttribute('aria-label','Remove');
+(function(idx){rm.onclick=function(){removeFile(idx)}})(i);
+div.appendChild(rm);
+fileList.appendChild(div);
+});
+}
+
+// Convert
 convertBtn.addEventListener('click',function(){
-if(!selectedFile)return;
-convertBtn.disabled=true;convertBtn.innerHTML='<span class="spinner"></span> Converting&hellip;';
-statusEl.textContent='Processing&hellip;';statusEl.className='status';
-resultRow.classList.remove('visible');
-var fd=new FormData();fd.append('image',selectedFile);
+if(!allFiles.length||converting)return;
+converting=true;
+convertBtn.disabled=true;convertBtn.innerHTML='<span class="spinner" style="display:inline-block;width:14px;height:14px;border:2px solid #e5e7eb;border-top-color:#6366f1;border-radius:50%;animation:spin .5s linear infinite"></span> Converting&hellip;';
+progressWrap.classList.add('visible');
+progressFill.style.width='0%';
+progressText.textContent='0 / '+allFiles.length;
+copyAllRow.classList.remove('visible');
+statusList.innerHTML='';
+
+var results=[];
+
+allFiles.forEach(function(f,i){
+var row=document.createElement('div');row.className='status-item';
+row.id='si-'+i;
+var idx=document.createElement('span');idx.className='idx';idx.textContent=''+(i+1);
+row.appendChild(idx);
+var nm=document.createElement('span');nm.className='name';nm.textContent=f.name;
+row.appendChild(nm);
+var st=document.createElement('span');st.className='badge-converting';st.style.color='#6366f1';st.textContent='queue';
+row.appendChild(st);
+statusList.appendChild(row);
+var el=document.getElementById('fs-'+i);
+if(el){el.className='file-item-status converting';el.textContent='queue'}
+});
+
+var queue=allFiles.slice();
+var done=0,failed=0;
+var completedUrls=[];
+
+function processNext(){
+if(!queue.length){
+var allDone=done+failed;
+if(allDone===allFiles.length){
+progressFill.style.width='100%';
+progressText.textContent='Done: '+done+' converted, '+failed+' failed';
+convertBtn.disabled=false;convertBtn.textContent='Convert All ('+allFiles.length+')';
+converting=false;
+if(completedUrls.length){copyAllRow.classList.add('visible');copyAllBtn.dataset.urls=JSON.stringify(completedUrls)}
+}
+return;
+}
+var f=queue.shift();
+var idx=allFiles.indexOf(f);
+var rowEl=document.getElementById('si-'+idx);
+var fileEl=document.getElementById('fs-'+idx);
+if(rowEl){rowEl.querySelector('.badge-converting').textContent='converting...';rowEl.querySelector('.badge-converting').style.color='#6366f1'}
+if(fileEl){fileEl.className='file-item-status converting';fileEl.textContent='converting'}
+
+var fd=new FormData();fd.append('image',f);
 fetch('upload.php',{method:'POST',body:fd})
 .then(function(r){return r.json()})
 .then(function(res){
-convertBtn.disabled=false;convertBtn.innerHTML='Convert to WebP';
 if(res.success){
-resultUrl.value=res.url;
-resultRow.classList.add('visible');
-statusEl.textContent='Converted successfully!';statusEl.className='status success';
-previewWrap.style.display='none';
-selectedFile=null;convertBtn.disabled=true;fileInput.value='';
-} else {
-statusEl.textContent=res.error||'Conversion failed';statusEl.className='status error';
+done++;
+completedUrls.push(res.url);
+if(rowEl){
+rowEl.innerHTML='<span class="idx">'+(idx+1)+'</span><span class="url" title="'+res.url+'" onclick="copyThis(\''+res.url+'\')">'+res.url+'</span>';
+var cb=document.createElement('button');cb.className='btn btn-success btn-sm btn-copy-url';cb.textContent='Copy';
+(function(u,b){b.onclick=function(){copyText(u,b)}})(res.url,cb);
+rowEl.appendChild(cb);
 }
+if(fileEl){fileEl.className='file-item-status done';fileEl.textContent='done'}
+} else {
+failed++;
+if(rowEl){rowEl.innerHTML='<span class="idx">'+(idx+1)+'</span><span class="name">'+f.name+'</span><span class="badge-fail">'+(res.error||'failed')+'</span>'}
+if(fileEl){fileEl.className='file-item-status fail';fileEl.textContent='fail'}
+}
+var total=done+failed;
+progressFill.style.width=Math.round(total/allFiles.length*100)+'%';
+progressText.textContent=done+' / '+total+' &mdash; converting...';
+processNext();
 })
 .catch(function(){
-convertBtn.disabled=false;convertBtn.innerHTML='Convert to WebP';
-statusEl.textContent='Network error.';statusEl.className='status error';
+failed++;
+if(rowEl){rowEl.innerHTML='<span class="idx">'+(idx+1)+'</span><span class="name">'+f.name+'</span><span class="badge-fail">network error</span>'}
+if(fileEl){fileEl.className='file-item-status fail';fileEl.textContent='fail'}
+var total=done+failed;
+progressFill.style.width=Math.round(total/allFiles.length*100)+'%';
+progressText.textContent=done+' / '+total+' &mdash; converting...';
+processNext();
 });
+}
+
+processNext();
 });
 
-copyBtn.addEventListener('click',function(){
-if(resultUrl.value) copyToClipboard(resultUrl.value,this);
+// Copy All
+copyAllBtn.addEventListener('click',function(){
+var urls=JSON.parse(copyAllBtn.dataset.urls||'[]');
+if(!urls.length)return;
+copyText(urls.join('\n'),this);
 });
 
 // Gallery
@@ -267,13 +384,13 @@ galleryGrid.innerHTML='<div style="grid-column:1/-1;display:flex;gap:8px;padding
 Array(4).fill('<div class="skeleton" style="height:180px;flex:1"></div>').join('')+'</div>';
 galleryEmpty.style.display='none';
 var url='list.php';
-if(q) url+='?search='+encodeURIComponent(q);
+if(q)url+='?search='+encodeURIComponent(q);
 fetch(url)
 .then(function(r){return r.json()})
 .then(function(res){
 if(res.success&&res.data.length){
 renderGallery(q?res.data.filter(function(i){return i.filename.toLowerCase().includes(q.toLowerCase())}):res.data);
-} else {
+}else{
 galleryGrid.innerHTML='';galleryEmpty.style.display='block';
 }
 })
@@ -300,28 +417,17 @@ html+='<div class="gallery-item">'+
 galleryGrid.innerHTML=html;
 }
 
-window.copyItem=function(url,btn){
-copyToClipboard(url,btn);
-};
-
+window.copyItem=function(url,btn){copyText(url,btn)};
 window.delItem=function(filename,btn){
-if(!confirm('Delete "'+filename+'"?')) return;
+if(!confirm('Delete "'+filename+'"?'))return;
 var orig=btn.innerHTML;btn.disabled=true;btn.innerHTML='...';
 fetch('delete.php',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({filename:filename})})
 .then(function(r){return r.json()})
 .then(function(res){
-if(res.success){
-showToast('Deleted');
-loadGallery(gallerySearch.value);
-} else {
-showToast(res.error||'Delete failed');
-btn.disabled=false;btn.innerHTML=orig;
-}
+if(res.success){showToast('Deleted');loadGallery(gallerySearch.value)}
+else{showToast(res.error||'Delete failed');btn.disabled=false;btn.innerHTML=orig}
 })
-.catch(function(){
-showToast('Network error');
-btn.disabled=false;btn.innerHTML=orig;
-});
+.catch(function(){showToast('Network error');btn.disabled=false;btn.innerHTML=orig});
 };
 
 var searchTimer=null;
@@ -334,27 +440,34 @@ refreshBtn.addEventListener('click',function(){loadGallery(gallerySearch.value)}
 
 if(document.querySelector('.tab.active').dataset.tab==='gallery') loadGallery();
 
-function copyToClipboard(text,btn){
+// Clipboard
+function copyText(text,btn){
 try {
 if(navigator.clipboard&&navigator.clipboard.writeText){
 navigator.clipboard.writeText(text).then(function(){
-var orig=btn.textContent;btn.textContent='Copied!';
+var orig=btn.textContent||btn.innerHTML;btn.textContent='Copied!';
 if(btn.classList)btn.classList.add('copied');
 setTimeout(function(){btn.textContent=orig;if(btn.classList)btn.classList.remove('copied')},2000);
 });
-} else {
+}else{
 var ta=document.createElement('textarea');
 ta.value=text;ta.style.cssText='position:fixed;opacity:0';
 document.body.appendChild(ta);ta.select();
 document.execCommand('copy');document.body.removeChild(ta);
-var orig=btn.textContent;btn.textContent='Copied!';
+var orig=btn.textContent||btn.innerHTML;btn.textContent='Copied!';
 setTimeout(function(){btn.textContent=orig},2000);
 }
-} catch(e){showToast('Copy failed')}
+}catch(e){showToast('Copy failed')}
 }
 
+window.copyThis=function(url){
+var btn=document.createElement('button');
+copyText(url,btn);
+showToast('Copied');
+};
+
 function showToast(msg){
-if(toastTimer) clearTimeout(toastTimer);
+if(toastTimer)clearTimeout(toastTimer);
 toast.textContent=msg;toast.className='toast show';
 toastTimer=setTimeout(function(){toast.classList.remove('show')},2500);
 }
