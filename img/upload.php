@@ -62,7 +62,8 @@ if (!is_dir($uploadDir)) {
     mkdir($uploadDir, 0755, true);
 }
 
-$originalName = pathinfo($file['name'], PATHINFO_FILENAME);
+$customName = isset($_POST['name']) ? trim($_POST['name']) : '';
+$originalName = !empty($customName) ? $customName : pathinfo($file['name'], PATHINFO_FILENAME);
 $originalName = preg_replace('/[^a-zA-Z0-9_-]/', '', $originalName);
 $originalName = substr($originalName, 0, 48);
 if (empty($originalName)) $originalName = 'image';
