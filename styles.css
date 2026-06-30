@@ -1499,6 +1499,74 @@ main {
     }
 }
 
+@keyframes a-fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes a-slideLeft {
+    from { opacity: 0; transform: translateX(-40px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes a-slideRight {
+    from { opacity: 0; transform: translateX(40px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes a-scaleIn {
+    from { opacity: 0; transform: scale(0.92); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes a-slideDown {
+    from { opacity: 0; transform: translateY(-12px); max-height: 0; }
+    to   { opacity: 1; transform: translateY(0); max-height: 500px; }
+}
+
+/* ─── Animation Utility Classes ─── */
+
+.a-reveal {
+    opacity: 0;
+}
+
+.a-reveal-visible {
+    opacity: 1;
+}
+
+.a-fade-up {
+    animation: a-fadeUp 0.5s ease both;
+}
+
+.a-slide-left {
+    animation: a-slideLeft 0.6s ease both;
+}
+
+.a-slide-right {
+    animation: a-slideRight 0.6s ease both;
+}
+
+.a-scale-in {
+    animation: a-scaleIn 0.45s ease both;
+}
+
+.a-stagger > * {
+    opacity: 0;
+    animation: a-fadeUp 0.5s ease both;
+}
+
+.a-stagger > *:nth-child(1) { animation-delay: 0ms; }
+.a-stagger > *:nth-child(2) { animation-delay: 80ms; }
+.a-stagger > *:nth-child(3) { animation-delay: 160ms; }
+.a-stagger > *:nth-child(4) { animation-delay: 240ms; }
+.a-stagger > *:nth-child(5) { animation-delay: 320ms; }
+.a-stagger > *:nth-child(6) { animation-delay: 400ms; }
+.a-stagger > *:nth-child(7) { animation-delay: 480ms; }
+.a-stagger > *:nth-child(8) { animation-delay: 560ms; }
+.a-stagger > *:nth-child(9) { animation-delay: 640ms; }
+.a-stagger > *:nth-child(10) { animation-delay: 720ms; }
+}
+
 @media (max-width: 768px) {
     .hero-visual-card {
         width: 100%;
@@ -2528,7 +2596,13 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 200ms ease;
+    transition: background 200ms ease, opacity 300ms ease;
+    opacity: 0;
+}
+
+.lightbox-overlay.active .lightbox-close {
+    opacity: 1;
+    transition-delay: 200ms;
 }
 
 .lightbox-close:hover {
@@ -3422,11 +3496,24 @@ main {
 .faq-list { max-width: 100%; }
 .faq-item { border-bottom: 1px solid #e2e8f0; }
 .faq-question { width: 100%; text-align: left; padding: 16px 20px; background: none; border: none; font-size: 1rem; font-weight: 600; color: #333; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-family: inherit; }
-.faq-question::after { content: '+'; font-size: 1.3rem; color: #2563eb; transition: transform 0.2s; }
+.faq-question::after { content: '+'; font-size: 1.3rem; color: #2563eb; transition: transform 0.3s ease; }
 .faq-question[aria-expanded="true"]::after { content: '\2212'; transform: rotate(180deg); }
 .faq-question:hover { background: #f8fafc; }
-.faq-answer { padding: 0 20px 16px; color: #666; line-height: 1.7; font-size: 0.95rem; }
-.faq-answer[hidden] { display: none; }
+.faq-answer {
+    padding: 0 20px;
+    color: #666;
+    line-height: 1.7;
+    font-size: 0.95rem;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 350ms ease, opacity 300ms ease, padding 300ms ease;
+}
+.faq-answer.is-open {
+    max-height: 500px;
+    opacity: 1;
+    padding: 0 20px 16px;
+}
 
 /* ─── HOMEPAGE FULL-WIDTH SECTIONS ──────────────────────────────────────── */
 .home .section-shell {

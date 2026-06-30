@@ -196,7 +196,7 @@
                     <h3>Our Commitment</h3>
                     <ul>
                         <li>Direct supplier pricing – no middleman markup</li>
-                        <li>Physical showroom in Sirsa – inspect before you buy</li>
+                        <li>Physical shop in Sirsa – inspect before you buy</li>
                         <li>33+ years of industry experience</li>
                         <li>GST billing for business purchases</li>
                         <li id="deliveryCommitment">Delivery available to surrounding areas</li>
@@ -205,7 +205,7 @@
                 <div class="city-prod-card">
                     <h3>Service Promise</h3>
                     <ul>
-                        <li>Same-day pickup from Sirsa showroom</li>
+                        <li>Same-day pickup from Sirsa shop</li>
                         <li>After-sales support and guidance</li>
                         <li>Quality-assured products</li>
                         <li>Competitive pricing for bulk orders</li>
@@ -227,10 +227,10 @@
     <footer class="site-footer">
         <div class="footer-shell">
             <section class="footer-block">
-                <a class="footer-brand" href="/" aria-label="RS Machinery - Heavy Machinery Supplier Sirsa">
+                <a id="footerBrand" class="footer-brand" href="/" aria-label="RS Machinery - Heavy Machinery Supplier Sirsa">
                     <img class="footer-logo" src="/assets/logo/icon/main_non_bg_logo.png" alt="RS Machinery - Heavy Machinery & Lifting Equipment Sirsa">
                 </a>
-                <p><strong>Trusted Industrial Machinery Partner in Haryana</strong>. Providing quality agricultural, industrial, and construction machinery with direct support, transparent pricing, and reliable after-sales service. <a href="tel:+918708795253">Call +91-8708795253</a>.</p>
+                <p id="footerDesc"><strong>Trusted Industrial Machinery Partner in Haryana</strong>. Providing quality agricultural, industrial, and construction machinery with direct support, transparent pricing, and reliable after-sales service. <a href="tel:+918708795253">Call +91-8708795253</a>.</p>
             </section>
             <section class="footer-block">
                 <h3>Quick Links</h3>
@@ -322,10 +322,10 @@
 
             var faqs = [
                 { q: 'What is the price of ' + p + ' in ' + c + '?', a: 'The price of ' + p.toLowerCase() + ' in ' + c + ' ranges from ' + product.price_range.text + '. The exact price depends on capacity, specifications, and quantity. For the latest pricing available in ' + c + ', call RS Machinery at ' + phone + '. We offer direct supplier rates with no middleman markup.' },
-                { q: 'Where can I buy ' + p + ' in ' + c + '?', a: 'RS Machinery is your trusted supplier of ' + p.toLowerCase() + ' serving ' + c + ', ' + state + '. While our physical showroom is in Sirsa (' + d + ' km from ' + c + '), we deliver ' + p.toLowerCase() + ' directly to ' + c + '. Call ' + phone + ' to place your order or visit our Sirsa showroom to inspect products before purchase.' },
+                { q: 'Where can I buy ' + p + ' in ' + c + '?', a: 'RS Machinery is your trusted supplier of ' + p.toLowerCase() + ' serving ' + c + ', ' + state + '. While our physical shop is in Sirsa (' + d + ' km from ' + c + '), we deliver ' + p.toLowerCase() + ' directly to ' + c + '. Call ' + phone + ' to place your order or visit our Sirsa shop to inspect products before purchase.' },
                 { q: 'Do you deliver ' + p + ' to ' + c + '?', a: 'Yes, RS Machinery delivers ' + p.toLowerCase() + ' to ' + c + ' and across ' + state + '. Delivery time is typically ' + deliveryDays + ' for ' + c + '. Contact us at ' + phone + ' for delivery charges and timelines specific to your location in ' + c + '.' },
                 { q: 'What capacity ' + p + ' is suitable for my business in ' + c + '?', a: 'The right capacity depends on your specific lifting needs. For businesses in ' + c + ', a ' + product.capacity + ' ' + p.toLowerCase() + ' is typically recommended. Our team can advise you based on your application. Call ' + phone + ' for a free consultation.' },
-                { q: 'Is RS Machinery a verified supplier of ' + p + ' in ' + c + '?', a: 'Yes, RS Machinery is a verified and registered business with 33+ years of experience. We are listed on Google Business Profile (4.2\u2605, 83+ reviews), IndiaMART, and Justdial. We provide GST billing and have a physical showroom in Sirsa, Haryana. Customers from ' + c + ' regularly purchase from us.' },
+                { q: 'Is RS Machinery a verified supplier of ' + p + ' in ' + c + '?', a: 'Yes, RS Machinery is a verified and registered business with 33+ years of experience. We are listed on Google Business Profile (4.2\u2605, 83+ reviews), IndiaMART, and Justdial. We provide GST billing and have a physical shop in Sirsa, Haryana. Customers from ' + c + ' regularly purchase from us.' },
                 { q: 'Can I get a quote for ' + p + ' delivered to ' + c + '?', a: 'Absolutely. Call +918708795253 or message us on WhatsApp for a customized quote for ' + p.toLowerCase() + ' delivery to ' + c + '. We provide pricing for all variants including ' + product.price_variants.map(function (v) { return v.name; }).join(', ') + '. Bulk order discounts are available.' },
                 { q: 'What industries use ' + p + ' in ' + c + '?', a: 'In ' + c + ', ' + p.toLowerCase() + ' is used by ' + city.industries.slice(0, 3).join(', ') + ', and other industrial sectors for material handling and lifting operations. RS Machinery supplies ' + p.toLowerCase() + ' to factories, construction sites, workshops, and warehouses across ' + c + ' and ' + state + '.' }
             ];
@@ -443,7 +443,7 @@
                 'We serve ' + city.industries.join(', ') + ', and other industrial sectors with quality ' + pLower + ' solutions. ' +
                 'Our ' + pLower + ' range includes ' + product.price_variants.map(function (v) { return v.name; }).join(', ') + ', ' +
                 'all built for reliable performance in demanding applications. ' +
-                (isHome ? 'Visit our showroom in Sirsa to see our products in person.' : 'We deliver to ' + c + ' directly from our Sirsa warehouse.');
+                (isHome ? 'Visit our shop in Sirsa to see our products in person.' : 'We deliver to ' + c + ' directly from our Sirsa warehouse.');
 
             var block2 = c + ' has a growing industrial base with strengths in ' + city.industries.join(', ') + '. ' +
                 'Businesses in ' + c + ' rely on RS Machinery for quality ' + pLower + ' that keeps their operations running. ' +
@@ -454,7 +454,7 @@
             var block3 = 'RS Machinery provides complete support for ' + pLower + ' buyers ' + locationPhrase + '. ' +
                 'From product selection guidance to after-sales service, our team ensures you get the right equipment ' +
                 'for your needs. We offer competitive pricing for bulk orders, GST billing for business purchases, ' +
-                'and prompt delivery to ' + c + '. With 33+ years of industry experience and a physical showroom in Sirsa, ' +
+                'and prompt delivery to ' + c + '. With 33+ years of industry experience and a physical shop in Sirsa, ' +
                 'RS Machinery is the preferred choice for ' + pLower + ' buyers across North India.' +
                 (isHome ? '' : ' Contact us today for ' + pLower + ' price in ' + c + '.');
 
@@ -538,6 +538,52 @@
 
             loadingEl.style.display = 'none';
             contentEl.style.display = 'block';
+
+            /* ─── Trigger staggered animations ─── */
+            requestAnimationFrame(function () {
+                var hero = contentEl.querySelector('.city-prod-hero');
+                var content = contentEl.querySelector('.city-prod-content');
+                var faqSection = contentEl.querySelector('.city-faq');
+
+                /* Hero stagger */
+                if (hero) {
+                    var heroChildren = hero.querySelectorAll('.price-badge, h1, p, .city-prod-header-info, .cta-buttons');
+                    heroChildren.forEach(function (el, i) {
+                        el.classList.add('a-fade-up');
+                        el.style.animationDelay = (i * 100) + 'ms';
+                    });
+                }
+
+                /* Content sections stagger */
+                if (content) {
+                    var contentSections = content.querySelectorAll('h2, p, .city-prod-grid, .price-table, .city-prod-cta');
+                    contentSections.forEach(function (el, i) {
+                        el.classList.add('a-fade-up');
+                        el.style.animationDelay = (i * 100) + 'ms';
+                    });
+
+                    /* Cards inside grids stagger */
+                    content.querySelectorAll('.city-prod-grid .city-prod-card').forEach(function (card, i) {
+                        card.classList.add('a-fade-up');
+                        card.style.animationDelay = (i * 100) + 'ms';
+                    });
+
+                    /* Price table rows stagger */
+                    content.querySelectorAll('.price-table tbody tr').forEach(function (row, i) {
+                        row.classList.add('a-fade-up');
+                        row.style.animationDelay = (i * 60) + 'ms';
+                    });
+                }
+
+                /* FAQ stagger */
+                if (faqSection) {
+                    var faqItems = faqSection.querySelectorAll('.city-faq-item');
+                    faqItems.forEach(function (item, i) {
+                        item.classList.add('a-fade-up');
+                        item.style.animationDelay = (i * 80) + 'ms';
+                    });
+                }
+            });
         }
 
         function showError() {

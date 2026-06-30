@@ -51,7 +51,7 @@ function generateFAQ(product, city, distance) {
     },
     {
       q: `Where can I buy ${p} in ${c}?`,
-      a: `RS Machinery is your trusted supplier of ${p.toLowerCase()} serving ${c}, ${state}. While our physical showroom is in Sirsa (${d} km from ${c}), we deliver ${p.toLowerCase()} directly to ${c}. Call ${phone} to place your order or visit our Sirsa showroom to inspect products before purchase.`
+      a: `RS Machinery is your trusted supplier of ${p.toLowerCase()} serving ${c}, ${state}. While our physical shop is in Sirsa (${d} km from ${c}), we deliver ${p.toLowerCase()} directly to ${c}. Call ${phone} to place your order or visit our Sirsa shop to inspect products before purchase.`
     },
     {
       q: `Do you deliver ${p} to ${c}?`,
@@ -63,7 +63,7 @@ function generateFAQ(product, city, distance) {
     },
     {
       q: `Is RS Machinery a verified supplier of ${p} in ${c}?`,
-      a: `Yes, RS Machinery is a verified and registered business with 33+ years of experience. We are listed on Google Business Profile (4.2★, 83+ reviews), IndiaMART, and Justdial. We provide GST billing and have a physical showroom in Sirsa, Haryana. Customers from ${c} regularly purchase from us.`
+      a: `Yes, RS Machinery is a verified and registered business with 33+ years of experience. We are listed on Google Business Profile (4.2★, 83+ reviews), IndiaMART, and Justdial. We provide GST billing and have a physical shop in Sirsa, Haryana. Customers from ${c} regularly purchase from us.`
     },
     {
       q: `Can I get a quote for ${p} delivered to ${c}?`,
@@ -195,7 +195,7 @@ function generateContent(product, city) {
     `We serve ${city.industries.join(', ')}, and other industrial sectors with quality ${p_lower} solutions. ` +
     `Our ${p_lower} range includes ${product.price_variants.map(v => v.name).join(', ')}, ` +
     `all built for reliable performance in demanding applications. ` +
-    `${isHome ? 'Visit our showroom in Sirsa to see our products in person.' : `We deliver to ${c} directly from our Sirsa warehouse.`}`;
+    `${isHome ? 'Visit our shop in Sirsa to see our products in person.' : `We deliver to ${c} directly from our Sirsa warehouse.`}`;
 
   const industriesDetail = city.industries.join(', ');
   const block2 = `${c} has a growing industrial base with strengths in ${industriesDetail}. ` +
@@ -207,7 +207,7 @@ function generateContent(product, city) {
   const block3 = `RS Machinery provides complete support for ${p_lower} buyers ${locationPhrase}. ` +
     `From product selection guidance to after-sales service, our team ensures you get the right equipment ` +
     `for your needs. We offer competitive pricing for bulk orders, GST billing for business purchases, ` +
-    `and prompt delivery to ${c}. With 33+ years of industry experience and a physical showroom in Sirsa, ` +
+    `and prompt delivery to ${c}. With 33+ years of industry experience and a physical shop in Sirsa, ` +
     `RS Machinery is the preferred choice for ${p_lower} buyers across North India.` +
     `${isHome ? '' : ` Contact us today for ${p_lower} price in ${c}.`}`;
 

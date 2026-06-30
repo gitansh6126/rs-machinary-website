@@ -990,10 +990,16 @@
     document.addEventListener('click', function (e) {
       var btn = e.target.closest('.faq-question');
       if (!btn) return;
-      var expanded = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', !expanded);
+      var isOpen = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', !isOpen);
       var answer = btn.nextElementSibling;
-      if (answer) answer.hidden = expanded;
+      if (answer) {
+        if (isOpen) {
+          answer.classList.remove('is-open');
+        } else {
+          answer.classList.add('is-open');
+        }
+      }
     });
   }
 

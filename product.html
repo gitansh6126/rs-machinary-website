@@ -6,15 +6,14 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <title>All Products — RS Machinery | Monkey Cranes, Electric Hoists, Lifting Equipment</title>
-  <meta name="description" content="Browse monkey cranes, electric hoists, chain pulley blocks & steel wire ropes. Filter by application, capacity, industry. Direct pricing pan-India. Call +91-8708795253.">
-  <link rel="canonical" href="https://rsmachinary.in/products.html">
-  <meta property="og:title" content="All Products — RS Machinery | Lifting Equipment Supplier Haryana">
-  <meta property="og:description" content="Browse monkey cranes, electric hoists, chain pulley blocks & steel wire ropes from RS Machinery Sirsa.">
-  <meta property="og:url" content="https://rsmachinary.in/products.html">
+  <title id="redesignProductTitle">Product — RS Machinery | Lifting Equipment Supplier</title>
+  <meta name="description" content="Industrial lifting equipment from RS Machinery Sirsa Haryana. Monkey cranes, electric hoists, chain pulley blocks & steel wire ropes. Call +91-8708795253.">
+  <link rel="canonical" href="https://rsmachinary.in/product.html">
+  <meta property="og:title" content="Product — RS Machinery | Lifting Equipment">
+  <meta property="og:description" content="Browse our range of industrial lifting equipment.">
+  <meta property="og:url" content="https://rsmachinary.in/product.html">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://rsmachinary.in/assets/logo/icon/main_non_bg_logo.png">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"RS Machinery Products","description":"Monkey cranes, electric hoists, chain pulley blocks, steel wire ropes","url":"https://rsmachinary.in/products.html","numberOfItems":50}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
@@ -31,7 +30,7 @@
       </a>
       <nav class="redesign-header-nav" aria-label="Primary">
         <a href="/">Home</a>
-        <a href="products.html" class="active">Products</a>
+        <a href="products.html">Products</a>
         <a href="/#about">About</a>
         <a href="/#contact">Contact</a>
       </nav>
@@ -87,83 +86,31 @@
     </div>
   </nav>
 
-  <!-- ═══ LISTING HEADER ═══ -->
-  <section class="redesign-section" style="padding-bottom:0;">
-    <div class="redesign-shell">
-      <div class="redesign-section-header" style="margin-bottom:1.5rem;">
-        <span class="redesign-section-tag">RS Machinery — Sirsa, Haryana</span>
-        <h1 class="redesign-section-title">All Products</h1>
-        <p class="redesign-section-subtitle" id="redesignListingCount">Browse our complete range of lifting equipment.</p>
-      </div>
-
-      <!-- ═══ ADVANCED FILTERS (Prompt 3) ═══ -->
-      <div class="redesign-filters">
-        <div class="redesign-filter-group">
-          <span class="redesign-filter-label">Category</span>
-          <select class="redesign-filter-select" data-redesign-filter="category" id="redesignFilterCategory">
-            <option value="">All Categories</option>
-            <option value="monkey-crane">Monkey Crane</option>
-            <option value="electric-hoist">Electric Hoist</option>
-            <option value="chain-pulley-block">Chain Pulley Block</option>
-            <option value="steel-wire-rope">Steel Wire Rope</option>
-          </select>
-        </div>
-        <div class="redesign-filter-group">
-          <span class="redesign-filter-label">Sort</span>
-          <select class="redesign-filter-select" id="redesignSortBy">
-            <option value="">Default</option>
-            <option value="name">Name A-Z</option>
-          </select>
-        </div>
-        <div class="redesign-filter-search">
-          <svg class="redesign-filter-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <input type="text" id="redesignListingSearch" placeholder="Search products..." aria-label="Search products">
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ PRODUCTS GRID ═══ -->
-  <section class="redesign-section">
-    <div class="redesign-shell">
-      <div id="redesignListingLoading" style="text-align:center;padding:3rem 1rem;color:#6b7d98;">Loading products...</div>
-      <div id="redesignListingEmpty" style="display:none;text-align:center;padding:3rem 1rem;"></div>
-      <div class="redesign-products-grid" id="redesignProductsGrid"></div>
-      <div style="text-align:center;margin-top:2rem;">
-        <button class="redesign-btn redesign-btn-outline redesign-btn-lg" id="redesignLoadMore" style="display:none;">Load More Products</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ COMPARE BAR (Prompt 3) ═══ -->
-  <div class="redesign-compare-bar" id="redesignCompareBar">
-    <div class="redesign-compare-items" id="redesignCompareList"></div>
-    <span class="redesign-compare-count" id="redesignCompareCount">0 products selected</span>
-    <a class="redesign-btn redesign-btn-primary redesign-btn-sm" id="redesignCompareBtn" href="#" style="display:none;" onclick="alert('Compare feature: select 2+ products to compare.');return false;">Compare Selected</a>
-  </div>
+  <!-- ═══ PRODUCT DETAIL CONTAINER (rendered by JS) ═══ -->
+  <div id="redesignProductDetail"></div>
 
   <!-- ═══ INQUIRY SECTION ═══ -->
   <section class="redesign-section" id="redesignInquirySection">
     <div class="redesign-shell">
       <div class="redesign-section-header">
         <span class="redesign-section-tag">Get a Quote</span>
-        <h2 class="redesign-section-title">Need Help Choosing?</h2>
-        <p class="redesign-section-subtitle">Tell us what you need and we'll recommend the right product within 2 hours.</p>
+        <h2 class="redesign-section-title">Interested in This Product?</h2>
+        <p class="redesign-section-subtitle">Fill out the form and we'll get back to you within 2 hours with pricing & availability.</p>
       </div>
       <div class="redesign-form">
         <div class="redesign-form-card">
           <form id="redesignInquiryForm" novalidate>
             <div class="redesign-form-group">
-              <label class="redesign-form-label" for="inqName2">Your Name *</label>
-              <input class="redesign-form-input" type="text" id="inqName2" name="name" placeholder="e.g. Rahul Sharma" required autocomplete="name">
+              <label class="redesign-form-label" for="inqName">Your Name *</label>
+              <input class="redesign-form-input" type="text" id="inqName" name="name" placeholder="e.g. Rahul Sharma" required autocomplete="name">
             </div>
             <div class="redesign-form-group">
-              <label class="redesign-form-label" for="inqPhone2">Phone Number *</label>
-              <input class="redesign-form-input" type="tel" id="inqPhone2" name="phone" placeholder="e.g. 98765 43210" required autocomplete="tel">
+              <label class="redesign-form-label" for="inqPhone">Phone Number *</label>
+              <input class="redesign-form-input" type="tel" id="inqPhone" name="phone" placeholder="e.g. 98765 43210" required autocomplete="tel">
             </div>
             <div class="redesign-form-group">
-              <label class="redesign-form-label" for="inqProduct2">Product Interested In *</label>
-              <select class="redesign-form-select" id="inqProduct2" name="product" required>
+              <label class="redesign-form-label" for="inqProduct">Product Interested In *</label>
+              <select class="redesign-form-select" id="inqProduct" name="product" required>
                 <option value="">Select a product...</option>
                 <option value="Monkey Crane">Monkey Crane</option>
                 <option value="Electric Hoist">Electric Hoist</option>
@@ -173,8 +120,12 @@
               </select>
             </div>
             <div class="redesign-form-group">
-              <label class="redesign-form-label" for="inqMessage2">Requirements</label>
-              <textarea class="redesign-form-textarea" id="inqMessage2" name="message" placeholder="Capacity, quantity, delivery city, preferred timeline..."></textarea>
+              <label class="redesign-form-label" for="inqCity">City</label>
+              <input class="redesign-form-input" type="text" id="inqCity" name="city" placeholder="e.g. Sirsa, Hisar, Delhi" autocomplete="address-level2">
+            </div>
+            <div class="redesign-form-group">
+              <label class="redesign-form-label" for="inqMessage">Requirements / Message</label>
+              <textarea class="redesign-form-textarea" id="inqMessage" name="message" placeholder="Capacity, quantity, delivery timeline, any specific requirements..."></textarea>
             </div>
             <button type="submit" class="redesign-btn redesign-btn-primary redesign-btn-lg redesign-btn-block">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
@@ -182,7 +133,7 @@
             </button>
             <div class="redesign-form-trust">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4-8-10V5l8-3 8 3v7c0 6-8 10-8 10z"/></svg>
-              Your data is secure. Never shared.
+              <span>Your data is secure. Never shared with third parties.</span>
             </div>
           </form>
         </div>

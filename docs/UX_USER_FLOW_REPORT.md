@@ -11,7 +11,7 @@
 |---------|------|-------------|
 | **Construction Contractor** (Haryana/Punjab/Rajasthan) | Find monkey crane or hoist pricing near their city | Google Search → City+Product landing page |
 | **Factory/Warehouse Manager** | Compare electric hoist specs & request quote | Google Search → Products page or Product detail |
-| **Local Buyer** (Sirsa area) | Visit showroom or call directly | Direct visit, Google Maps, or Homepage |
+| **Local Buyer** (Sirsa area) | Visit shop or call directly | Direct visit, Google Maps, or Homepage |
 | **Bulk Reseller** (Pan India) | Get bulk pricing via inquiry form | Products page → Inquiry form |
 
 ---

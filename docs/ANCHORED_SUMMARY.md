@@ -1,7 +1,7 @@
 # RS Machinery — Anchored Summary
 
 ## Project
-RS Machinery (`rsmachinary.in`) — B2B lifting equipment supplier in Sirsa, Haryana. Owner: Ravi Sihag (+91-8708795253).
+RS Machinery (`rsmachinary.in`) — B2B lifting equipment supplier in Sirsa, Haryana.
 
 ## Tech Stack
 - **Frontend**: Vanilla HTML/CSS/JS (Manrope + Sora fonts), Hostinger
