@@ -518,7 +518,7 @@
 
     RSM_API.getProducts()
       .then(function (products) {
-        redesignAllProducts = Array.isArray(products) ? products : (products && products.data ? products.data : []);
+        redesignAllProducts = Array.isArray(products) ? products : (products && products.data ? (products.data.products || products.data) : []);
         if (loadingEl) loadingEl.style.display = 'none';
         var urlCategory = getUrlParam('category');
         if (urlCategory && categoryFilter) categoryFilter.value = urlCategory;
@@ -769,7 +769,8 @@
     function loadProduct() {
       if (slug) {
         RSM_API.getProduct(slug)
-          .then(function (product) {
+          .then(function (resp) {
+            var product = resp && resp.success && resp.data ? resp.data.product : null;
             if (product) { render(product); return; }
             if (redesignAllProducts.length > 0) {
               var found = redesignAllProducts.find(function (p) {
@@ -777,8 +778,8 @@
               });
               if (found) { render(found); return; }
             }
-            RSM_API.getProducts().then(function (products) {
-              var all = Array.isArray(products) ? products : (products && products.data ? products.data : []);
+            RSM_API.getProducts().then(function (prods) {
+              var all = Array.isArray(prods) ? prods : (prods && prods.data ? prods.data.products || prods.data : []);
               redesignAllProducts = all;
               var found = all.find(function (p) {
                 var pSlug = p.slug || slugify(p.name || p.title);
@@ -793,7 +794,8 @@
           });
       } else if (productId) {
         RSM_API.getProduct(productId)
-          .then(function (product) {
+          .then(function (resp) {
+            var product = resp && resp.success && resp.data ? resp.data.product : null;
             if (product) render(product);
             else render(null);
           })
