@@ -41,69 +41,26 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="styles-redesign.css">
 </head>
 <body>
 
-  <!-- ═══ HEADER ═══ -->
-  <header class="redesign-header" id="redesignHeader">
-    <div class="redesign-header-inner">
-      <a class="redesign-header-logo" href="/" aria-label="RS Machinery home">
-        <img src="assets/logo/icon/main_non_bg_logo.png" alt="RS Machinery">
-      </a>
-      <nav class="redesign-header-nav" aria-label="Primary">
-        <a href="/" class="active">Home</a>
-        <a href="products.html">Products</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <div class="redesign-header-actions">
-        <a href="tel:+918708795253" class="redesign-btn redesign-btn-outline redesign-mobile-hide">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          Call Now
-        </a>
-        <a href="https://wa.me/918708795253" target="_blank" rel="noopener" class="redesign-btn redesign-btn-accent redesign-mobile-hide">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
-          WhatsApp
-        </a>
-        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu" aria-expanded="false">
-          <span class="hamburger-line"></span>
-          <span class="hamburger-line"></span>
-          <span class="hamburger-line"></span>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <!-- Mobile Menu Overlay (shared) -->
-  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
-    <button class="mobile-menu-close" aria-label="Close menu">&times;</button>
-    <nav class="mobile-nav">
-      <a href="/" class="mobile-nav-link">Home</a>
-      <a href="products.html" class="mobile-nav-link">Products</a>
-      <a href="#about" class="mobile-nav-link">About</a>
-      <a href="#contact" class="mobile-nav-link">Contact</a>
-      <a href="https://wa.me/918708795253" target="_blank" rel="noopener" class="mobile-nav-cta">WhatsApp</a>
-    </nav>
-    <div class="mobile-contact">
-      <a href="tel:+918708795253" class="mobile-phone">+91 870 879 5253</a>
-    </div>
-  </div>
-  <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+  <!-- ═══ SHARED HEADER (loaded from js/header.js) ═══ -->
+  <div id="headerPlaceholder"></div>
+  <script src="js/header.js"></script>
 
   <!-- ═══ MOBILE BOTTOM BAR (Prompt 4) ═══ -->
   <nav class="redesign-mobile-bar" id="mobileBottomBar" aria-label="Quick actions">
     <div class="redesign-mobile-bar-inner">
       <a href="tel:+918708795253" class="redesign-mobile-bar-btn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         <span>Call</span>
       </a>
       <a href="https://wa.me/918708795253" target="_blank" rel="noopener" class="redesign-mobile-bar-btn">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
         <span>WhatsApp</span>
       </a>
       <a href="#inquiryForm" class="redesign-mobile-bar-btn redesign-mobile-bar-btn-primary" onclick="document.getElementById('inquiryForm').scrollIntoView({behavior:'smooth'});return false;">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         <span>Get Quote</span>
       </a>
     </div>
@@ -136,7 +93,7 @@
           </div>
           <div class="redesign-hero-slide-visual">
             <div class="redesign-hero-slide-img-wrap">
-              <img src="assets/product img/monkey crane/monkey crane 2--.jpg" alt="Monkey Crane" loading="eager" onerror="this.parentElement.innerHTML='<div class=redesign-hero-slide-placeholder>MC</div>'">
+              <img src="assets/hero-images/mini-crane-slide.webp" alt="Monkey Crane" loading="eager">
             </div>
           </div>
         </div>
@@ -162,7 +119,7 @@
           </div>
           <div class="redesign-hero-slide-visual">
             <div class="redesign-hero-slide-img-wrap">
-              <img src="assets/product img/electric hoist/electric hoist 3.jpg" alt="Electric Hoist" loading="eager" onerror="this.parentElement.innerHTML='<div class=redesign-hero-slide-placeholder>EH</div>'">
+              <img src="assets/hero-images/hoist-slide.webp" alt="Electric Hoist" loading="eager">
             </div>
           </div>
         </div>
@@ -188,7 +145,7 @@
           </div>
           <div class="redesign-hero-slide-visual">
             <div class="redesign-hero-slide-img-wrap">
-              <img src="assets/product img/chain pulley block/chain pulley block 2.jpg" alt="Chain Pulley Block" loading="eager" onerror="this.parentElement.innerHTML='<div class=redesign-hero-slide-placeholder>CP</div>'">
+              <img src="assets/hero-images/chain-pulley-slide.webp" alt="Chain Pulley Block" loading="eager">
             </div>
           </div>
         </div>
@@ -214,7 +171,7 @@
           </div>
           <div class="redesign-hero-slide-visual">
             <div class="redesign-hero-slide-img-wrap">
-              <img src="assets/product img/steel wire rope/steel wire rope 9--.jpg" alt="Steel Wire Rope" loading="eager" onerror="this.parentElement.innerHTML='<div class=redesign-hero-slide-placeholder>SW</div>'">
+              <img src="assets/hero-images/industrial-steel-wire-rope-500x500.webp" alt="Steel Wire Rope" loading="eager">
             </div>
           </div>
         </div>
@@ -243,23 +200,23 @@
   <div class="redesign-trust-strip">
     <div class="redesign-trust-strip-inner">
       <div class="redesign-trust-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
         Verified on Google Business
       </div>
       <div class="redesign-trust-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
         Listed on IndiaMART
       </div>
       <div class="redesign-trust-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
         GST Registered Business
       </div>
       <div class="redesign-trust-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
         Pan India Delivery
       </div>
       <div class="redesign-trust-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
         Physical Showroom in Sirsa
       </div>
     </div>
@@ -274,7 +231,81 @@
         <p class="redesign-section-subtitle">Quality monkey cranes, electric hoists, chain pulley blocks, and steel wire ropes for construction, manufacturing, and material handling.</p>
       </div>
       <div class="redesign-products-grid" id="featuredProductsGrid">
-        <div style="grid-column:1/-1;text-align:center;padding:3rem 1rem;color:#6b7d98;">Loading products...</div>
+        <div class="redesign-card">
+          <div class="redesign-card-image-wrap">
+            <a href="product.html?slug=monkey-crane">
+              <img src="assets/hero-images/mini-crane-slide.webp" alt="Monkey Crane" class="redesign-card-image" loading="lazy">
+            </a>
+            <span class="redesign-card-badge">250 KG to 500 KG</span>
+          </div>
+          <div class="redesign-card-body">
+            <span class="redesign-card-category">Monkey Crane</span>
+            <h3 class="redesign-card-title"><a href="product.html?slug=monkey-crane">Monkey Crane</a></h3>
+            <p class="redesign-card-desc">Compact portable lifting machine for construction sites. Handles cement, bricks, concrete & steel bars up to 500 KG.</p>
+            <div class="redesign-card-price">₹25,000 – ₹85,000</div>
+            <div class="redesign-card-actions">
+              <a href="product.html?slug=monkey-crane" class="redesign-btn redesign-btn-outline redesign-btn-sm" style="flex:1;">View Details</a>
+              <a href="https://wa.me/918708795253?text=Hi%20RS%20Machinery%2C%20I%20want%20to%20inquire%20about%20Monkey%20Crane" target="_blank" rel="noopener" class="redesign-btn redesign-btn-accent redesign-btn-sm" style="flex:1;">WhatsApp</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="redesign-card">
+          <div class="redesign-card-image-wrap">
+            <a href="product.html?slug=electric-hoist">
+              <img src="assets/hero-images/hoist-slide.webp" alt="Electric Hoist" class="redesign-card-image" loading="lazy">
+            </a>
+            <span class="redesign-card-badge">500 KG to 5 Ton</span>
+          </div>
+          <div class="redesign-card-body">
+            <span class="redesign-card-category">Electric Hoist</span>
+            <h3 class="redesign-card-title"><a href="product.html?slug=electric-hoist">Electric Hoist</a></h3>
+            <p class="redesign-card-desc">Motorized lifting device for factories, warehouses & workshops. Smooth, controlled lifting for heavy loads up to 5 Ton.</p>
+            <div class="redesign-card-price">₹15,000 – ₹1,50,000</div>
+            <div class="redesign-card-actions">
+              <a href="product.html?slug=electric-hoist" class="redesign-btn redesign-btn-outline redesign-btn-sm" style="flex:1;">View Details</a>
+              <a href="https://wa.me/918708795253?text=Hi%20RS%20Machinery%2C%20I%20want%20to%20inquire%20about%20Electric%20Hoist" target="_blank" rel="noopener" class="redesign-btn redesign-btn-accent redesign-btn-sm" style="flex:1;">WhatsApp</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="redesign-card">
+          <div class="redesign-card-image-wrap">
+            <a href="product.html?slug=chain-pulley-block">
+              <img src="assets/hero-images/chain-pulley-slide.webp" alt="Chain Pulley Block" class="redesign-card-image" loading="lazy">
+            </a>
+            <span class="redesign-card-badge">1 Ton to 10 Ton</span>
+          </div>
+          <div class="redesign-card-body">
+            <span class="redesign-card-category">Chain Pulley Block</span>
+            <h3 class="redesign-card-title"><a href="product.html?slug=chain-pulley-block">Chain Pulley Block</a></h3>
+            <p class="redesign-card-desc">Manually operated lifting device using a hand chain pulley system. Ideal for workshops & warehouses.</p>
+            <div class="redesign-card-price">₹3,000 – ₹25,000</div>
+            <div class="redesign-card-actions">
+              <a href="product.html?slug=chain-pulley-block" class="redesign-btn redesign-btn-outline redesign-btn-sm" style="flex:1;">View Details</a>
+              <a href="https://wa.me/918708795253?text=Hi%20RS%20Machinery%2C%20I%20want%20to%20inquire%20about%20Chain%20Pulley%20Block" target="_blank" rel="noopener" class="redesign-btn redesign-btn-accent redesign-btn-sm" style="flex:1;">WhatsApp</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="redesign-card">
+          <div class="redesign-card-image-wrap">
+            <a href="product.html?slug=steel-wire-rope">
+              <img src="assets/hero-images/industrial-steel-wire-rope-500x500.webp" alt="Steel Wire Rope" class="redesign-card-image" loading="lazy">
+            </a>
+            <span class="redesign-card-badge">6mm to 24mm+</span>
+          </div>
+          <div class="redesign-card-body">
+            <span class="redesign-card-category">Steel Wire Rope</span>
+            <h3 class="redesign-card-title"><a href="product.html?slug=steel-wire-rope">Steel Wire Rope</a></h3>
+            <p class="redesign-card-desc">High-strength flexible steel cables for cranes, hoists, elevators & construction rigging.</p>
+            <div class="redesign-card-price">₹15 – ₹150 / meter</div>
+            <div class="redesign-card-actions">
+              <a href="product.html?slug=steel-wire-rope" class="redesign-btn redesign-btn-outline redesign-btn-sm" style="flex:1;">View Details</a>
+              <a href="https://wa.me/918708795253?text=Hi%20RS%20Machinery%2C%20I%20want%20to%20inquire%20about%20Steel%20Wire%20Rope" target="_blank" rel="noopener" class="redesign-btn redesign-btn-accent redesign-btn-sm" style="flex:1;">WhatsApp</a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -475,8 +506,7 @@
     <span>Visit Now</span>
   </a>
 
-  <script src="js/api.js"></script>
-  <script src="js/app.js"></script>
-  <script src="js/app-redesign.js"></script>
+  <script src="js/products-data.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>

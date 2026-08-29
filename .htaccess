@@ -4,22 +4,14 @@ RewriteEngine On
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
 
-# Canonical domain - redirect www to non-www (choose ONE)
+# Canonical domain - redirect www to non-www
 RewriteCond %{HTTP_HOST} ^www\.rsmachinary\.in [NC]
 RewriteRule ^(.*)$ https://rsmachinary.in/$1 [R=301,L]
 
-# Alternate domains redirect (if you own these)
-# RewriteCond %{HTTP_HOST} ^rsmachinery\.in [NC,OR]
-# RewriteCond %{HTTP_HOST} ^rsmachinerysirsa\.com [NC]
-# RewriteRule ^(.*)$ https://rsmachinary.in/$1 [R=301,L]
-
-# Route /{product}/{city}/ to product-city.html
-RewriteRule ^([a-z0-9-]+)/(sirsa|hisar|bathinda|fatehabad|hanumangarh|ellenabad|muktsar|mohali|panchkula|delhi|jaipur|chandigarh|ganganagar|bhadra|nohar|ratia|tohana|jind|rohtak|mandi|kolkata|mumbai|bangalore|chennai|lucknow|kanpur|patna|raipur|bhubaneswar|indore|bhopal|nagpur|pune|ahmedabad|surat|gurgaon|faridabad|ambala|kurukshetra|karnal|panipat|sonipat|rewari|bhiwani|kaithal)/?$ product-city.html?product=$1&city=$2 [L,QSA]
-
-# Route /products/ to products.html
+# Route /products to products.html
 RewriteRule ^products/?$ products.html [L]
 
-# SPA-style: serve actual files, fallback to index.html for unmatched
+# serve actual files, fallback to index.html for unmatched
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.html [L]
@@ -62,25 +54,9 @@ RewriteRule ^(.*)$ index.html [L]
   </FilesMatch>
 </IfModule>
 
-# ─── CORS HEADERS ──────────────────────────────────────────────────────────
-<IfModule mod_headers.c>
-  Header always set Access-Control-Allow-Origin "*"
-  Header always set Access-Control-Allow-Methods "POST, GET, OPTIONS"
-  Header always set Access-Control-Allow-Headers "Content-Type"
-</IfModule>
-
 # ─── SECURITY HEADERS ─────────────────────────────────────────────────────
 <IfModule mod_headers.c>
   Header always set X-Content-Type-Options "nosniff"
   Header always set X-Frame-Options "SAMEORIGIN"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
 </IfModule>
-
-php_value upload_max_filesize 10M
-php_value post_max_size 10M
-php_value max_execution_time 60
-
-<FilesMatch "\.(php|phar)$">
-    Order Deny,Allow
-    Deny from all
-</FilesMatch>
