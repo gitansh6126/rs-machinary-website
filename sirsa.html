@@ -32,6 +32,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles-redesign.css">
     <style>
       .city-hero { text-align: center; padding: 60px 20px; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); }
       .city-hero h1 { font-size: 2.2rem; margin-bottom: 15px; color: #1a1a2e; }
@@ -56,50 +57,9 @@
     </style>
 </head>
 <body>
-  <header class="redesign-header" id="redesignHeader">
-    <div class="redesign-header-inner">
-      <a class="redesign-header-logo" href="/" aria-label="RS Machinery home">
-        <img src="assets/logo/icon/main_non_bg_logo.png" alt="RS Machinery">
-      </a>
-      <nav class="redesign-header-nav" aria-label="Primary">
-        <a href="/">Home</a>
-        <a href="products.html">Products</a>
-        <a href="/#about">About</a>
-        <a href="/#contact">Contact</a>
-      </nav>
-      <div class="redesign-header-actions">
-        <a href="tel:+918708795253" class="redesign-btn redesign-btn-outline redesign-mobile-hide">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          Call Now
-        </a>
-        <a href="https://wa.me/918708795253" target="_blank" rel="noopener" class="redesign-btn redesign-btn-accent redesign-mobile-hide">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
-          WhatsApp
-        </a>
-        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu" aria-expanded="false">
-          <span class="hamburger-line"></span>
-          <span class="hamburger-line"></span>
-          <span class="hamburger-line"></span>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <!-- Mobile Menu Overlay -->
-  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
-    <button class="mobile-menu-close" aria-label="Close menu">&times;</button>
-    <nav class="mobile-nav">
-      <a href="/" class="mobile-nav-link">Home</a>
-      <a href="products.html" class="mobile-nav-link">Products</a>
-      <a href="/#about" class="mobile-nav-link">About</a>
-      <a href="/#contact" class="mobile-nav-link">Contact</a>
-      <a href="https://wa.me/918708795253" target="_blank" rel="noopener" class="mobile-nav-cta">WhatsApp</a>
-    </nav>
-    <div class="mobile-contact">
-      <a href="tel:+918708795253" class="mobile-phone">+91 870 879 5253</a>
-    </div>
-  </div>
-  <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+  <!-- ═══ SHARED HEADER (loaded from base/header.html via js/header.js) ═══ -->
+  <div id="headerPlaceholder"></div>
+  <script src="js/header.js"></script>
 
     <main>
         <section class="city-hero">
@@ -156,29 +116,51 @@
         </section>
     </main>
 
-    <footer class="site-footer">
-        <div class="footer-shell">
-            <section class="footer-block">
-                <a class="footer-brand" href="index.html" aria-label="RS Machinery - Heavy Machinery Supplier Sirsa">
-                    <img class="footer-logo" src="assets/logo/icon/main_non_bg_logo.png" alt="RS Machinery - Heavy Machinery & Lifting Equipment Sirsa">
-                </a>
-                <p><strong>Trusted Industrial Machinery Partner in Haryana</strong>. Providing quality agricultural, industrial, and construction machinery with direct support, transparent pricing, and reliable after-sales service. <a href="tel:+918708795253">Call +91-8708795253</a>.</p>
-            </section>
-            <section class="footer-block">
-                <h3>Quick Links</h3>
-                <nav class="footer-links">
-                    <a href="index.html">Home</a>
-                    <a href="products.html">Products</a>
-                    <a href="index.html#contact">Contact</a>
+    <footer class="redesign-footer">
+        <div class="redesign-footer-grid">
+            <div>
+                <img src="assets/logo/icon/main_non_bg_logo.png" alt="RS Machinery" class="redesign-footer-logo">
+                <p class="redesign-footer-desc">Trusted heavy lifting equipment supplier in Sirsa, Haryana. Monkey cranes, electric hoists, chain pulley blocks, and steel wire ropes. Serving North India since 1993.</p>
+                <div class="redesign-footer-socials">
+                    <a href="https://www.google.com/maps?q=R+S+MACHINERY+STORE+Sirsa" target="_blank" rel="noopener" class="redesign-footer-social-link" aria-label="Google Maps">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                    </a>
+                    <a href="https://wa.me/918708795253" target="_blank" rel="noopener" class="redesign-footer-social-link" aria-label="WhatsApp">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div>
+                <h4>Products</h4>
+                <nav class="redesign-footer-links">
+                    <a href="products.html?category=monkey-crane">Monkey Crane</a>
+                    <a href="products.html?category=electric-hoist">Electric Hoist</a>
+                    <a href="products.html?category=chain-pulley-block">Chain Pulley Block</a>
+                    <a href="products.html?category=steel-wire-rope">Steel Wire Rope</a>
+                </nav>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <nav class="redesign-footer-links">
+                    <a href="/">Home</a>
+                    <a href="products.html">All Products</a>
+                    <a href="/#about">About Us</a>
+                    <a href="/#contact">Contact</a>
                     <a href="sirsa.html">Sirsa</a>
                 </nav>
-            </section>
-            <section class="footer-block">
-                <h3>Call for Price</h3>
-                <a href="tel:+918708795253">+91 870 879 5253</a>
-                <a href="https://wa.me/918708795253">WhatsApp Quote</a>
-            </section>
-            <p class="footer-bottom">&copy; 2026 RS Machinery - Heavy Machinery & Lifting Equipment Dealer in Sirsa, Haryana. All rights reserved.</p>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <nav class="redesign-footer-links">
+                    <a href="tel:+918708795253">+91 870 879 5253</a>
+                    <a href="https://wa.me/918708795253" target="_blank" rel="noopener">WhatsApp</a>
+                    <a href="https://maps.google.com/?q=R+S+MACHINERY+STORE+Sirsa+Haryana" target="_blank" rel="noopener">Visit Showroom</a>
+                    <span style="font-size:0.82rem;color:rgba(255,255,255,0.5);">Begu Road, Wali Gali, Sirsa, Haryana 125055</span>
+                </nav>
+            </div>
+        </div>
+        <div class="redesign-footer-bottom">
+            &copy; 2026 RS Machinery — Heavy Machinery &amp; Lifting Equipment Dealer in Sirsa, Haryana. All rights reserved.
         </div>
     </footer>
 

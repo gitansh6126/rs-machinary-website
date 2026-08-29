@@ -20,13 +20,18 @@
   }
 
   // ── 2. MOBILE MENU & HEADER INTERACTION ──────────────────────────────────
+  // Bound by main.js (single owner). Re-binds safely if the shared header
+  // loads after DOM ready (see "rs:header-loaded" below).
+  var menuBound = false;
+
   function initNavigation() {
     var menuBtn = document.getElementById("mobileMenuBtn");
     var mobileMenu = document.getElementById("mobileMenu");
     var overlay = document.getElementById("mobileMenuOverlay");
     var closeBtn = document.querySelector(".mobile-menu-close");
 
-    if (!menuBtn || !mobileMenu) return;
+    if (!menuBtn || !mobileMenu || menuBound) return;
+    menuBound = true;
 
     function openMenu() {
       mobileMenu.classList.add("active");
@@ -299,6 +304,7 @@
 
     var currentIndex = 0;
     var autoPlayTimer = null;
+    var heroVisible = true;
     var touchStartX = 0;
     var touchEndX = 0;
 
@@ -335,7 +341,8 @@
 
     function startAutoPlay() {
       stopAutoPlay();
-      autoPlayTimer = setInterval(goToNext, 6000);
+      if (!heroVisible) return;
+      autoPlayTimer = setInterval(goToNext, 3000);
     }
 
     function stopAutoPlay() {
@@ -382,6 +389,21 @@
       }
     }
 
+    // Autoplay advances every 3s, and only while the hero is actually on screen.
+    var heroSection = document.getElementById("hero");
+    if (heroSection && "IntersectionObserver" in window) {
+      var heroObserver = new IntersectionObserver(function (entries) {
+        var entry = entries[0];
+        heroVisible = entry.isIntersecting;
+        if (heroVisible) {
+          startAutoPlay();
+        } else {
+          stopAutoPlay();
+        }
+      }, { threshold: 0.2 });
+      heroObserver.observe(heroSection);
+    }
+
     updateSlider();
     startAutoPlay();
   }
@@ -416,6 +438,9 @@
   }
 
   // ── 7. INITIALIZE ALL COMPONENTS ON DOM LOAD ──────────────────────────────
+  // Shared header may inject after DOM ready (async fetch of base/header.html).
+  document.addEventListener("rs:header-loaded", initNavigation);
+
   document.addEventListener("DOMContentLoaded", function () {
     initNavigation();
     initHeroSlider();
