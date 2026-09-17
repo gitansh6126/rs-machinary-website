@@ -1,0 +1,38 @@
+RewriteEngine Off
+
+DirectoryIndex index.html index.php
+
+<IfModule mod_headers.c>
+  Header always set Access-Control-Allow-Origin "*"
+  Header always set Access-Control-Allow-Methods "GET, POST, OPTIONS"
+  Header always set Access-Control-Allow-Headers "Content-Type"
+
+  Header always set Cache-Control "public, max-age=31536000, immutable"
+  Header always set Expires "Sun, 21 Jun 2027 00:00:00 GMT"
+  Header unset Pragma
+  Header unset ETag
+</IfModule>
+
+Options -Indexes
+
+<FilesMatch "\.php$">
+  Require all granted
+</FilesMatch>
+
+<FilesMatch "\.(pl|py|jsp|asp|aspx|cgi|shtml|sh|exe|bat|cmd)$">
+  Require all denied
+</FilesMatch>
+
+<IfModule mod_mime.c>
+  AddType image/webp .webp
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE image/svg+xml image/webp
+</IfModule>
+
+<FilesMatch "^\.">
+  Require all denied
+</FilesMatch>
+
+LimitRequestBody 10485760
