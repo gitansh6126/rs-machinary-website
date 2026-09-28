@@ -2311,12 +2311,13 @@ textarea:focus-visible,
   border: 1px solid rgba(22, 64, 179, 0.15);
   border-radius: 999px;
   overflow: hidden;
+  padding: 0.15rem;
 }
 
 .redesign-lang-btn {
   display: inline-block;
-  padding: 0.28rem 0.65rem;
-  font-size: 0.75rem;
+  padding: 0.5rem 1.1rem;
+  font-size: 0.88rem;
   font-weight: 700;
   line-height: 1;
   color: var(--redesign-muted);
@@ -2344,11 +2345,12 @@ textarea:focus-visible,
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 999px;
   overflow: hidden;
+  padding: 0.15rem;
 }
 
 .mobile-lang-toggle .redesign-lang-btn {
-  padding: 0.45rem 1rem;
-  font-size: 0.82rem;
+  padding: 0.65rem 1.4rem;
+  font-size: 0.95rem;
   color: rgba(255, 255, 255, 0.55);
 }
 
