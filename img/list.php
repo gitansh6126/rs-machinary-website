@@ -29,7 +29,7 @@ if (is_dir($scanDir)) {
         $filename = $file->getFilename();
         $images[] = [
             'filename'  => $filename,
-            'url'       => 'https://img.darkgrey-fish-357096.hostingersite.com/uploads/' . rawurlencode($filename),
+            'url'       => 'https://img.rsmachinary.in/uploads/' . rawurlencode($filename),
             'size'      => $file->getSize(),
             'size_formatted' => formatBytes($file->getSize()),
             'modified'  => $file->getMTime(),

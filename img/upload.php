@@ -126,7 +126,7 @@ if (!$converted) {
     exit;
 }
 
-$imageUrl = 'https://img.darkgrey-fish-357096.hostingersite.com/uploads/' . $filename;
+$imageUrl = 'https://img.rsmachinary.in/uploads/' . $filename;
 
 echo json_encode([
     'success' => true,

@@ -66,7 +66,7 @@ if (rename($oldPath, $newPath)) {
     echo json_encode([
         'success'  => true,
         'filename' => $newname,
-        'url'      => 'https://img.darkgrey-fish-357096.hostingersite.com/uploads/' . rawurlencode($newname)
+        'url'      => 'https://img.rsmachinary.in/uploads/' . rawurlencode($newname)
     ]);
 } else {
     http_response_code(500);
