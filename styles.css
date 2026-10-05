@@ -270,20 +270,25 @@ svg:not([width]) {
 .mobile-menu {
   position: fixed;
   top: 0;
-  right: -300px;
+  right: 0;
   width: 280px;
   height: 100vh;
+  height: 100dvh;
   background: #ffffff;
   z-index: 200;
   box-shadow: -10px 0 30px rgba(0,0,0,0.15);
   padding: 2rem 1.5rem;
-  transition: right 0.3s ease;
+  transform: translateX(110%);
+  visibility: hidden;
+  transition: transform 0.3s ease, visibility 0s linear 0.3s;
   display: flex;
   flex-direction: column;
 }
 
 .mobile-menu.active {
-  right: 0;
+  transform: translateX(0);
+  visibility: visible;
+  transition: transform 0.3s ease, visibility 0s linear 0s;
 }
 
 .mobile-menu-close {
@@ -2140,6 +2145,20 @@ svg:not([width]) {
 
 .redesign-variations strong {
   color: var(--redesign-brand);
+}
+
+.redesign-variation-list {
+  list-style: none;
+  padding: 0.9rem 1.25rem;
+  margin: 0;
+  background: #f8fafc;
+  border-radius: 10px;
+}
+
+.redesign-variation-list li {
+  padding: 6px 0;
+  color: #334155;
+  font-size: 0.95rem;
 }
 
 .redesign-feature-list {

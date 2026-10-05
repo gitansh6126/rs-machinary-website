@@ -37,6 +37,7 @@
 
     function openMenu() {
       mobileMenu.classList.add("active");
+      mobileMenu.setAttribute("aria-hidden", "false");
       if (overlay) overlay.classList.add("active");
       menuBtn.setAttribute("aria-expanded", "true");
       document.body.style.overflow = "hidden";
@@ -44,6 +45,7 @@
 
     function closeMenu() {
       mobileMenu.classList.remove("active");
+      mobileMenu.setAttribute("aria-hidden", "true");
       if (overlay) overlay.classList.remove("active");
       menuBtn.setAttribute("aria-expanded", "false");
       document.body.style.overflow = "";
@@ -60,9 +62,16 @@
     if (closeBtn) closeBtn.addEventListener("click", closeMenu);
     if (overlay) overlay.addEventListener("click", closeMenu);
 
-    var mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
-    mobileNavLinks.forEach(function (link) {
-      link.addEventListener("click", closeMenu);
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && mobileMenu.classList.contains("active")) closeMenu();
+    });
+
+    mobileMenu.addEventListener("click", function (e) {
+      var target = e.target;
+      while (target && target !== mobileMenu) {
+        if (target.tagName === "A") { closeMenu(); return; }
+        target = target.parentNode;
+      }
     });
   }
 
@@ -158,7 +167,6 @@
                 <a href="${detailPage}?slug=${p.slug}">${p.name}</a>
               </h3>
               <p class="redesign-card-desc">${p.short_description}</p>
-              <div class="redesign-card-price">${p.price}</div>
               <div class="redesign-card-actions">
                 <a href="${detailPage}?slug=${p.slug}" class="redesign-btn redesign-btn-outline redesign-btn-sm">${isHindiPage ? 'विवरण देखें' : 'View Details'}</a>
                 <a href="${waUrl}" target="_blank" rel="noopener" class="redesign-btn redesign-btn-accent redesign-btn-sm">${isHindiPage ? 'व्हाट्सऐप' : 'WhatsApp'}</a>
@@ -195,17 +203,17 @@
     // UI copy translations for the detail page
     var t = isHindiPage ? {
       spec: "विनिर्देश", details: "विवरण",
-      popular: "लोकप्रिय क्षमता मॉडल और मूल्य रेंज", variant: "मॉडल वेरिएंट", priceRange: "अनुमानित मूल्य रेंज",
+      popular: "लोकप्रिय क्षमता मॉडल",
       faq: "अक्सर पूछे जाने वाले प्रश्न", home: "मुखपृष्ठ", products: "उत्पाद",
-      price: "मूल्य रेंज", capacity: "क्षमता", warranty: "वारंटी",
+      capacity: "क्षमता", warranty: "वारंटी",
       waQuote: "इंस्टेंट व्हाट्सऐप कोटेशन पाएं", call: "कॉल करें +91 8708795253",
       techSpecs: "तकनीकी विनिर्देश", keyFeatures: "मुख्य विशेषताएं और हाइलाइट्स",
       waMsg: "नमस्ते आरएस मशीनरी, मुझे " + product.name + " (" + product.capacity + ") में रुचि है। कृपया तकनीकी विवरण और कोटेशन साझा करें।"
     } : {
       spec: "Specification", details: "Details",
-      popular: "Popular Capacity Models & Price Ranges", variant: "Model Variant", priceRange: "Approx. Price Range",
+      popular: "Popular Capacity Models",
       faq: "Frequently Asked Questions", home: "Home", products: "Products",
-      price: "Price Range", capacity: "Capacity", warranty: "Warranty",
+      capacity: "Capacity", warranty: "Warranty",
       waQuote: "Get Instant WhatsApp Quote", call: "Call +91 8708795253",
       techSpecs: "Technical Specifications", keyFeatures: "Key Features & Highlights",
       waMsg: "Hi RS Machinery, I am interested in " + product.name + " (" + product.capacity + "). Please share technical details & quote."
@@ -232,14 +240,14 @@
       specsHtml += `</tbody></table>`;
     }
 
-    // Build variations table HTML
+    // Build variations list HTML
     var variationsHtml = "";
     if (product.variations && product.variations.length > 0) {
-      variationsHtml += `<div class="redesign-variations"><h4 class="redesign-variations-title">${t.popular}</h4><table class="price-table"><thead><tr><th>${t.variant}</th><th>${t.priceRange}</th></tr></thead><tbody>`;
+      variationsHtml += `<div class="redesign-variations"><h4 class="redesign-variations-title">${t.popular}</h4><ul class="redesign-variation-list">`;
       product.variations.forEach(function (v) {
-        variationsHtml += `<tr><td>${v.name}</td><td><strong>${v.price}</strong></td></tr>`;
+        variationsHtml += `<li>${v.name}</li>`;
       });
-      variationsHtml += `</tbody></table></div>`;
+      variationsHtml += `</ul></div>`;
     }
 
     // Build features list
@@ -284,10 +292,6 @@
               <p class="redesign-pd-desc">${product.description}</p>
 
               <div class="redesign-pd-statsbar">
-                <div>
-                  <span class="redesign-pd-stat-label">${t.price}</span>
-                  <span class="redesign-pd-stat-price">${product.price}</span>
-                </div>
                 <div>
                   <span class="redesign-pd-stat-label">${t.capacity}</span>
                   <span class="redesign-pd-stat-value">${product.capacity}</span>
