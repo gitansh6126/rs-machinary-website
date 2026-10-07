@@ -1,69 +1,41 @@
 {
-  "builtAt": "2026-10-07T07:26:22.620Z",
+  "builtAt": "2026-10-07T07:40:44.112Z",
   "siteUrl": "https://rsmachinary.in",
   "products": [
     {
       "id": 1,
-      "name": "Monkey Crane",
-      "slug": "monkey-crane",
-      "active": true,
-      "featured": true,
-      "hero": true
+      "name": "Monkey Lift",
+      "slug": "monkey-lift",
+      "active": "TRUE",
+      "featured": "TRUE"
     },
     {
       "id": 2,
       "name": "Electric Hoist",
       "slug": "electric-hoist",
-      "active": true,
-      "featured": true,
-      "hero": true
+      "active": "TRUE",
+      "featured": "TRUE"
     },
     {
       "id": 3,
       "name": "Chain Pulley Block",
       "slug": "chain-pulley-block",
-      "active": true,
-      "featured": true,
-      "hero": true
+      "active": "TRUE",
+      "featured": "TRUE"
     },
     {
       "id": 4,
       "name": "Steel Wire Rope",
       "slug": "steel-wire-rope",
-      "active": true,
-      "featured": true,
-      "hero": true
-    },
-    {
-      "id": 5,
-      "name": "Hand Winch",
-      "slug": "hand-winch",
-      "active": true,
-      "featured": true,
-      "hero": true
-    },
-    {
-      "id": 6,
-      "name": "Web Sling",
-      "slug": "web-sling",
-      "active": true,
-      "featured": true,
-      "hero": true
-    },
-    {
-      "id": 7,
-      "name": "Shackle",
-      "slug": "shackle",
-      "active": true,
-      "featured": true,
-      "hero": true
+      "active": "TRUE",
+      "featured": "FALSE"
     }
   ],
   "categories": [
     {
       "id": 1,
-      "name": "Monkey Crane",
-      "slug": "monkey-crane"
+      "name": "Monkey Lift",
+      "slug": "monkey-lift"
     },
     {
       "id": 2,
@@ -79,21 +51,6 @@
       "id": 4,
       "name": "Steel Wire Rope",
       "slug": "steel-wire-rope"
-    },
-    {
-      "id": 5,
-      "name": "Hand Winch",
-      "slug": "hand-winch"
-    },
-    {
-      "id": 6,
-      "name": "Web Sling",
-      "slug": "web-sling"
-    },
-    {
-      "id": 7,
-      "name": "Shackle",
-      "slug": "shackle"
     }
   ]
 }
