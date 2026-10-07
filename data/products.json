@@ -1,14 +1,14 @@
 [
   {
     "id": 1,
-    "name": "Monkey Crane",
-    "slug": "monkey-crane",
+    "name": "Monkey Lift",
+    "slug": "monkey-lift",
     "category_id": "1",
-    "seo_title": "Monkey Crane - Mini Crane for Construction | RS Machinery",
-    "seo_description": "Heavy-duty monkey crane (mini crane/builder hoist) for construction sites. 250 KG to 500 KG capacity. Portable, rugged steel frame. Call +91-8708795253.",
+    "seo_title": "Monkey Lift - Mini Crane for Construction | RS Machinery",
+    "seo_description": "Heavy-duty monkey lift (mini crane/builder hoist) for construction sites. 250 KG to 500 KG capacity. Portable, rugged steel frame. Call +91-8708795253.",
     "short_description": "Compact portable lifting machine for construction sites. Handles cement, bricks, concrete & steel bars up to 500 KG.",
-    "description": "A monkey crane (also known as a mini crane or builder hoist) is a compact, portable lifting machine designed for construction sites. It handles cement, bricks, concrete, steel bars, and building materials up to 500 KG with a rugged steel frame and reliable motor.",
-    "image": "monkey-crane.webp",
+    "description": "A monkey lift (also known as a mini crane or builder hoist) is a compact, portable lifting machine designed for construction sites. It handles cement, bricks, concrete, steel bars, and building materials up to 500 KG with a rugged steel frame and reliable motor.",
+    "image": "monkey-lift.webp",
     "gallery_images": "[]",
     "specifications": "{\"Capacity\": \"Up to 500 KG\", \"Material\": \"Rugged Steel\", \"Power Source\": \"Electric Motor\", \"Installation\": \"On-site Setup\"}",
     "variations": "[{\"name\":\"250 KG Capacity\"},{\"name\":\"350 KG Capacity\"},{\"name\":\"500 KG Capacity\"}]",
@@ -23,7 +23,7 @@
     "features": ["Rugged steel construction", "Easy installation on site", "Low maintenance design", "Smooth lifting mechanism", "Portable and compact"],
     "applications": ["Construction Sites", "Building Material Lifting", "Residential Projects", "Commercial Construction"],
     "faq": [
-      {"q": "What is the delivery time for a monkey crane?", "a": "Delivery typically takes 5-10 business days depending on location. Pan-India shipping available."},
+      {"q": "What is the delivery time for a monkey lift?", "a": "Delivery typically takes 5-10 business days depending on location. Pan-India shipping available."},
       {"q": "Do you provide installation support?", "a": "Yes, we offer installation support and on-site training for all our lifting equipment."},
       {"q": "What payment options are available?", "a": "We accept bank transfers, UPI, and cash payments. Bulk order discounts available."},
       {"q": "Is GST invoice provided?", "a": "Yes, we provide GST-compliant invoices for all business orders."}

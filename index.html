@@ -3,18 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/svg+xml" sizes="any" href="/assets/logo/icon/icon%20with%20white%20bg.svg">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <title>RS Machinery — Heavy Machinery & Lifting Equipment Supplier in Sirsa, Haryana</title>
-  <meta name="description" content="RS Machinery supplies monkey cranes, electric hoists, chain pulley blocks & steel wire ropes. 33+ years serving Sirsa, Hisar, Bathinda, Delhi NCR. Direct pricing, pan-India delivery.">
+  <meta name="description" content="RS Machinery supplies monkey lifts, electric hoists, chain pulley blocks & steel wire ropes. 33+ years serving Sirsa, Hisar, Bathinda, Delhi NCR. Direct pricing, pan-India delivery.">
   <link rel="canonical" href="https://rsmachinary.in/">
   <link rel="alternate" hreflang="en" href="https://rsmachinary.in/">
   <link rel="alternate" hreflang="hi" href="https://rsmachinary.in/index-hi.html">
   <link rel="alternate" hreflang="x-default" href="https://rsmachinary.in/">
   <meta property="og:title" content="RS Machinery — Heavy Lifting Equipment Supplier Sirsa, Haryana">
-  <meta property="og:description" content="Monkey cranes, electric hoists, chain pulley blocks & steel wire ropes. Direct from supplier. 33+ years. Call +91-8708795253.">
+  <meta property="og:description" content="Monkey lifts, electric hoists, chain pulley blocks & steel wire ropes. Direct from supplier. 33+ years. Call +91-8708795253.">
   <meta property="og:url" content="https://rsmachinary.in/">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://rsmachinary.in/assets/logo/icon/main_non_bg_logo.png">
@@ -26,7 +24,7 @@
     "url": "https://rsmachinary.in/",
     "telephone": "+918708795253",
     "whatsApp": "+918708795253",
-    "description": "Heavy machinery and lifting equipment supplier in Sirsa, Haryana. Monkey cranes, electric hoists, chain pulley blocks, steel wire ropes.",
+    "description": "Heavy machinery and lifting equipment supplier in Sirsa, Haryana. Monkey lifts, electric hoists, chain pulley blocks, steel wire ropes.",
     "image": "https://rsmachinary.in/assets/logo/icon/main_non_bg_logo.png",
     "address": {
       "@type": "PostalAddress",
@@ -44,7 +42,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="assets/hero-images/mini-crane-slide.webp">
+  <link rel="preload" as="image" href="assets/hero-images/mini-lift-slide.png">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -71,142 +69,129 @@
     </div>
   </nav>
 
-  <!-- ═══ HERO SLIDER (Prompt 1) — Background Image + New Design ═══ -->
-  <section class="redesign-hero-slider" id="hero">
-    <div class="redesign-hero-slider-overlay"></div>
-    <div class="redesign-hero-slider-viewport" id="heroSliderViewport">
-      <div class="redesign-hero-slider-track" id="heroSliderTrack">
+  <!-- ═══ HERO SHOWCASE — fixed hero + coverflow product carousel ═══ -->
+  <section class="hp-hero" id="hero">
 
-        <!-- Slide 1: Monkey Crane -->
-        <div class="redesign-hero-slide">
-          <div class="redesign-hero-slide-content">
-            <div class="redesign-hero-slide-badge">Monkey Crane</div>
-            <h2 class="redesign-hero-slide-title">Heavy Duty Monkey Crane<br><span>For Construction Sites</span></h2>
-            <p class="redesign-hero-slide-desc">Up to 500 KG lifting capacity. Rugged steel construction, easy installation, low maintenance. Ideal for residential and commercial projects.</p>
-            <div class="redesign-hero-slide-actions">
-              <a href="https://www.google.com/maps/dir/?api=1&destination=R+S+MACHINERY+STORE,+Sirsa,+Haryana" target="_blank" rel="noopener" class="redesign-btn redesign-btn-primary redesign-btn-lg">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                Visit Us
-              </a>
-              <a href="https://wa.me/918708795253" target="_blank" rel="noopener" class="redesign-btn redesign-btn-accent redesign-btn-lg">WhatsApp</a>
-            </div>
-            <p class="redesign-hero-trust">GST billing · Factory-direct pricing · 33+ years of trust in Haryana</p>
-            <div class="redesign-hero-slide-features">
-              <span>Capacity up to 500 KG</span>
-              <span>Rugged Steel Construction</span>
-              <span>Easy Installation</span>
-            </div>
-          </div>
-          <div class="redesign-hero-slide-visual">
-            <div class="redesign-hero-slide-img-wrap">
-              <img src="assets/hero-images/mini-crane-slide.webp" alt="Monkey Crane" loading="eager" decoding="async">
-            </div>
-          </div>
+    <!-- Static background layers -->
+    <div class="hp-hero__photo" aria-hidden="true"></div>
+    <div class="hp-hero__grid" aria-hidden="true"></div>
+    <div class="hp-hero__vignette" aria-hidden="true"></div>
+    <div class="hp-hero__horizon" aria-hidden="true"></div>
+
+    <div class="hp-hero__inner">
+
+      <!-- LEFT 45% — layout never moves. Only the copy inside swaps, in step
+           with the carousel, so the hero always describes the centre product. -->
+      <div class="hp-hero__content" id="hpContent">
+        <span class="hp-eyebrow" id="hpEyebrow">Monkey Lift</span>
+
+        <h1 class="hp-hero__title" id="hpHeroTitle"><span id="hpTitle">Heavy Duty Monkey Lift</span><br><span id="hpTitleAccent">For Construction Sites</span></h1>
+
+        <p class="hp-hero__desc" id="hpDesc">Up to 500 KG lifting capacity. Rugged steel construction, easy installation, low maintenance. Ideal for residential and commercial projects.</p>
+
+        <div class="hp-hero__actions">
+          <a href="https://www.google.com/maps/dir/?api=1&amp;destination=R+S+MACHINERY+STORE,+Sirsa,+Haryana" target="_blank" rel="noopener" class="redesign-btn redesign-btn-primary redesign-btn-lg">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Visit Us
+          </a>
+          <a href="https://wa.me/918708795253" target="_blank" rel="noopener" class="redesign-btn redesign-btn-accent redesign-btn-lg">WhatsApp</a>
         </div>
 
-        <!-- Slide 2: Electric Hoist -->
-        <div class="redesign-hero-slide">
-          <div class="redesign-hero-slide-content">
-            <div class="redesign-hero-slide-badge">Electric Hoist</div>
-            <h2 class="redesign-hero-slide-title">Powerful Electric Hoists<br><span>For Industrial Lifting</span></h2>
-            <p class="redesign-hero-slide-desc">Industrial-grade motorized lifting for factories and warehouses. Smooth operation, heavy load handling, long service life.</p>
-            <div class="redesign-hero-slide-actions">
-              <a href="https://www.google.com/maps/dir/?api=1&destination=R+S+MACHINERY+STORE,+Sirsa,+Haryana" target="_blank" rel="noopener" class="redesign-btn redesign-btn-primary redesign-btn-lg">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                Visit Us
-              </a>
-              <a href="https://wa.me/918708795253" target="_blank" rel="noopener" class="redesign-btn redesign-btn-accent redesign-btn-lg">WhatsApp</a>
-            </div>
-            <p class="redesign-hero-trust">GST billing · Factory-direct pricing · 33+ years of trust in Haryana</p>
-            <div class="redesign-hero-slide-features">
-              <span>Smooth Motor Operation</span>
-              <span>Heavy Load Handling</span>
-              <span>Industrial Grade</span>
-            </div>
-          </div>
-          <div class="redesign-hero-slide-visual">
-            <div class="redesign-hero-slide-img-wrap">
-              <img src="assets/hero-images/hoist-slide.webp" alt="Electric Hoist" loading="eager" decoding="async">
-            </div>
-          </div>
-        </div>
+        <p class="hp-hero__trust">
+          GST billing<span aria-hidden="true"></span>Factory-direct pricing<span aria-hidden="true"></span>33+ years of trust in Haryana
+        </p>
 
-        <!-- Slide 3: Chain Pulley Block -->
-        <div class="redesign-hero-slide">
-          <div class="redesign-hero-slide-content">
-            <div class="redesign-hero-slide-badge">Chain Pulley Block</div>
-            <h2 class="redesign-hero-slide-title">Reliable Chain Pulley Blocks<br><span>For Safe Material Handling</span></h2>
-            <p class="redesign-hero-slide-desc">Durable manual lifting for warehouses and workshops. Strong alloy components, corrosion resistant, safe lifting mechanism.</p>
-            <div class="redesign-hero-slide-actions">
-              <a href="https://www.google.com/maps/dir/?api=1&destination=R+S+MACHINERY+STORE,+Sirsa,+Haryana" target="_blank" rel="noopener" class="redesign-btn redesign-btn-primary redesign-btn-lg">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                Visit Us
-              </a>
-              <a href="https://wa.me/918708795253" target="_blank" rel="noopener" class="redesign-btn redesign-btn-accent redesign-btn-lg">WhatsApp</a>
-            </div>
-            <p class="redesign-hero-trust">GST billing · Factory-direct pricing · 33+ years of trust in Haryana</p>
-            <div class="redesign-hero-slide-features">
-              <span>Strong Alloy Components</span>
-              <span>Corrosion Resistant</span>
-              <span>Safe Lifting</span>
-            </div>
-          </div>
-          <div class="redesign-hero-slide-visual">
-            <div class="redesign-hero-slide-img-wrap">
-              <img src="assets/hero-images/chain-pulley-slide.webp" alt="Chain Pulley Block" loading="eager" decoding="async">
-            </div>
-          </div>
-        </div>
-
-        <!-- Slide 4: Steel Wire Rope -->
-        <div class="redesign-hero-slide">
-          <div class="redesign-hero-slide-content">
-            <div class="redesign-hero-slide-badge">Steel Wire Rope</div>
-            <h2 class="redesign-hero-slide-title">Industrial Steel Wire Ropes<br><span>For Heavy Lifting &amp; Rigging</span></h2>
-            <p class="redesign-hero-slide-desc">High-tensile steel ropes for cranes and rigging. Flexible, fatigue resistant, galvanized finish. Wide size range available.</p>
-            <div class="redesign-hero-slide-actions">
-              <a href="https://www.google.com/maps/dir/?api=1&destination=R+S+MACHINERY+STORE,+Sirsa,+Haryana" target="_blank" rel="noopener" class="redesign-btn redesign-btn-primary redesign-btn-lg">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                Visit Us
-              </a>
-              <a href="https://wa.me/918708795253" target="_blank" rel="noopener" class="redesign-btn redesign-btn-accent redesign-btn-lg">WhatsApp</a>
-            </div>
-            <p class="redesign-hero-trust">GST billing · Factory-direct pricing · 33+ years of trust in Haryana</p>
-            <div class="redesign-hero-slide-features">
-              <span>High Tensile Strength</span>
-              <span>Flexible &amp; Fatigue Resistant</span>
-              <span>Galvanized Finish</span>
-            </div>
-          </div>
-          <div class="redesign-hero-slide-visual">
-            <div class="redesign-hero-slide-img-wrap">
-              <img src="assets/hero-images/industrial-steel-wire-rope-500x500.webp" alt="Steel Wire Rope" loading="eager" decoding="async">
-            </div>
-          </div>
-        </div>
-
+        <ul class="hp-feats" id="hpFeats">
+          <li>Capacity up to 500 KG</li>
+          <li>Rugged Steel Construction</li>
+          <li>Easy Installation</li>
+        </ul>
       </div>
-    </div>
 
-    <!-- Navigation edges -->
-    <div class="redesign-hero-slider-edge redesign-hero-slider-edge-left" id="heroSliderPrev" aria-label="Previous slide">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
-    </div>
-    <div class="redesign-hero-slider-edge redesign-hero-slider-edge-right" id="heroSliderNext" aria-label="Next slide">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-    </div>
+      <!-- RIGHT 55% — product showcase carousel (the only moving part) -->
+      <div class="hp-showcase" id="hpShowcase">
 
-    <!-- Counter -->
-    <div class="redesign-hero-slider-counter">
-      <span id="heroSliderCurrent">01</span>
-      <span class="redesign-hero-slider-counter-sep">/</span>
-      <span id="heroSliderTotal">04</span>
+        <div class="hp-showcase__stage" id="hpStage" tabindex="0" role="group"
+             aria-roledescription="carousel" aria-label="Product showcase, 4 products">
+
+          <div class="hp-showcase__halo" aria-hidden="true"></div>
+          <div class="hp-showcase__floor" aria-hidden="true"></div>
+
+          <!-- Product 1: Monkey Lift — centre on load -->
+          <a class="hp-card" data-off="0" data-name="Heavy Duty Monkey Lift"
+             data-eyebrow="Monkey Lift"
+             data-title="Heavy Duty Monkey Lift"
+             data-accent="For Construction Sites"
+             data-desc="Up to 500 KG lifting capacity. Rugged steel construction, easy installation, low maintenance. Ideal for residential and commercial projects."
+             data-feats="Capacity up to 500 KG|Rugged Steel Construction|Easy Installation"
+             href="product.html?slug=monkey-lift"
+             aria-label="Heavy Duty Monkey Lift — view product">
+            <img src="assets/hero-images/mini-lift-slide.png"
+                 alt="Monkey Lift" width="500" height="500" loading="eager" fetchpriority="high" decoding="async">
+          </a>
+
+          <!-- Product 2: Electric Hoist -->
+          <a class="hp-card" data-off="1" data-name="Powerful Electric Hoists"
+             data-eyebrow="Electric Hoist"
+             data-title="Powerful Electric Hoists"
+             data-accent="For Industrial Lifting"
+             data-desc="Industrial-grade motorized lifting for factories and warehouses. Smooth operation, heavy load handling, long service life."
+             data-feats="Smooth Motor Operation|Heavy Load Handling|Industrial Grade"
+             href="product.html?slug=electric-hoist"
+             aria-label="Powerful Electric Hoists — view product" aria-hidden="true" tabindex="-1">
+            <img src="assets/hero-images/hoist-slide.webp"
+                 alt="Electric Hoist" width="500" height="500" loading="eager" decoding="async">
+          </a>
+
+          <!-- Product 3: Chain Pulley Block -->
+          <a class="hp-card" data-off="2" data-name="Reliable Chain Pulley Blocks"
+             data-eyebrow="Chain Pulley Block"
+             data-title="Reliable Chain Pulley Blocks"
+             data-accent="For Safe Material Handling"
+             data-desc="Durable manual lifting for warehouses and workshops. Strong alloy components, corrosion resistant, safe lifting mechanism."
+             data-feats="Strong Alloy Components|Corrosion Resistant|Safe Lifting"
+             href="product.html?slug=chain-pulley-block"
+             aria-label="Reliable Chain Pulley Blocks — view product" aria-hidden="true" tabindex="-1">
+            <img src="assets/hero-images/chain-pulley-slide.webp"
+                 alt="Chain Pulley Block" width="500" height="500" loading="eager" decoding="async">
+          </a>
+
+          <!-- Product 4: Steel Wire Rope -->
+          <a class="hp-card" data-off="3" data-name="Industrial Steel Wire Ropes"
+             data-eyebrow="Steel Wire Rope"
+             data-title="Industrial Steel Wire Ropes"
+             data-accent="For Heavy Lifting &amp; Rigging"
+             data-desc="High-tensile steel ropes for cranes and rigging. Flexible, fatigue resistant, galvanized finish. Wide size range available."
+             data-feats="High Tensile Strength|Flexible &amp; Fatigue Resistant|Galvanized Finish"
+             href="product.html?slug=steel-wire-rope"
+             aria-label="Industrial Steel Wire Ropes — view product" aria-hidden="true" tabindex="-1">
+            <img src="assets/hero-images/industrial-steel-wire-rope-500x500.webp"
+                 alt="Steel Wire Rope" width="1537" height="1023" loading="eager" decoding="async">
+          </a>
+
+          <button class="hp-arrow hp-arrow--prev" id="hpPrev" type="button" aria-label="Previous product">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button class="hp-arrow hp-arrow--next" id="hpNext" type="button" aria-label="Next product">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+
+        <!-- Carousel-scoped indicator row: 01 / 04 -->
+        <div class="hp-showcase__bar">
+          <span class="hp-showcase__label" aria-hidden="true">Product Showcase</span>
+          <span class="hp-showcase__count" aria-hidden="true"><b id="hpCount">01</b><i>/</i><i id="hpTotal">04</i></span>
+          <span class="hp-showcase__name" id="hpName" aria-hidden="true">Heavy Duty Monkey Lift</span>
+          <div class="hp-showcase__dots" id="hpDots"></div>
+        </div>
+        <div class="hp-showcase__progress" aria-hidden="true"><span id="hpProgress"></span></div>
+
+        <p class="hp-sr" id="hpLive" aria-live="polite"></p>
+      </div>
+
     </div>
-
-    <!-- Mobile dots -->
-    <div class="redesign-hero-slider-dots" id="heroSliderDots" role="tablist" aria-label="Slider navigation"></div>
-
   </section>
+
 
   <!-- ═══ TRUST STRIP (Prompt 5) ═══ -->
   <div class="redesign-trust-strip">
@@ -240,22 +225,21 @@
       <div class="redesign-section-header">
         <span class="redesign-section-tag">Our Range</span>
         <h2 class="redesign-section-title">Industrial Lifting Equipment</h2>
-        <p class="redesign-section-subtitle">Quality monkey cranes, electric hoists, chain pulley blocks, and steel wire ropes for construction, manufacturing, and material handling.</p>
+        <p class="redesign-section-subtitle">Quality monkey lifts, electric hoists, chain pulley blocks, steel wire ropes, hand winches, web slings, and shackles for construction, manufacturing, and material handling.</p>
       </div>
       <div class="redesign-products-grid" id="featuredProductsGrid">
         <div class="redesign-card">
           <div class="redesign-card-image-wrap">
-            <a href="product.html?slug=monkey-crane">
-              <img src="assets/hero-images/mini-crane-slide.webp" alt="Monkey Crane" class="redesign-card-image" loading="lazy">
+            <a href="product.html?slug=monkey-lift">
+              <img src="assets/product img/monkey-lift.png" alt="Monkey Lift" class="redesign-card-image" loading="lazy">
             </a>
-            <span class="redesign-card-badge">250 KG to 500 KG</span>
           </div>
           <div class="redesign-card-body">
-            <span class="redesign-card-category">Monkey Crane</span>
-            <h3 class="redesign-card-title"><a href="product.html?slug=monkey-crane">Monkey Crane</a></h3>
+            <span class="redesign-card-category">Monkey Lift</span>
+            <h3 class="redesign-card-title"><a href="product.html?slug=monkey-lift">Monkey Lift</a></h3>
             <p class="redesign-card-desc">Compact portable lifting machine for construction sites. Handles cement, bricks, concrete & steel bars up to 500 KG.</p>
             <div class="redesign-card-actions">
-              <a href="product.html?slug=monkey-crane" class="redesign-btn redesign-btn-outline redesign-btn-sm" >View Details</a>
+              <a href="product.html?slug=monkey-lift" class="redesign-btn redesign-btn-outline redesign-btn-sm" >View Details</a>
               <a href="https://wa.me/918708795253?text=Hi%20RS%20Machinery%2C%20I%20want%20to%20inquire%20about%20Monkey%20Crane" target="_blank" rel="noopener" class="redesign-btn redesign-btn-accent redesign-btn-sm" >WhatsApp</a>
             </div>
           </div>
@@ -266,7 +250,6 @@
             <a href="product.html?slug=electric-hoist">
               <img src="assets/hero-images/hoist-slide.webp" alt="Electric Hoist" class="redesign-card-image" loading="lazy">
             </a>
-            <span class="redesign-card-badge">500 KG to 5 Ton</span>
           </div>
           <div class="redesign-card-body">
             <span class="redesign-card-category">Electric Hoist</span>
@@ -284,7 +267,6 @@
             <a href="product.html?slug=chain-pulley-block">
               <img src="assets/hero-images/chain-pulley-slide.webp" alt="Chain Pulley Block" class="redesign-card-image" loading="lazy">
             </a>
-            <span class="redesign-card-badge">1 Ton to 10 Ton</span>
           </div>
           <div class="redesign-card-body">
             <span class="redesign-card-category">Chain Pulley Block</span>
@@ -302,7 +284,6 @@
             <a href="product.html?slug=steel-wire-rope">
               <img src="assets/hero-images/industrial-steel-wire-rope-500x500.webp" alt="Steel Wire Rope" class="redesign-card-image" loading="lazy">
             </a>
-            <span class="redesign-card-badge">6mm to 24mm+</span>
           </div>
           <div class="redesign-card-body">
             <span class="redesign-card-category">Steel Wire Rope</span>
@@ -311,6 +292,57 @@
             <div class="redesign-card-actions">
               <a href="product.html?slug=steel-wire-rope" class="redesign-btn redesign-btn-outline redesign-btn-sm" >View Details</a>
               <a href="https://wa.me/918708795253?text=Hi%20RS%20Machinery%2C%20I%20want%20to%20inquire%20about%20Steel%20Wire%20Rope" target="_blank" rel="noopener" class="redesign-btn redesign-btn-accent redesign-btn-sm" >WhatsApp</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="redesign-card">
+          <div class="redesign-card-image-wrap">
+            <a href="product.html?slug=hand-winch">
+              <img src="assets/product img/hand winch.png" alt="Hand Winch" class="redesign-card-image" loading="lazy">
+            </a>
+          </div>
+          <div class="redesign-card-body">
+            <span class="redesign-card-category">Hand Winch</span>
+            <h3 class="redesign-card-title"><a href="product.html?slug=hand-winch">Hand Winch</a></h3>
+            <p class="redesign-card-desc">Compact manually-operated wire rope winch for pulling & lifting loads. Zero electricity needed.</p>
+            <div class="redesign-card-actions">
+              <a href="product.html?slug=hand-winch" class="redesign-btn redesign-btn-outline redesign-btn-sm" >View Details</a>
+              <a href="https://wa.me/918708795253?text=Hi%20RS%20Machinery%2C%20I%20want%20to%20inquire%20about%20Hand%20Winch" target="_blank" rel="noopener" class="redesign-btn redesign-btn-accent redesign-btn-sm" >WhatsApp</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="redesign-card">
+          <div class="redesign-card-image-wrap">
+            <a href="product.html?slug=web-sling">
+              <img src="assets/product img/Web Sling.png" alt="Web Sling" class="redesign-card-image" loading="lazy">
+            </a>
+          </div>
+          <div class="redesign-card-body">
+            <span class="redesign-card-category">Web Sling</span>
+            <h3 class="redesign-card-title"><a href="product.html?slug=web-sling">Web Sling</a></h3>
+            <p class="redesign-card-desc">Flexible, lightweight colour-coded polyester lifting slings with reinforced eyes. Safe for delicate & heavy loads.</p>
+            <div class="redesign-card-actions">
+              <a href="product.html?slug=web-sling" class="redesign-btn redesign-btn-outline redesign-btn-sm" >View Details</a>
+              <a href="https://wa.me/918708795253?text=Hi%20RS%20Machinery%2C%20I%20want%20to%20inquire%20about%20Web%20Sling" target="_blank" rel="noopener" class="redesign-btn redesign-btn-accent redesign-btn-sm" >WhatsApp</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="redesign-card">
+          <div class="redesign-card-image-wrap">
+            <a href="product.html?slug=shackle">
+              <img src="assets/product img/Shackle.png" alt="Shackle" class="redesign-card-image" loading="lazy">
+            </a>
+          </div>
+          <div class="redesign-card-body">
+            <span class="redesign-card-category">Shackle</span>
+            <h3 class="redesign-card-title"><a href="product.html?slug=shackle">Shackle</a></h3>
+            <p class="redesign-card-desc">Drop-forged galvanised shackles — Bow, Dee & Wide Jaw types for secure rigging connections.</p>
+            <div class="redesign-card-actions">
+              <a href="product.html?slug=shackle" class="redesign-btn redesign-btn-outline redesign-btn-sm" >View Details</a>
+              <a href="https://wa.me/918708795253?text=Hi%20RS%20Machinery%2C%20I%20want%20to%20inquire%20about%20Shackle" target="_blank" rel="noopener" class="redesign-btn redesign-btn-accent redesign-btn-sm" >WhatsApp</a>
             </div>
           </div>
         </div>
@@ -325,16 +357,6 @@
         <span class="redesign-section-tag">About Us</span>
         <h2 class="redesign-section-title">33+ Years of Industrial Excellence</h2>
         <p class="redesign-section-subtitle">RS Machinery is a trusted name in heavy lifting equipment, serving customers across North India from our Sirsa headquarters.</p>
-      </div>
-
-      <!-- ═══ OUR MOTIVE — connect, don't just browse ═══ -->
-      <div class="redesign-stat-card" style="margin-bottom:2rem; padding:2.25rem 1.5rem; text-align:center;">
-        <h3 style="font-size:1.35rem; margin-bottom:0.75rem;">This website shows our main products — not everything.</h3>
-        <p style="max-width:680px; margin:0 auto 1.25rem; opacity:0.9;">Our motive is simple: connect you with the right equipment, not keep you scrolling. The full range — 100+ products with every size, capacity and price — is best seen in person or discussed directly. One message or one showroom visit connects you to it all.</p>
-        <div style="display:flex; gap:0.75rem; justify-content:center; flex-wrap:wrap;">
-          <a href="https://wa.me/918708795253?text=Hi%20RS%20Machinery%2C%20I%20want%20to%20see%20your%20full%20product%20range" target="_blank" rel="noopener" class="redesign-btn redesign-btn-accent">WhatsApp for Full Range</a>
-          <a href="https://www.google.com/maps/dir/?api=1&destination=R+S+MACHINERY+STORE,+Sirsa,+Haryana" target="_blank" rel="noopener" class="redesign-btn redesign-btn-outline">Visit Showroom</a>
-        </div>
       </div>
 
       <div class="redesign-stats-grid" style="margin-bottom:2rem;">
@@ -433,9 +455,10 @@
               <label class="redesign-form-label" for="inqProduct">Product Interested In *</label>
               <select class="redesign-form-select" id="inqProduct" name="product" required>
                 <option value="">Select a product...</option>
-                <option value="Monkey Crane">Monkey Crane</option>
+                <option value="Monkey Lift">Monkey Lift</option>
                 <option value="Electric Hoist">Electric Hoist</option>
                 <option value="Chain Pulley Block">Chain Pulley Block</option>
+                <option value="Lifting Chain">Lifting Chain</option>
                 <option value="Steel Wire Rope">Steel Wire Rope</option>
                 <option value="Other">Other / Multiple</option>
               </select>
@@ -477,7 +500,7 @@
     <div class="redesign-footer-grid">
       <div>
         <img src="assets/logo/icon/main_non_bg_logo.png" alt="RS Machinery" class="redesign-footer-logo">
-        <p class="redesign-footer-desc">Trusted heavy lifting equipment supplier in Sirsa, Haryana. Monkey cranes, electric hoists, chain pulley blocks, and steel wire ropes. Serving North India since 1993.</p>
+        <p class="redesign-footer-desc">Trusted heavy lifting equipment supplier in Sirsa, Haryana. Monkey lifts, electric hoists, chain pulley blocks, steel wire ropes, hand winches, web slings, and shackles. Serving North India since 1993.</p>
         <div class="redesign-footer-socials">
           <a href="https://www.google.com/maps?q=R+S+MACHINERY+STORE+Sirsa" target="_blank" rel="noopener" class="redesign-footer-social-link" aria-label="Google Maps">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
@@ -490,10 +513,13 @@
       <div>
         <h4>Products</h4>
         <nav class="redesign-footer-links">
-          <a href="products.html?category=monkey-crane">Monkey Crane</a>
+          <a href="products.html?category=monkey-lift">Monkey Lift</a>
           <a href="products.html?category=electric-hoist">Electric Hoist</a>
           <a href="products.html?category=chain-pulley-block">Chain Pulley Block</a>
           <a href="products.html?category=steel-wire-rope">Steel Wire Rope</a>
+          <a href="products.html?category=hand-winch">Hand Winch</a>
+          <a href="products.html?category=web-sling">Web Sling</a>
+          <a href="products.html?category=shackle">Shackle</a>
         </nav>
       </div>
       <div>
@@ -524,11 +550,6 @@
   <a href="https://www.google.com/maps/dir//R+S+MACHINERY+STORE,+Sirsa,+Haryana,+Begu+Road,+wali+gali,+near+parshuram+chock,+opposite+sarsainath+mandir,+Sirsa,+Haryana+125055/@29.5313674,75.0291085,17z/data=!4m16!1m7!1m3!1s0x39114dbfeb56797d:0x352bddddd6d5e5c6!2sR+S+MACHINERY+STORE,+Sirsa,+Haryana!8m2!3d29.5313674!4d75.0316834!16s%2Fg%2F11df1v4gbv!4m7!1m0!1m5!1m1!1s0x39114dbfeb56797d:0x352bddddd6d5e5c6!2m2!1d75.0316834!2d29.5313674?entry=ttu&g_ep=EgoyMDI2MDYyMy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" class="redesign-visit-float" aria-label="Get directions to our store">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
     <span>Visit Now</span>
-  </a>
-
-  <!-- ═══ FLOATING WHATSAPP (desktop) ═══ -->
-  <a href="https://wa.me/918708795253" target="_blank" rel="noopener" class="redesign-wa-float" aria-label="Chat with RS Machinery on WhatsApp">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
   </a>
 
   <script src="js/products-data.js"></script>

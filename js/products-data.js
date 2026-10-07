@@ -6,16 +6,19 @@
 window.RSM_PRODUCTS = [
   {
     id: 1,
-    name: "Monkey Crane",
-    slug: "monkey-crane",
-    category_id: "monkey-crane",
-    category_name: "Monkey Crane",
-    seo_title: "Monkey Crane — Mini Crane for Construction Sites | RS Machinery Sirsa",
-    seo_description: "Heavy-duty monkey crane (builder hoist) for construction sites. 250 KG to 500 KG capacity. Portable, rugged steel frame, direct pricing & pan-India delivery.",
+    name: "Monkey Lift",
+    slug: "monkey-lift",
+    category_id: "monkey-lift",
+    category_name: "Monkey Lift",
+    seo_title: "Monkey Lift — Mini Crane for Construction Sites | RS Machinery Sirsa",
+    seo_description: "Heavy-duty monkey lift (builder hoist) for construction sites. 250 KG to 500 KG capacity. Portable, rugged steel frame, direct pricing & pan-India delivery.",
     short_description: "Compact portable lifting machine for construction sites. Lifts cement, bricks, concrete & steel bars up to 500 KG with ease.",
-    description: "A monkey crane (also known as a mini crane or builder hoist) is a compact, highly portable lifting machine designed specifically for construction sites. Powered by a heavy-duty copper electric motor, it features 360-degree rotation, rugged tubular steel frame, high-tensile wire rope, and auto-brake mechanism for maximum job-site safety.",
-    image: "assets/hero-images/mini-crane-slide.webp",
+    description: "A monkey lift (also known as a mini crane or builder hoist) is a compact, highly portable lifting machine designed specifically for construction sites. Powered by a heavy-duty copper electric motor, it features 360-degree rotation, rugged tubular steel frame, high-tensile wire rope, and auto-brake mechanism for maximum job-site safety.",
+    image: "assets/product img/monkey-lift.png",
     gallery_images: [
+      "assets/product img/monkey-lift.png",
+      "assets/product img/construction-monkey-lift-1000x1000.webp",
+      "assets/hero-images/mini-lift-slide.png",
       "assets/hero-images/mini-crane-slide.webp"
     ],
     capacity: "250 KG to 500 KG",
@@ -54,8 +57,8 @@ window.RSM_PRODUCTS = [
       "Warehouse Heavy Material Transfer"
     ],
     faq: [
-      { q: "What is the delivery time for a Monkey Crane?", a: "We ship nationwide within 3-7 business days across Haryana, Punjab, Rajasthan, UP, and Pan-India." },
-      { q: "Does the monkey crane operate on regular home single-phase power?", a: "Yes, 250 KG models are available in 220V Single-Phase for easy operation using domestic power supply." },
+      { q: "What is the delivery time for a Monkey Lift?", a: "We ship nationwide within 3-7 business days across Haryana, Punjab, Rajasthan, UP, and Pan-India." },
+      { q: "Does the monkey lift operate on regular home single-phase power?", a: "Yes, 250 KG models are available in 220V Single-Phase for easy operation using domestic power supply." },
       { q: "Is warranty provided with the machinery?", a: "Yes, RS Machinery provides 1-Year Manufacturer Warranty and full spare parts availability." }
     ]
   },
@@ -71,7 +74,8 @@ window.RSM_PRODUCTS = [
     description: "An Electric Hoist is a heavy-duty motorized lifting machine designed for manufacturing units, industrial plants, warehouses, and workshops. Equipped with precision gearbox, heat-treated alloy gears, electromagnetic safety brakes, and wireless/pendant remote controls, it ensures continuous operation and heavy load safety.",
     image: "assets/hero-images/hoist-slide.webp",
     gallery_images: [
-      "assets/hero-images/hoist-slide.webp"
+      "assets/hero-images/hoist-slide.webp",
+      "assets/product img/chain_hoist.jpg"
     ],
     capacity: "500 KG to 5 Ton",
     brand: "RS Machinery",
@@ -125,7 +129,8 @@ window.RSM_PRODUCTS = [
     description: "A Chain Pulley Block (hand chain hoist) is a precision manual lifting device operating on mechanical gear advantage. Manufactured with Grade 80 alloy steel load chains, drop-forged safety hooks with 360-degree rotation, and double-pawl automatic brake systems, it provides exceptional load stability without electrical power requirement.",
     image: "assets/hero-images/chain-pulley-slide.webp",
     gallery_images: [
-      "assets/hero-images/chain-pulley-slide.webp"
+      "assets/hero-images/chain-pulley-slide.webp",
+      "assets/product img/chain_hoist.jpg"
     ],
     capacity: "1 Ton to 10 Ton",
     brand: "RS Machinery",
@@ -209,7 +214,7 @@ window.RSM_PRODUCTS = [
       "Full compliance with ISI & international standards"
     ],
     applications: [
-      "Monkey Crane & Builder Hoist Winches",
+      "Monkey Lift & Builder Hoist Winches",
       "EOT Cranes & Tower Crane Rigging",
       "Elevator & Goods Lift Cable Systems",
       "Mining, Marine & Structural Stay Cables"
@@ -388,7 +393,7 @@ window.RSM_PRODUCTS = [
 ];
 
 window.RSM_CATEGORIES = [
-  { id: "monkey-crane", name: "Monkey Crane", slug: "monkey-crane", description: "Compact portable lifting machines for construction sites" },
+  { id: "monkey-lift", name: "Monkey Lift", slug: "monkey-lift", description: "Compact portable lifting machines for construction sites" },
   { id: "electric-hoist", name: "Electric Hoist", slug: "electric-hoist", description: "Motorized lifting devices for factories and warehouses" },
   { id: "chain-pulley-block", name: "Chain Pulley Block", slug: "chain-pulley-block", description: "Manual lifting devices for workshops and warehouses" },
   { id: "steel-wire-rope", name: "Steel Wire Rope", slug: "steel-wire-rope", description: "High-strength flexible cables for lifting and rigging" },
