@@ -1,34 +1,62 @@
 {
-  "builtAt": "2026-10-07T07:40:44.112Z",
+  "builtAt": "2026-10-07T07:54:14.155Z",
   "siteUrl": "https://rsmachinary.in",
   "products": [
     {
       "id": 1,
       "name": "Monkey Lift",
       "slug": "monkey-lift",
-      "active": "TRUE",
-      "featured": "TRUE"
+      "active": true,
+      "featured": true,
+      "hero": true
     },
     {
       "id": 2,
       "name": "Electric Hoist",
       "slug": "electric-hoist",
-      "active": "TRUE",
-      "featured": "TRUE"
+      "active": true,
+      "featured": true,
+      "hero": true
     },
     {
       "id": 3,
       "name": "Chain Pulley Block",
       "slug": "chain-pulley-block",
-      "active": "TRUE",
-      "featured": "TRUE"
+      "active": true,
+      "featured": true,
+      "hero": true
     },
     {
       "id": 4,
       "name": "Steel Wire Rope",
       "slug": "steel-wire-rope",
-      "active": "TRUE",
-      "featured": "FALSE"
+      "active": true,
+      "featured": true,
+      "hero": true
+    },
+    {
+      "id": 5,
+      "name": "Hand Winch",
+      "slug": "hand-winch",
+      "active": true,
+      "featured": true,
+      "hero": true
+    },
+    {
+      "id": 6,
+      "name": "Web Sling",
+      "slug": "web-sling",
+      "active": true,
+      "featured": true,
+      "hero": true
+    },
+    {
+      "id": 7,
+      "name": "Shackle",
+      "slug": "shackle",
+      "active": true,
+      "featured": true,
+      "hero": true
     }
   ],
   "categories": [
@@ -51,6 +79,21 @@
       "id": 4,
       "name": "Steel Wire Rope",
       "slug": "steel-wire-rope"
+    },
+    {
+      "id": 5,
+      "name": "Hand Winch",
+      "slug": "hand-winch"
+    },
+    {
+      "id": 6,
+      "name": "Web Sling",
+      "slug": "web-sling"
+    },
+    {
+      "id": 7,
+      "name": "Shackle",
+      "slug": "shackle"
     }
   ]
 }
