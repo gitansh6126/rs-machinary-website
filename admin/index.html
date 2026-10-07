@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>RS Machinery — Admin (SEO & Products)</title>
+<style>
+:root{--bg:#0b1120;--surface:#111a2e;--surface2:#182442;--border:#24304d;--ink:#e8edf7;--muted:#93a3c4;--brand:#4f7dff;--brand-deep:#2e5fe8;--green:#22c55e;--red:#ef4444;--amber:#f59e0b;--radius:14px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--ink);min-height:100vh}
+a{color:var(--brand)}
+.shell{max-width:1180px;margin:0 auto;padding:24px 20px 80px}
+header.top{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:24px;flex-wrap:wrap}
+header.top h1{font-size:1.35rem;display:flex;gap:10px;align-items:center}
+.badge{font-size:.7rem;background:var(--surface2);border:1px solid var(--border);padding:3px 10px;border-radius:99px;color:var(--muted)}
+.tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.tab{padding:9px 18px;border-radius:99px;border:1px solid var(--border);background:var(--surface);color:var(--muted);cursor:pointer;font-size:.92rem}
+.tab.active{background:var(--brand);border-color:var(--brand);color:#fff;font-weight:600}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:16px}
+.card h3{font-size:1.02rem;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:760px){.grid2{grid-template-columns:1fr}}
+label{font-size:.8rem;color:var(--muted);display:block;margin-bottom:5px;font-weight:600}
+input[type=text],input[type=url],input[type=password],textarea,select{width:100%;background:var(--surface2);border:1px solid var(--border);color:var(--ink);border-radius:10px;padding:9px 12px;font-size:.92rem;font-family:inherit}
+input:focus,textarea:focus,select:focus{outline:2px solid var(--brand);border-color:transparent}
+textarea{min-height:74px;resize:vertical}
+.btn{display:inline-flex;align-items:center;gap:7px;padding:9px 16px;border-radius:10px;border:1px solid var(--border);background:var(--surface2);color:var(--ink);cursor:pointer;font-size:.9rem;font-weight:600}
+.btn:hover{border-color:var(--brand)}
+.btn.primary{background:var(--brand);border-color:var(--brand);color:#fff}
+.btn.green{background:var(--green);border-color:var(--green);color:#06230f}
+.btn.danger{background:transparent;border-color:var(--red);color:var(--red)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn.sm{padding:5px 11px;font-size:.8rem}
+table{width:100%;border-collapse:collapse;font-size:.88rem}
+th{text-align:left;color:var(--muted);font-size:.74rem;text-transform:uppercase;letter-spacing:.4px;padding:8px;border-bottom:1px solid var(--border)}
+td{padding:9px 8px;border-bottom:1px solid var(--border);vertical-align:middle}
+tr:hover td{background:rgba(79,125,255,.05)}
+.pill{display:inline-block;padding:2px 9px;border-radius:99px;font-size:.72rem;font-weight:700}
+.pill.on{background:rgba(34,197,94,.15);color:var(--green)}
+.pill.off{background:rgba(239,68,68,.15);color:var(--red)}
+.pill.hero{background:rgba(245,158,11,.15);color:var(--amber)}
+img.thumb{width:46px;height:46px;object-fit:cover;border-radius:8px;background:var(--surface2)}
+#toast{position:fixed;bottom:22px;right:22px;background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--brand);border-radius:12px;padding:13px 18px;font-size:.9rem;display:none;max-width:340px;box-shadow:0 12px 40px rgba(0,0,0,.45);z-index:99}
+#toast.ok{border-left-color:var(--green)}
+#toast.err{border-left-color:var(--red)}
+.help{font-size:.78rem;color:var(--muted);margin-top:6px;line-height:1.5}
+.field{margin-bottom:12px}
+.mini{font-size:.75rem;color:var(--muted)}
+.gate{max-width:460px;margin:12vh auto;text-align:center}
+.gate input{margin:14px 0}
+.spin{display:inline-block;width:15px;height:15px;border:2px solid rgba(255,255,255,.25);border-top-color:#fff;border-radius:50%;animation:sp .7s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.empty{padding:26px;text-align:center;color:var(--muted);font-size:.9rem}
+.searchbar{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.searchbar input{flex:1;min-width:200px}
+kbd{background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:1px 6px;font-size:.75rem}
+</style>
+</head>
+<body>
+<div class="shell">
+
+<header class="top">
+  <h1>🛠️ RS Machinery Admin <span class="badge" id="envBadge">…</span></h1>
+  <div class="row">
+    <button class="btn" id="reloadBtn" title="Reload catalog from repo">↻ Reload</button>
+    <button class="btn primary" id="publishBtn" title="Commit changes to GitHub (triggers deploy)">↑ Publish to GitHub</button>
+  </div>
+</header>
+
+<!-- ══════ CONFIG ══════ -->
+<div class="card" id="configCard">
+  <h3>⚙️ Connection</h3>
+  <div class="grid2">
+    <div>
+      <label for="cfgRepo">GitHub repo (owner/name)</label>
+      <input type="text" id="cfgRepo" placeholder="gitansh6126/rs-machinary-website">
+    </div>
+    <div>
+      <label for="cfgBranch">Branch</label>
+      <input type="text" id="cfgBranch" placeholder="main">
+    </div>
+  </div>
+  <div class="field" style="margin-top:12px">
+    <label for="cfgApi">Publish API endpoint <span id="apiMode" class="badge"></span></label>
+    <input type="url" id="cfgApi" placeholder="https://your-app.vercel.app/api/publish">
+    <p class="help">Option A (recommended, Vercel/Netlify): set the serverless endpoint above — your PAT stays server-side. Option B (GitHub Pages/local): leave empty and paste a fine-grained PAT below; it is kept in this browser only (sessionStorage) and sent directly to the GitHub API.</p>
+  </div>
+  <div class="field" id="patField">
+    <label for="cfgPat">GitHub PAT (contents: read+write on this repo)</label>
+    <input type="password" id="cfgPat" placeholder="github_pat_… (only needed for static hosting)">
+  </div>
+  <p class="help">How to make a PAT: GitHub → Settings → Developer settings → Fine-grained tokens → Generate → Repository access: <b>only this repo</b> → Permissions: Contents <b>Read & write</b>. Never commit the token.</p>
+  <div class="row" style="margin-top:10px">
+    <button class="btn primary" id="saveCfgBtn">Save Connection</button>
+    <button class="btn" id="testConnBtn">Test Connection</button>
+  </div>
+</div>
+
+<!-- ══════ TABS ══════ -->
+<div class="tabs">
+  <button class="tab active" data-tab="products">📦 Products</button>
+  <button class="tab" data-tab="seo">🗺️ SEO City Pages</button>
+  <button class="tab" data-tab="categories">🗂️ Categories</button>
+  <button class="tab" data-tab="publish">🚀 Deploy</button>
+</div>
+
+<!-- ══════ PRODUCTS TAB ══════ -->
+<div id="tab-products">
+  <div class="searchbar">
+    <input type="text" id="prodSearch" placeholder="Filter products…">
+    <button class="btn primary" id="addProductBtn">+ Add Product</button>
+  </div>
+  <div class="card" style="padding:0;overflow-x:auto">
+    <table id="prodTable">
+      <thead><tr><th></th><th>#</th><th>Product</th><th>Slug</th><th>Capacity</th><th>Flags</th><th>Actions</th></tr></thead>
+      <tbody></tbody>
+    </table>
+    <div class="empty" id="prodEmpty" style="display:none">No products. Click “Add Product”.</div>
+  </div>
+</div>
+
+<!-- ══════ SEO TAB ══════ -->
+<div id="tab-seo" style="display:none">
+  <div class="card">
+    <h3>Service-area pages (internal links) <button class="btn sm" id="addCityBtn">+ Add City</button></h3>
+    <p class="help">Each approved city gets an entry in <code>data/seo-links.json</code>; the site footer renders a “Service Areas” column automatically (js/seo-links.js). Publish actual city pages later and set the URL.</p>
+    <table id="cityTable">
+      <thead><tr><th>City</th><th>Page URL</th><th>Status</th><th></th></tr></thead>
+      <tbody></tbody>
+    </table>
+    <div class="empty" id="cityEmpty" style="display:none">No cities yet.</div>
+  </div>
+</div>
+
+<!-- ══════ CATEGORIES TAB ══════ -->
+<div id="tab-categories" style="display:none">
+  <div class="card">
+    <h3>Categories <button class="btn sm" id="addCatBtn">+ Add Category</button></h3>
+    <p class="help">Categories drive the products filter, footer links and hero badges. EN + HI names both required.</p>
+    <table id="catTable">
+      <thead><tr><th>#</th><th>Slug</th><th>Name (EN)</th><th>Name (HI)</th><th></th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══════ PUBLISH TAB ══════ -->
+<div id="tab-publish" style="display:none">
+  <div class="card">
+    <h3>🚀 Publish & Deploy</h3>
+    <p class="help" style="margin-bottom:12px">“Publish to GitHub” commits all pending catalog changes to <code>data/*.json</code> in your repo. Deploys are automatic:</p>
+    <ul style="line-height:2;font-size:.92rem;margin-left:18px">
+      <li><b>GitHub Pages</b> — the included workflow runs <code>node scripts/build-catalog.js</code> then deploys the site.</li>
+      <li><b>Vercel</b> — build command <code>npm run build</code>, output dir <code>.</code> (SPA fallback handled by vercel.json).</li>
+      <li><b>Hostinger / any static host</b> — download the repo, run <code>node scripts/build-catalog.js</code>, upload.</li>
+    </ul>
+    <div class="row" style="margin-top:12px">
+      <button class="btn primary" id="publishBtn2">↑ Publish to GitHub</button>
+      <a class="btn" id="repoLink" target="_blank" rel="noopener">Open repo ↗</a>
+    </div>
+    <div id="commitLog" style="margin-top:14px"></div>
+  </div>
+</div>
+
+<!-- ══════ PRODUCT EDITOR MODAL ══════ -->
+<div id="modalBack" style="display:none;position:fixed;inset:0;background:rgba(4,8,18,.7);z-index:50;overflow-y:auto;padding:30px 14px">
+  <div style="max-width:860px;margin:0 auto;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px">
+    <div class="row" style="justify-content:space-between;margin-bottom:16px">
+      <h3 id="modalTitle" style="margin:0">Edit product</h3>
+      <button class="btn sm" id="modalClose">✕ Close</button>
+    </div>
+
+    <div class="tabs" id="langTabs">
+      <button class="tab active" data-lang="en">🇬🇧 English</button>
+      <button class="tab" data-lang="hi">🇮🇳 हिंदी</button>
+    </div>
+
+    <div id="editorEn">
+      <div class="grid2">
+        <div class="field"><label>Name (EN) *</label><input type="text" id="f_name"></div>
+        <div class="field"><label>Slug (URL) * — lowercase-with-dashes</label><input type="text" id="f_slug"></div>
+      </div>
+      <div class="field"><label>SEO title (EN) — ~60 chars</label><input type="text" id="f_seo_title"></div>
+      <div class="field"><label>SEO description (EN) — ~155 chars</label><textarea id="f_seo_description"></textarea></div>
+      <div class="field"><label>Short description (card text, EN)</label><textarea id="f_short_description"></textarea></div>
+      <div class="field"><label>Full description (product page, EN)</label><textarea id="f_description" style="min-height:96px"></textarea></div>
+      <div class="grid2">
+        <div class="field"><label>Capacity (badge text)</label><input type="text" id="f_capacity"></div>
+        <div class="field"><label>Category slug</label><input type="text" id="f_category_id" placeholder="monkey-crane"></div>
+      </div>
+      <div class="grid2">
+        <div class="field"><label>Warranty</label><input type="text" id="f_warranty" placeholder="1 Year Warranty"></div>
+        <div class="field"><label>Image path</label><input type="text" id="f_image" placeholder="assets/product img/my-product.webp"></div>
+      </div>
+      <div class="field"><label>Hero title line 1 (EN)</label><input type="text" id="f_hero_title_line1"></div>
+      <div class="field"><label>Hero title line 2 (EN)</label><input type="text" id="f_hero_title_line2"></div>
+      <div class="field"><label>Hero description (EN)</label><textarea id="f_hero_description"></textarea></div>
+      <div class="field"><label>Hero features — one per line (EN)</label><textarea id="f_hero_features" placeholder="Capacity up to 500 KG&#10;Rugged Steel Construction"></textarea></div>
+    </div>
+
+    <div id="editorHi" style="display:none">
+      <p class="help" style="margin-bottom:10px">Hindi fields render on <code>*-hi.html</code> pages. Empty fields fall back to English.</p>
+      <div class="field"><label>Name (HI)</label><input type="text" id="f_hi_name"></div>
+      <div class="field"><label>SEO title (HI)</label><input type="text" id="f_hi_seo_title"></div>
+      <div class="field"><label>SEO description (HI)</label><textarea id="f_hi_seo_description"></textarea></div>
+      <div class="field"><label>Short description (HI)</label><textarea id="f_hi_short_description"></textarea></div>
+      <div class="field"><label>Full description (HI)</label><textarea id="f_hi_description" style="min-height:96px"></textarea></div>
+      <div class="field"><label>Capacity (HI)</label><input type="text" id="f_hi_capacity"></div>
+      <div class="field"><label>Warranty (HI)</label><input type="text" id="f_hi_warranty"></div>
+      <div class="field"><label>Hero title line 1 (HI)</label><input type="text" id="f_hi_hero_title_line1"></div>
+      <div class="field"><label>Hero title line 2 (HI)</label><input type="text" id="f_hi_hero_title_line2"></div>
+      <div class="field"><label>Hero description (HI)</label><textarea id="f_hi_hero_description"></textarea></div>
+      <div class="field"><label>Hero features — one per line (HI)</label><textarea id="f_hi_hero_features"></textarea></div>
+    </div>
+
+    <div class="grid2" style="margin-top:6px">
+      <div class="row"><input type="checkbox" id="f_featured"> <label for="f_featured" style="margin:0">Featured (homepage grid)</label></div>
+      <div class="row"><input type="checkbox" id="f_hero"> <label for="f_hero" style="margin:0">Show in hero slider</label></div>
+      <div class="row"><input type="checkbox" id="f_active" checked> <label for="f_active" style="margin:0">Active (visible on site)</label></div>
+      <div class="field" style="margin:0"><label>Sort order</label><input type="text" id="f_sort_order" style="width:90px"></div>
+    </div>
+
+    <div class="row" style="margin-top:18px;justify-content:flex-end">
+      <button class="btn danger" id="f_delete">Delete Product</button>
+      <button class="btn primary" id="f_save">💾 Save Product</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════
+   RS Machinery Admin — client logic
+   Pure-static SPA. Reads/writes the repo's data/*.json via GitHub API,
+   either direct (PAT in sessionStorage) or via /api/publish proxy.
+   ═══════════════════════════════════════════════════════════════════ */
+(function () {
+'use strict';
+
+var CFG_KEY = 'rsm_admin_cfg_v1';
+var cfg = { repo: 'gitansh6126/rs-machinary-website', branch: 'main', api: '', pat: '' };
+
+// ── state ────────────────────────────────────────────────────────────
+var S = { productsEn: [], productsHi: [], catsEn: [], catsHi: [], seoLinks: { generatedAt: '', locations: [] } };
+var dirty = false;
+var editingIdx = -1;   // index into S.productsEn
+
+// ── tiny helpers ─────────────────────────────────────────────────────
+function $(id) { return document.getElementById(id); }
+function toast(msg, ok) {
+  var t = $('toast');
+  t.textContent = msg;
+  t.className = ok === true ? 'ok' : ok === false ? 'err' : '';
+  t.style.display = 'block';
+  clearTimeout(t._h);
+  t._h = setTimeout(function () { t.style.display = 'none'; }, 4200);
+}
+function setDirty(d) { dirty = d; document.title = (d ? '● ' : '') + 'RS Machinery — Admin (SEO & Products)'; }
+function esc(s) { var d = document.createElement('div'); d.textContent = s == null ? '' : String(s); return d.innerHTML; }
+
+// ── config persistence ───────────────────────────────────────────────
+function loadCfg() {
+  try {
+    var saved = JSON.parse(sessionStorage.getItem(CFG_KEY) || '{}');
+    var local = JSON.parse(localStorage.getItem(CFG_KEY) || '{}');
+    cfg = Object.assign(cfg, local, { pat: saved.pat || '' });
+    if (!local.repo) local.repo = cfg.repo;
+  } catch (e) { }
+  $('cfgRepo').value = cfg.repo || '';
+  $('cfgBranch').value = cfg.branch || 'main';
+  $('cfgApi').value = cfg.api || '';
+  $('cfgPat').value = cfg.pat || '';
+  updateEnvBadge();
+}
+function saveCfg() {
+  cfg.repo = ($('cfgRepo').value || '').trim() || 'gitansh6126/rs-machinary-website';
+  cfg.branch = ($('cfgBranch').value || 'main').trim();
+  cfg.api = $('cfgApi').value.trim();
+  localStorage.setItem(CFG_KEY, JSON.stringify({ repo: cfg.repo, branch: cfg.branch, api: cfg.api }));
+  var pat = $('cfgPat').value.trim();
+  if (pat) { sessionStorage.setItem(CFG_KEY, JSON.stringify({ pat: pat })); cfg.pat = pat; }
+  updateEnvBadge();
+  $('repoLink').href = 'https://github.com/' + cfg.repo;
+  toast('Connection saved.', true);
+}
+function updateEnvBadge() {
+  var b = $('envBadge'), m = $('apiMode');
+  if (cfg.api) { b.textContent = 'proxy mode'; b.style.color = '#22c55e'; m.textContent = 'serverless proxy'; }
+  else if (cfg.pat) { b.textContent = 'direct PAT mode'; b.style.color = '#f59e0b'; m.textContent = 'direct GitHub API'; }
+  else { b.textContent = 'not connected'; b.style.color = ''; m.textContent = ''; }
+}
+
+// ── GitHub access ────────────────────────────────────────────────────
+var API = 'https://api.github.com';
+
+function ghHeaders(token) {
+  return {
+    'Accept': 'application/vnd.github+json',
+    'Authorization': 'Bearer ' + token,
+    'X-GitHub-Api-Version': '2022-11-28'
+  };
+}
+
+function apiGet(path) {
+  var url = API + path;
+  if (cfg.api) url = cfg.api.replace(/\/$/, '') + '/proxy?path=' + encodeURIComponent(path);
+  var h = { 'Accept': 'application/vnd.github+json' };
+  if (!cfg.api && cfg.pat) h = ghHeaders(cfg.pat);
+  return fetch(url, { headers: h, cache: 'no-store' }).then(function (r) {
+    if (r.status === 401) throw new Error('Auth failed (401). Check your PAT / proxy.');
+    if (r.status === 404) throw new Error('Not found (404). Check repo/branch/file paths.');
+    if (!r.ok) throw new Error('GitHub API ' + r.status);
+    return r.json();
+  });
+}
+
+// Read one JSON file from the repo → {json, sha}
+function b64ToUtf8(b64) {
+  var bin = atob(b64.replace(/\s/g, ''));
+  var bytes = new Uint8Array(bin.length);
+  for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+  return new TextDecoder('utf-8').decode(bytes);
+}
+
+function fetchFile(path) {
+  return apiGet('/repos/' + cfg.repo + '/contents/' + encodeURI(path) + '?ref=' + encodeURIComponent(cfg.branch))
+    .then(function (meta) {
+      return { sha: meta.sha, json: JSON.parse(b64ToUtf8(meta.content)) };
+    });
+}
+
+// Commit files via proxy (preferred) or direct PAT.
+function commitFiles(changes, message) {
+  if (cfg.api) {
+    return fetch(cfg.api.replace(/\/$/, '') + '/publish', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ repo: cfg.repo, branch: cfg.branch, message: message, files: changes })
+    }).then(function (r) {
+      if (!r.ok) return r.json().then(function (e) { throw new Error(e.error || 'proxy ' + r.status); });
+      return r.json();
+    });
+  }
+  if (!cfg.pat) return Promise.reject(new Error('No PAT and no proxy configured. See Connection.'));
+  // get SHAs then PUT each file
+  var gets = changes.map(function (c) {
+    return apiGet('/repos/' + cfg.repo + '/contents/' + encodeURI(c.path) + '?ref=' + encodeURIComponent(cfg.branch))
+      .then(function (m) { return { path: c.path, sha: m.sha }; })
+      .catch(function () { return { path: c.path, sha: null }; });
+  });
+  return Promise.all(gets).then(function (shas) {
+    var put = changes.map(function (c, i) {
+      return fetch(API + '/repos/' + cfg.repo + '/contents/' + encodeURI(c.path), {
+        method: 'PUT',
+        headers: ghHeaders(cfg.pat),
+        body: JSON.stringify({
+          message: message + ' (' + c.path + ')',
+          content: btoa(unescape(encodeURIComponent(JSON.stringify(c.json, null, 2) + '\n'))),
+          branch: cfg.branch,
+          sha: shas[i].sha
+        })
+      }).then(function (r) { if (!r.ok) throw new Error('PUT ' + c.path + ' failed: ' + r.status); return r.json(); });
+    });
+    return Promise.all(put).then(function () { return { ok: true, via: 'direct' }; });
+  });
+}
+
+// ── load catalog from repo ──────────────────────────────────────────
+function loadAll() {
+  $('reloadBtn').disabled = true;
+  $('reloadBtn').innerHTML = '<span class="spin"></span> Loading…';
+  var jobs = [
+    fetchFile('data/products.json'),
+    fetchFile('data/products-hi.json'),
+    fetchFile('data/categories.json'),
+    fetchFile('data/categories-hi.json'),
+    fetchFile('data/seo-links.json')
+  ];
+  Promise.all(jobs).then(function (res) {
+    S.productsEn = res[0].json; S.productsHi = res[1].json;
+    S.catsEn = res[2].json; S.catsHi = res[3].json;
+    S.seoLinks = res[4].json;
+    renderAll();
+    setDirty(false);
+    toast('Catalog loaded: ' + S.productsEn.length + ' products, ' + (S.seoLinks.locations || []).length + ' cities.', true);
+  }).catch(function (e) {
+    toast('Load failed: ' + e.message, false);
+  }).finally(function () {
+    $('reloadBtn').disabled = false;
+    $('reloadBtn').innerHTML = '↻ Reload';
+  });
+}
+
+// ── render ───────────────────────────────────────────────────────────
+function renderAll() { renderProducts(); renderCities(); renderCats(); }
+
+function renderProducts() {
+  var q = ($('prodSearch').value || '').toLowerCase();
+  var tb = $('prodTable').querySelector('tbody');
+  tb.innerHTML = '';
+  var list = S.productsEn;
+  $('prodEmpty').style.display = list.length ? 'none' : 'block';
+  list.forEach(function (p, i) {
+    if (q && (p.name + ' ' + p.slug).toLowerCase().indexOf(q) === -1) return;
+    var active = String(p.active).toLowerCase() !== 'false';
+    var hero = p.hero !== false;
+    var hi = S.productsHi.find(function (x) { return x.slug === p.slug; });
+    var tr = document.createElement('tr');
+    tr.innerHTML =
+      '<td><img class="thumb" src="' + esc(p.image) + '" onerror="this.style.visibility=\'hidden\'"></td>' +
+      '<td class="mini">' + esc(p.id) + '</td>' +
+      '<td><b>' + esc(p.name) + '</b>' + (hi ? ' <span class="mini">/ ' + esc(hi.name) + '</span>' : ' <span class="mini" style="color:#ef4444">⚠ no Hindi</span>') + '</td>' +
+      '<td class="mini">' + esc(p.slug) + '</td>' +
+      '<td class="mini">' + esc(p.capacity || '—') + '</td>' +
+      '<td>' +
+        '<span class="pill ' + (active ? 'on">✓ active' : 'off">✕ hidden') + '</span> ' +
+        (hero ? '<span class="pill hero">hero</span>' : '') +
+        (String(p.featured).toLowerCase() === 'true' ? '<span class="pill hero" style="color:#4f7dff;background:rgba(79,125,255,.15)">featured</span>' : '') +
+      '</td>' +
+      '<td><button class="btn sm" data-edit="' + i + '">Edit</button></td>';
+    tb.appendChild(tr);
+  });
+  tb.onclick = function (e) {
+    var b = e.target.closest('[data-edit]');
+    if (b) openEditor(Number(b.getAttribute('data-edit')));
+  };
+}
+
+function renderCities() {
+  var tb = $('cityTable').querySelector('tbody');
+  tb.innerHTML = '';
+  var locs = S.seoLinks.locations || [];
+  $('cityEmpty').style.display = locs.length ? 'none' : 'block';
+  locs.forEach(function (loc, i) {
+    var tr = document.createElement('tr');
+    tr.innerHTML =
+      '<td><input type="text" value="' + esc(loc.city) + '" data-city="' + i + '"></td>' +
+      '<td><input type="text" value="' + esc(loc.url || '') + '" data-cityurl="' + i + '" placeholder="https://rsmachinary.in/…"></td>' +
+      '<td><span class="pill ' + (loc.url ? 'on">linked' : 'off">draft') + '</span></td>' +
+      '<td><button class="btn sm danger" data-citydel="' + i + '">✕</button></td>';
+    tb.appendChild(tr);
+  });
+  tb.oninput = function (e) {
+    var t = e.target;
+    if (t.dataset.city !== undefined) { S.seoLinks.locations[+t.dataset.city].city = t.value; setDirty(true); }
+    if (t.dataset.cityurl !== undefined) { S.seoLinks.locations[+t.dataset.cityurl].url = t.value; setDirty(true); }
+  };
+  tb.onclick = function (e) {
+    var b = e.target.closest('[data-citydel]');
+    if (b) { S.seoLinks.locations.splice(+b.getAttribute('data-citydel'), 1); setDirty(true); renderCities(); }
+  };
+}
+
+function renderCats() {
+  var tb = $('catTable').querySelector('tbody');
+  tb.innerHTML = '';
+  S.catsEn.forEach(function (c, i) {
+    var hi = S.catsHi.find(function (x) { return x.slug === c.slug; });
+    var tr = document.createElement('tr');
+    tr.innerHTML =
+      '<td class="mini">' + esc(c.id) + '</td>' +
+      '<td><input type="text" value="' + esc(c.slug) + '" data-catslug="' + i + '"></td>' +
+      '<td><input type="text" value="' + esc(c.name) + '" data-catname="' + i + '"></td>' +
+      '<td><input type="text" value="' + esc(hi ? hi.name : '') + '" data-catnamehi="' + i + '"></td>' +
+      '<td><button class="btn sm danger" data-catdel="' + i + '">✕</button></td>';
+    tb.appendChild(tr);
+  });
+  tb.oninput = function (e) {
+    var t = e.target, i = +t.dataset.catslug + +t.dataset.catname + +t.dataset.catnamehi;
+    var idx = t.dataset.catslug || t.dataset.catname || t.dataset.catnamehi;
+    if (idx === undefined) return;
+    i = +idx;
+    if (t.dataset.catslug !== undefined) {
+      var old = S.catsEn[i].slug;
+      S.catsEn[i].slug = t.value;
+      var hiC = S.catsHi.find(function (x) { return x.slug === old; });
+      if (hiC) hiC.slug = t.value;
+    }
+    if (t.dataset.catname !== undefined) S.catsEn[i].name = t.value;
+    if (t.dataset.catnamehi !== undefined) {
+      var h = S.catsHi.find(function (x) { return x.slug === S.catsEn[i].slug; });
+      if (h) h.name = t.value;
+    }
+    setDirty(true);
+  };
+  tb.onclick = function (e) {
+    var b = e.target.closest('[data-catdel]');
+    if (!b) return;
+    var i = +b.getAttribute('data-catdel');
+    var slug = S.catsEn[i].slug;
+    var inUse = S.productsEn.some(function (p) { return p.category_id === slug; });
+    if (inUse) { toast('Category "' + slug + '" is used by products. Move them first.', false); return; }
+    S.catsEn.splice(i, 1);
+    S.catsHi = S.catsHi.filter(function (x) { return x.slug !== slug; });
+    setDirty(true); renderCats();
+  };
+}
+
+// ── product editor ──────────────────────────────────────────────────
+function fieldVal(id) { return ($(id).value || '').trim(); }
+function setField(id, v) { $(id).value = v == null ? '' : String(v); }
+
+function openEditor(i) {
+  editingIdx = i;
+  var isNew = i === -1;
+  $('modalTitle').textContent = isNew ? 'Add product' : ('Edit — ' + S.productsEn[i].name);
+  var p = isNew ? null : S.productsEn[i];
+  var hi = isNew ? null : S.productsHi.find(function (x) { return x.slug === S.productsEn[i].slug; });
+
+  ['f_name','f_slug','f_seo_title','f_seo_description','f_short_description','f_description','f_capacity','f_category_id','f_warranty','f_image','f_hero_title_line1','f_hero_title_line2','f_hero_description','f_hero_features'].forEach(function (id) { setField(id, p ? p[id.replace('f_', '')] : ''); });
+  ['f_hi_name','f_hi_seo_title','f_hi_seo_description','f_hi_short_description','f_hi_description','f_hi_capacity','f_hi_warranty','f_hi_hero_title_line1','f_hi_hero_title_line2','f_hi_hero_description','f_hi_hero_features'].forEach(function (id) { setField(id, hi ? hi[id.replace('f_hi_', '')] : ''); });
+
+  if (p && Array.isArray(p.hero_features)) setField('f_hero_features', p.hero_features.join('\n'));
+  if (hi && Array.isArray(hi.hero_features)) setField('f_hi_hero_features', hi.hero_features.join('\n'));
+
+  $('f_featured').checked = p ? String(p.featured).toLowerCase() === 'true' : true;
+  $('f_hero').checked = p ? p.hero !== false : true;
+  $('f_active').checked = p ? String(p.active).toLowerCase() !== 'false' : true;
+  setField('f_sort_order', p ? (p.sort_order || S.productsEn.length + 1) : S.productsEn.length + 1);
+  $('f_delete').style.display = isNew ? 'none' : 'inline-flex';
+  $('modalBack').style.display = 'block';
+  switchLang('en');
+}
+
+function slugify(s) {
+  return String(s).toLowerCase().trim().replace(/['"]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+}
+
+function closeEditor() { $('modalBack').style.display = 'none'; }
+
+function saveProduct() {
+  var name = fieldVal('f_name');
+  var slug = slugify(fieldVal('f_slug') || name);
+  if (!name || !slug) { toast('Name and slug are required.', false); return; }
+  if (editingIdx >= 0) {
+    var other = S.productsEn.findIndex(function (x) { return x.slug === slug; });
+    if (other !== -1 && other !== editingIdx) { toast('Slug "' + slug + '" already exists.', false); return; }
+  } else {
+    if (S.productsEn.some(function (x) { return x.slug === slug; })) { toast('Slug "' + slug + '" already exists.', false); return; }
+  }
+
+  var now = new Date().toISOString();
+  var heroFeatures = fieldVal('f_hero_features').split('\n').map(function (s) { return s.trim(); }).filter(Boolean);
+  var hiHeroFeatures = fieldVal('f_hi_hero_features').split('\n').map(function (s) { return s.trim(); }).filter(Boolean);
+
+  var catSlug = fieldVal('f_category_id') || slug;
+  var catEn = S.catsEn.find(function (c) { return c.slug === catSlug; });
+  var catHiC = S.catsHi.find(function (c) { return c.slug === catSlug; });
+
+  var en = {
+    id: editingIdx >= 0 ? S.productsEn[editingIdx].id : (Math.max(0, Math.max.apply(null, S.productsEn.map(function (x) { return +x.id || 0; }))) + 1),
+    name: name,
+    slug: slug,
+    category_id: catSlug,
+    category_name: catEn ? catEn.name : name,
+    seo_title: fieldVal('f_seo_title'),
+    seo_description: fieldVal('f_seo_description'),
+    short_description: fieldVal('f_short_description'),
+    description: fieldVal('f_description'),
+    image: fieldVal('f_image') || 'assets/placeholder.svg',
+    gallery_images: editingIdx >= 0 ? (S.productsEn[editingIdx].gallery_images || []) : [],
+    capacity: fieldVal('f_capacity'),
+    brand: editingIdx >= 0 ? (S.productsEn[editingIdx].brand || 'RS Machinery') : 'RS Machinery',
+    condition: 'New',
+    warranty: fieldVal('f_warranty'),
+    delivery: 'Pan-India Shipping Available',
+    featured: $('f_featured').checked,
+    active: $('f_active').checked,
+    sort_order: +fieldVal('f_sort_order') || 99,
+    hero: $('f_hero').checked,
+    hero_title_line1: fieldVal('f_hero_title_line1') || name,
+    hero_title_line2: fieldVal('f_hero_title_line2'),
+    hero_description: fieldVal('f_hero_description') || fieldVal('f_short_description'),
+    hero_features: heroFeatures,
+    specifications: editingIdx >= 0 ? (S.productsEn[editingIdx].specifications || {}) : {},
+    variations: editingIdx >= 0 ? (S.productsEn[editingIdx].variations || []) : [],
+    features: editingIdx >= 0 ? (S.productsEn[editingIdx].features || []) : [],
+    applications: editingIdx >= 0 ? (S.productsEn[editingIdx].applications || []) : [],
+    faq: editingIdx >= 0 ? (S.productsEn[editingIdx].faq || []) : [],
+    created_at: editingIdx >= 0 ? (S.productsEn[editingIdx].created_at || now) : now,
+    updated_at: now
+  };
+
+  var hiEn = editingIdx >= 0 ? S.productsHi.find(function (x) { return x.slug === S.productsEn[editingIdx].slug; }) : null;
+  var hi = {
+    id: en.id, name: fieldVal('f_hi_name') || name, slug: slug,
+    category_id: en.category_id,
+    category_name: catHiC ? catHiC.name : (catEn ? catEn.name : (fieldVal('f_hi_name') || name)),
+    seo_title: fieldVal('f_hi_seo_title') || en.seo_title,
+    seo_description: fieldVal('f_hi_seo_description') || en.seo_description,
+    short_description: fieldVal('f_hi_short_description') || en.short_description,
+    description: fieldVal('f_hi_description') || en.description,
+    image: en.image,
+    gallery_images: en.gallery_images,
+    capacity: fieldVal('f_hi_capacity') || en.capacity,
+    brand: hiEn ? hiEn.brand : 'आरएस मशीनरी',
+    condition: 'नया',
+    warranty: fieldVal('f_hi_warranty') || en.warranty,
+    delivery: 'पैन-इंडिया शिपिंग उपलब्ध',
+    featured: en.featured, active: en.active, sort_order: en.sort_order, hero: en.hero,
+    hero_title_line1: fieldVal('f_hi_hero_title_line1') || en.hero_title_line1,
+    hero_title_line2: fieldVal('f_hi_hero_title_line2') || en.hero_title_line2,
+    hero_description: fieldVal('f_hi_hero_description') || en.hero_description,
+    hero_features: hiHeroFeatures.length ? hiHeroFeatures : heroFeatures,
+    specifications: hiEn ? hiEn.specifications : {},
+    variations: hiEn ? hiEn.variations : [],
+    features: hiEn ? hiEn.features : [],
+    applications: hiEn ? hiEn.applications : [],
+    faq: hiEn ? hiEn.faq : [],
+    created_at: en.created_at, updated_at: now
+  };
+
+  if (editingIdx >= 0) {
+    S.productsEn[editingIdx] = en;
+    var oldSlug = hiEn ? hiEn.slug : slug;
+    var idx2 = S.productsHi.findIndex(function (x) { return x.slug === oldSlug; });
+    if (idx2 >= 0) S.productsHi[idx2] = hi; else S.productsHi.push(hi);
+    S.productsHi.sort(function (a, b) { return (a.sort_order || 99) - (b.sort_order || 99); });
+  } else {
+    S.productsEn.push(en);
+    S.productsHi.push(hi);
+  }
+  S.productsEn.sort(function (a, b) { return (a.sort_order || 99) - (b.sort_order || 99); });
+
+  closeEditor();
+  setDirty(true);
+  renderProducts();
+  toast('Saved locally. Remember to Publish to GitHub to go live.', true);
+}
+
+function deleteProduct() {
+  if (editingIdx < 0) return;
+  var slug = S.productsEn[editingIdx].slug;
+  if (!confirm('Delete "' + S.productsEn[editingIdx].name + '" (EN + HI) from the catalog?')) return;
+  S.productsEn.splice(editingIdx, 1);
+  S.productsHi = S.productsHi.filter(function (x) { return x.slug !== slug; });
+  closeEditor(); setDirty(true); renderProducts();
+  toast('Deleted locally. Publish to apply.', true);
+}
+
+function switchLang(lang) {
+  document.querySelectorAll('#langTabs .tab').forEach(function (b) {
+    b.classList.toggle('active', b.dataset.lang === lang);
+  });
+  $('editorEn').style.display = lang === 'en' ? 'block' : 'none';
+  $('editorHi').style.display = lang === 'hi' ? 'block' : 'none';
+}
+
+// ── publish ─────────────────────────────────────────────────────────
+function publish() {
+  if (!dirty) { toast('No local changes to publish.', true); return; }
+  S.seoLinks.generatedAt = new Date().toISOString();
+  S.seoLinks.pageCount = (S.seoLinks.locations || []).filter(function (l) { return l.url; }).length;
+
+  var btns = [$('publishBtn'), $('publishBtn2')];
+  btns.forEach(function (b) { b.disabled = true; b.innerHTML = '<span class="spin"></span> Publishing…'; });
+
+  var changes = [
+    { path: 'data/products.json', json: S.productsEn },
+    { path: 'data/products-hi.json', json: S.productsHi },
+    { path: 'data/categories.json', json: S.catsEn },
+    { path: 'data/categories-hi.json', json: S.catsHi },
+    { path: 'data/seo-links.json', json: S.seoLinks }
+  ];
+  var msg = 'admin: update catalog (' + S.productsEn.length + ' products' +
+    (S.seoLinks.pageCount ? ', ' + S.seoLinks.pageCount + ' city links' : '') + ')';
+
+  commitFiles(changes, msg).then(function (res) {
+    setDirty(false);
+    toast('Published ✔ ' + (res.via === 'direct' ? 'committed to GitHub' : 'via proxy') + ' — deploy runs automatically.', true);
+    var log = $('commitLog');
+    log.innerHTML = '<div class="card" style="background:var(--surface2)"><b>Last publish:</b> ' + esc(msg) +
+      '<br><span class="mini">' + new Date().toLocaleString() + ' — data/*.json committed. CI builds the site (hero, sections, forms, sitemap) from these files.</span></div>';
+  }).catch(function (e) {
+    toast('Publish failed: ' + e.message, false);
+  }).finally(function () {
+    btns.forEach(function (b) { b.disabled = false; });
+    $('publishBtn').innerHTML = '↑ Publish to GitHub';
+    $('publishBtn2').innerHTML = '↑ Publish to GitHub';
+  });
+}
+
+// ── wiring ───────────────────────────────────────────────────────────
+document.querySelectorAll('.tabs .tab').forEach(function (t) {
+  if (t.closest('#langTabs')) return;
+  t.addEventListener('click', function () {
+    document.querySelectorAll('.tabs .tab').forEach(function (x) { if (!x.closest('#langTabs')) x.classList.remove('active'); });
+    t.classList.add('active');
+    ['products', 'seo', 'categories', 'publish'].forEach(function (id) {
+      $('tab-' + id).style.display = t.dataset.tab === id ? 'block' : 'none';
+    });
+  });
+});
+document.querySelectorAll('#langTabs .tab').forEach(function (t) {
+  t.addEventListener('click', function () { switchLang(t.dataset.lang); });
+});
+
+$('reloadBtn').onclick = function () { if (dirty && !confirm('Discard local changes and reload from repo?')) return; loadAll(); };
+$('publishBtn').onclick = publish;
+$('publishBtn2').onclick = publish;
+$('saveCfgBtn').onclick = saveCfg;
+$('testConnBtn').onclick = function () {
+  saveCfgSilent();
+  apiGet('/repos/' + cfg.repo + '/branches/' + encodeURIComponent(cfg.branch))
+    .then(function (b) { toast('Connected ✔ branch ' + b.name + ' found.', true); })
+    .catch(function (e) { toast('Connection failed: ' + e.message, false); });
+};
+function saveCfgSilent() {
+  cfg.repo = ($('cfgRepo').value || '').trim();
+  cfg.branch = ($('cfgBranch').value || 'main').trim();
+  cfg.api = $('cfgApi').value.trim();
+  cfg.pat = $('cfgPat').value.trim();
+  localStorage.setItem(CFG_KEY, JSON.stringify({ repo: cfg.repo, branch: cfg.branch, api: cfg.api }));
+  if (cfg.pat) sessionStorage.setItem(CFG_KEY, JSON.stringify({ pat: cfg.pat }));
+  updateEnvBadge();
+}
+$('prodSearch').oninput = renderProducts;
+$('addProductBtn').onclick = function () { openEditor(-1); };
+$('modalClose').onclick = closeEditor;
+$('modalBack').addEventListener('click', function (e) { if (e.target === this) closeEditor(); });
+$('f_save').onclick = saveProduct;
+$('f_delete').onclick = deleteProduct;
+
+$('addCityBtn').onclick = function () {
+  if (!S.seoLinks.locations) S.seoLinks.locations = [];
+  S.seoLinks.locations.push({ city: 'New City', url: '' });
+  setDirty(true); renderCities();
+};
+$('addCatBtn').onclick = function () {
+  var n = S.catsEn.length + 1;
+  S.catsEn.push({ id: n, name: 'New Category', slug: 'new-category-' + n, description: '', sort_order: n, active: 'TRUE', created_at: new Date().toISOString(), updated_at: new Date().toISOString() });
+  S.catsHi.push({ id: n, name: 'नई श्रेणी', slug: 'new-category-' + n, description: '', sort_order: n, active: 'TRUE', created_at: new Date().toISOString(), updated_at: new Date().toISOString() });
+  setDirty(true); renderCats();
+};
+
+window.addEventListener('beforeunload', function (e) {
+  if (dirty) { e.preventDefault(); e.returnValue = ''; }
+});
+
+// boot
+loadCfg();
+$('repoLink').href = 'https://github.com/' + cfg.repo;
+loadAll();
+})();
+</script>
+</body>
+</html>

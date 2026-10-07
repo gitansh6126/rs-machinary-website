@@ -1,0 +1,13 @@
+{
+  "name": "rs-machinary-website",
+  "version": "2.0.0",
+  "private": true,
+  "description": "RS Machinery \u2014 catalog-driven static site with admin panel",
+  "scripts": {
+    "build": "node scripts/build-catalog.js",
+    "admin": "npx serve ."
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
