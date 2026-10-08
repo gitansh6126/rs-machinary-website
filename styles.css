@@ -3714,3 +3714,73 @@ body.rsmx-lightbox-open {
     transition-duration: 1ms !important;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   PRODUCT-CARD 3D TILT + GLARE (ThreeUI "Holo Card" pattern, adapted)
+   Driven by js/hero-tilt.js: pointer over the centre card 3D-tilts the
+   product photo and sweeps a light glare across it. The coverflow system
+   (data-off transforms in main.js's stylesheet rules) is untouched — tilt is
+   applied to the img child, glare to a JS-injected .hp-glare layer.
+
+   Vars (set by JS on the centre card element):
+     --hx   tilt around X (deg)   --hy   tilt around Y (deg)
+     --gx/--gy  glare position 0..1   --ga  glare strength 0..1
+     --sweep  one-shot sheen sweep (1 = fire)
+   ═══════════════════════════════════════════════════════════════════════════ */
+.hp-card {
+  --hx: 0deg;
+  --hy: 0deg;
+  --gx: 0.5;
+  --gy: 0.5;
+  --ga: 0;
+  --sweep: 0;
+}
+
+/* Tilt the product photo, not the card shell — coverflow keeps full control
+   of the card. Subtle max tilt keeps the "engineering reticle" aligned. */
+.hp-card[data-off="0"] img {
+  transform: rotateX(var(--hx)) rotateY(var(--hy));
+  transition: transform 90ms linear;
+  transform-style: preserve-3d;
+}
+
+/* Perspective for the img tilt: the card clips with overflow:hidden (which
+   flattens transform-style), so give the centre card its own perspective —
+   children rotate in real 3D regardless of the coverflow's stage plane. */
+.hp-card[data-off="0"] {
+  perspective: 900px;
+}
+
+/* Glare layer (JS injects it as the card's first child). Sits above the
+   photo, under the ::after sheen. Pure light — no geometry. */
+.hp-card[data-off="0"] .hp-glare {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: var(--ga, 0);
+  background: radial-gradient(
+    55% 45% at calc(var(--gx, 0.5) * 100%) calc(var(--gy, 0.5) * 100%),
+    rgba(255, 255, 255, 0.30),
+    rgba(255, 255, 255, 0.10) 46%,
+    transparent 72%
+  );
+  transition: opacity 200ms ease;
+  z-index: 2;
+}
+
+/* One-shot diagonal sheen sweep when the centre product changes. */
+.hp-card[data-off="0"] .hp-glare::after {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  background: linear-gradient(
+    115deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.22) 48%,
+    rgba(255, 255, 255, 0.06) 55%,
+    transparent 72%
+  );
+  transform: translateX(calc(var(--sweep, 0) * -160%));
+  transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+}
